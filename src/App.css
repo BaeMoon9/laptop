@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+.Components {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -26,6 +35,90 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.detailComponent {
+  margin-top: 20px;
+}
+
+.login {
+  display: flex;
+  width: 50%;
+  height: 90vh;
+  align-items: center;
+  background-color: lightgray;
+}
+
+.loginTitle{
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.loginBox {
+  display: inline-block;
+  padding: 10px;
+  background-color: white;
+  width: 500px;
+  height: 425px;
+}
+
+.loginTab2 {
+  width: 100%;
+  background-color: white;
+}
+
+.IdInput {
+  width: 100%;
+  height: 60px;
+  border: 0;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  padding: 5px 10px 5px 20px;
+  background-color: #f4f4f4;
+  background-size: 30px;
+}
+
+.PwInput {
+  width: 100%;
+  height: 60px;
+  border: 0;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  padding: 5px 10px 5px 20px;
+  background-color: #f4f4f4;
+  background-size: 30px;
+}
+
+.loginBtn {
+  display: inline-block;
+  width: 100%;
+  height: 60px;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: #1f4596;
+  color: #fff;
+}
+
+.findBtnTab {
+  display: flex;
+  margin-right: 5px;
+  margin-top: 5px;
+  justify-content: flex-end;
+  padding-top: 5px;
+}
+
+.findBtn {
+  margin: 0 10px;
+  color: #333;
+	cursor: pointer;
+  text-decoration: none;
 }
 
 @keyframes App-logo-spin {
