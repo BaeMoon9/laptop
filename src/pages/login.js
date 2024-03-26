@@ -1,9 +1,9 @@
+/*eslint-disable*/
 import React from "react";
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 
 
-function Login() {
+function LoginPage() {
   return (
     <div className="login">
       <Container>
@@ -27,4 +27,4 @@ function Login() {
   )
 }
 
-export default Login;
+export default LoginPage;

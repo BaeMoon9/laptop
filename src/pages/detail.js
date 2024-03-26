@@ -36,10 +36,11 @@ function Detail(props) {
         <h2>노트북</h2>
         <Container>
           <div></div>
-          <Row>
-            <h4>CPU : Intel Core I5 8th Gen</h4>
-            <h4>RAM : LPDDR4 8GB</h4>
-            <h4>SSD : 256GB NVME</h4>      
+          <Row className="cardstyle">
+            <li><h4>CPU : Intel Core I5 8th Gen</h4></li>
+            <li><h4>RAM : LPDDR4 8GB</h4></li>
+            <li><h4>SSD : 256GB NVME</h4></li>  
+            <li><h4>SSD : 256GB NVME</h4></li>      
           </Row>
         </Container>
       </div>

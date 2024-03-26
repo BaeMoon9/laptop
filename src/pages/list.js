@@ -4,7 +4,6 @@ function ListTable() {
 
     return(
         <div>
-            
             <Table striped bordered hover>
               <thead>
                 <tr>
