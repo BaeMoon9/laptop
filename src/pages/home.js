@@ -15,42 +15,39 @@ function Home() {
 
   useEffect(() => {
     axios.get('http://localhost:8081/laptopspecs').then((result) => {
-      console.log(result)
-      console.log(result.data)
       setLaptopData(result.data)
-      console.log(laptopData.length)
-      console.log(laptopData)
+      //console.log(laptopData)
     }).catch(() => {
       console.log('failed')
     })
   }, [])
 
+  console.log(laptopData)
+  console.log(laptopData[0])
+
   return (
           <div>
             <Container>
-              <Row xs={1} md={3} className="g-5">
-                {laptopData.map((a, idx) => (
-                  <Col key={idx}>
+              <Row xs={1} md={2} className="g-5">
+                {laptopData.map((a, inx) => (
+                  <Col key={inx}>
                     <Card>
-                      <Card.Img variant="top" src="/logo192.png" />
+                      <Card.Img variant="top" src="/laptop01.jpeg" />
                       <Card.Body>
-                        <Card.Title>LG Ultra PC</Card.Title>
+                        <Card.Title>{a.Name}</Card.Title>
                         <Card.Text>
                           <div className="cardstyle">
-                            <li>CPU : {a[0]}</li>
-                            <li>RAM : {a[0]}</li>
-                            <li>SSD : {a[0]}</li>
-                            <li>HDD : {a[0]}</li>
+                            <li>CPU : {a.CPU}</li>
+                            <li>RAM : {a.RAM}</li>
+                            <li>SSD : {a.SSD}</li>
+                            <li>HDD : {a.HDD}</li>
                           </div>
                         </Card.Text>
                         <Button variant="primary" onClick={() => { navigate('/home/detail') }}>상세정보</Button>
-                        <Button variant="primary" onClick={() => {
-                          //console.log(laptopData)
-                        }}>데이터받아오기</Button>
                       </Card.Body>
                     </Card>
                   </Col>
-                ))}
+                 ))}
               </Row>
             </Container>
             <div className="detailComponent">
