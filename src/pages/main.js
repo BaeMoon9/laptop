@@ -8,6 +8,7 @@ import LoginPage from './login.js';
 import Home from "./home.js";
 import ListTable from "./list.js";
 import Detail from "./detail.js";
+import LaptopList from "./laptopList.js";
 
 
 function MainPage() {
@@ -37,7 +38,7 @@ function MainPage() {
           <Route path="/" element={<ListTable />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/home" element={<Home />}>
-            <Route path="detail" element={<Detail/>} />
+            <Route path="detail" element={<LaptopList/>} />
           </Route>
           <Route path="/list" element={<ListTable />} />
          

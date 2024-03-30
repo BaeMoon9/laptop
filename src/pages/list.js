@@ -1,6 +1,22 @@
-import { Table } from 'react-bootstrap'; 
+import { Table } from 'react-bootstrap';
+import axios from 'axios'
+import React, { useState, useEffect } from "react";
 
 function ListTable() {
+
+  const [laptopData, setLaptopData] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/laptopspecs').then((result) => {
+      setLaptopData(result.data)
+      //console.log(laptopData)
+    }).catch(() => {
+      console.log('failed')
+    })
+  }, [])
+
+  console.log(laptopData)
+  console.log(laptopData[0])
 
     return(
         <div>
@@ -14,15 +30,17 @@ function ListTable() {
                   <th class="col-md-1">이름</th>
                 </tr>
               </thead>
-              <tbody>
+              {laptopData.map((a, inx) => (
+                <tbody key={inx}>
                 <tr>
-                  <td>1</td>
-                  <td>18LG</td>
-                  <td>2018</td>
+                  <td>{}</td>
+                  <td>{a.Name}</td>
+                  <td>{a.Model_Year}</td>
                   <td>2366607</td>
                   <td>배문규</td>
                 </tr>
               </tbody>
+              ))}
             </Table>
           </div>
     )

@@ -28,22 +28,22 @@ function Home() {
   return (
           <div>
             <Container>
-              <Row xs={1} md={2} className="g-5">
+              <Row xs={1} md={3} className="g-5">
                 {laptopData.map((a, inx) => (
                   <Col key={inx}>
-                    <Card>
-                      <Card.Img variant="top" src="/laptop01.jpeg" />
-                      <Card.Body>
+                    <Card className="cardstyle">
+                      <Card.Img variant="top" src="/laptop01.jpeg" width="250px" height="250px"/>
+                      <Card.Body className="cardcontent">
                         <Card.Title>{a.Name}</Card.Title>
                         <Card.Text>
-                          <div className="cardstyle">
+                          <div className="cardtext">
                             <li>CPU : {a.CPU}</li>
                             <li>RAM : {a.RAM}</li>
                             <li>SSD : {a.SSD}</li>
                             <li>HDD : {a.HDD}</li>
                           </div>
                         </Card.Text>
-                        <Button variant="primary" onClick={() => { navigate('/home/detail') }}>상세정보</Button>
+                        <Button variant="primary" onClick={() => { navigate('/home/detail') }}>대여하기</Button>
                       </Card.Body>
                     </Card>
                   </Col>
@@ -51,7 +51,7 @@ function Home() {
               </Row>
             </Container>
             <div className="detailComponent">
-              <Outlet></Outlet>
+              <Outlet><laptopList /></Outlet>
             </div>
           </div>
   )
