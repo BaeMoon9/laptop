@@ -40,14 +40,26 @@ function LaptopList() {
                             <td className='td1'>{a.name}</td>
                             <td className='td1'>{a.ync_num}</td>
                             <td className='td1'>
-                                <Badge bg="success" className="badgeCss">
-                                    대여가능
-                                </Badge>
+                                {
+                                    a.status === '대여가능'
+                                        ? <Badge bg="success" className="badgeCss">
+                                            대여가능
+                                        </Badge>
+                                        : <Badge bg="danger" className='badgeCss'>
+                                            대여불가
+                                        </Badge>
+                                }
                             </td>
                             <td className='td1'>
-                                <Button variant="primary" className="btnCss1">
-                                    대여하기
-                                </Button>
+                                {
+                                    a.status === '대여가능'
+                                        ? <Button variant="primary" className="btnCss1">
+                                            대여하기
+                                        </Button>
+                                        : <Button variant="primary" className="btnCss1" disabled>
+                                            대여하기
+                                        </Button>
+                                }
                             </td>
                         </tr>
                     </tbody>
