@@ -3,11 +3,16 @@ import axios from 'axios'
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
+import { useLocation } from 'react-router-dom';
 
 
 function LaptopList() {
 
     const [laptopData, setLaptopData] = useState([])
+    const location = useLocation()
+    console.log(location)
+    const modelYear = {...location.state.a}
+    console.log(modelYear.Model_Year)
 
     useEffect(() => {
         axios.get('http://localhost:8081/laptopdatabases').then((result) => {
@@ -19,7 +24,7 @@ function LaptopList() {
     }, [])
 
     console.log(laptopData)
-    console.log(laptopData[0])
+    //console.log(laptopData[0])
 
     return (
         <div>
@@ -33,7 +38,10 @@ function LaptopList() {
                         <th class="col-md-1">대여하기</th>
                     </tr>
                 </thead>
-                {laptopData.map((a, inx) => (
+                {
+                laptopData.map((a, inx) => (
+                    modelYear.Model_Year === a.Year
+                    ?
                     <tbody key={inx} className='tbody1'>
                         <tr className='tr1'>
                             <td className='td1'>{inx + 1}</td>
@@ -63,6 +71,7 @@ function LaptopList() {
                             </td>
                         </tr>
                     </tbody>
+                    : null
                 ))}
             </Table>
         </div>

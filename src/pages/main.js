@@ -7,7 +7,6 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import LoginPage from './login.js';
 import Home from "./home.js";
 import ListTable from "./list.js";
-import Detail from "./detail.js";
 import LaptopList from "./laptopList.js";
 
 

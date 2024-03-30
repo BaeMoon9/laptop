@@ -22,8 +22,13 @@ function Home() {
     })
   }, [])
 
-  console.log(laptopData)
-  console.log(laptopData[0])
+  // console.log(laptopData)
+  // console.log(laptopData[0])
+
+  const handleRentLaptop = (a) => { //대여하기 버튼 누를떄 연도별 노트북 정보 전달
+    navigate('/home/detail', {state : a})
+    // console.log(a)
+  }
 
   return (
           <div>
@@ -43,7 +48,7 @@ function Home() {
                             <li>HDD : {a.HDD}</li>
                           </div>
                         </Card.Text>
-                        <Button variant="primary" onClick={() => { navigate('/home/detail') }}>대여하기</Button>
+                        <Button variant="primary" onClick={() => {handleRentLaptop({a})}}>대여하기</Button>
                       </Card.Body>
                     </Card>
                   </Col>
