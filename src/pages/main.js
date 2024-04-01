@@ -8,6 +8,7 @@ import LoginPage from './login.js';
 import Home from "./home.js";
 import ListTable from "./list.js";
 import LaptopList from "./laptopList.js";
+import MyPage from "./mypage.js";
 
 
 function MainPage() {
@@ -27,7 +28,7 @@ function MainPage() {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              Signed in as: <a href="#login">아이디</a>
+              Signed in as: <a onClick={() => { navigate('/mypage')}}>아이디</a>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>
@@ -36,6 +37,7 @@ function MainPage() {
         <Routes>
           <Route path="/" element={<ListTable />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<Home />}>
             <Route path="detail" element={<LaptopList/>} />
           </Route>

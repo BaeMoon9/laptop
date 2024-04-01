@@ -10,10 +10,10 @@ function LoginPage() {
         <div className="loginBox">
           <h3 className="loginTitle">Login</h3>
           <div className="loginTab2">
-            <form className="">
-              <input className="IdInput" type="text" placeholder="ID를 입력하세요."/>
-              <input className="PwInput" type="password" placeholder="PW를 입력하세요." />
-              <button className="loginBtn">로그인</button>
+            <form action="http://localhost:8081/login1" method="POST">
+              <input name="username" className="IdInput" placeholder="ID를 입력하세요." />
+              <input name="password" className="PwInput" type="password" placeholder="PW를 입력하세요." />
+              <button className="loginBtn" type="submit">로그인</button>
             </form>
             <ul className="findBtnTab">
               <p><a className="findBtn">ID찾기</a></p>
