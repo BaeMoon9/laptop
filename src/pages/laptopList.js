@@ -10,9 +10,9 @@ function LaptopList() {
 
     const [laptopData, setLaptopData] = useState([])
     const location = useLocation()
-    console.log(location)
+    //console.log(location)
     const modelYear = {...location.state.a}
-    console.log(modelYear.Model_Year)
+    console.log(modelYear)
 
     useEffect(() => {
         axios.get('http://localhost:8081/laptopdatabases').then((result) => {
