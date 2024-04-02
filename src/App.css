@@ -8,7 +8,8 @@
 }
 
 .Components {
-  display: flex;
+  /* display: flex; */
+  align-items: center;
   justify-content: center;
   text-align: center;
   padding-top: 10px;
@@ -123,8 +124,6 @@
 
 .cardstyle {
   padding: 3px;
- 
-  
 }
 
 .cardcontent {
@@ -145,13 +144,13 @@
 
 .badgeCss {
   padding-top: 6px;
-  width : 70px;
-  height : 25px;
+  width: 70px;
+  height: 25px;
 }
 
 .btnCss1 {
-  width : 85px;
-  height : 35px;
+  width: 85px;
+  height: 35px;
 }
 
 .tbody1 {
@@ -169,6 +168,73 @@
 
 .td1 {
   text-align: center;
+}
+
+.mypage {
+  width: 1184px;
+  background-color: thistle;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.userinfo {
+  background-color: beige;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 50px;
+}
+
+.usr-account {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.usr-id {
+  background-color: antiquewhite;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.usr-pw {
+  background-color: antiquewhite;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.usr-email {
+  background-color: antiquewhite;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.usr-title {
+  display: flex;
+  width : 75px;
+  height: 82px;
+  justify-content: flex-start;
+  
+}
+
+.usr-content {
+  margin-left: 10px;
+}
+
+.usr-content-data {
+  margin-bottom: 10px;
+}
+
+.divider {
+  border: 0px;
+  border-top: 2px solid;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.tables{
+  display: flex;
+  width:1300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @keyframes App-logo-spin {

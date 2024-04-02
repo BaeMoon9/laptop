@@ -27,7 +27,7 @@ function LaptopList() {
     //console.log(laptopData[0])
 
     return (
-        <div>
+        <div className="tables">
             <Table striped bordered hover>
                 <thead>
                     <tr>
