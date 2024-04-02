@@ -15,8 +15,8 @@ function ListTable() {
     })
   }, [])
 
-  console.log(laptopData)
-  console.log(laptopData[0])
+  // console.log(laptopData)
+  // console.log(laptopData[0])
 
     return(
         <div>

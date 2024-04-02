@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -9,11 +9,22 @@ import Home from "./home.js";
 import ListTable from "./list.js";
 import LaptopList from "./laptopList.js";
 import MyPage from "./mypage.js";
+import axios from "axios";
 
 
 function MainPage() {
 
   const navigate = useNavigate();
+
+  const [userData, setUserData] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/userpage').then((result) => {
+      setUserData(result.data)
+    }).catch(() => {
+      console.log('failed')
+    })
+  }, [])
 
   return (
     <div>
@@ -28,7 +39,11 @@ function MainPage() {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              Signed in as: <a onClick={() => { navigate('/mypage')}}>아이디</a>
+             {
+              !userData.id
+              ?  <p>Signed in as: <a onClick={() => { navigate('/login')}}>로그인</a></p>
+              :  <p>Signed in as: <a onClick={() => { navigate('/mypage')}}>{userData.id}</a></p>
+             }
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>

@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
+import Button from 'react-bootstrap/Button';
 
 function MyPage() {
+
+  const [userData, setUserData] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:8081/userpage').then((result) => {
+      setUserData(result.data)
+    }).catch(() => {
+      console.log('failed')
+    })
+  }, [])
+
+  console.log('id : ', userData.id)
+
   return (
     <div className="mypage">
       <div className="userinfo">
@@ -12,7 +27,7 @@ function MyPage() {
           <h4>ID</h4>
           </div>
           <div className="usr-content">
-            <div className="usr-content-data">123123123</div>
+            <div className="usr-content-data">{userData.id}</div>
           </div>
         </div>
         <div className="usr-pw">
@@ -21,24 +36,30 @@ function MyPage() {
           </div>
           <div className="usr-content">
             <div className="usr-content-data">123123123</div>
-            <button>변경하기</button>
+            <Button variant="primary" className="btnCss1">
+              변경하기
+            </Button>
           </div>
         </div>
         <div className="usr-email">
           <div className="usr-title">
-          <h4>E-mail</h4>
+          <h4>Name</h4>
           </div>
           <div className="usr-content">
-            <div className="usr-content-data">123123123</div>
-            <button>변경하기</button>
+            <div className="usr-content-data">{userData.username}</div>
+            <Button variant="primary" className="btnCss1">
+              변경하기
+            </Button>
           </div>
         </div>
         <div className="usr-email">
           <div className="usr-title">
-          <h4>E-mail</h4>
+          <h4>Logout</h4>
           </div>
           <div className="usr-content">
-            <button>변경하기</button>
+          <Button variant="danger" className="btnCss1">
+              로그아웃
+            </Button>
           </div>
         </div>
       </div>
