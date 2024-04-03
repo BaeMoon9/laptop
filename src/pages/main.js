@@ -9,6 +9,7 @@ import Home from "./home.js";
 import ListTable from "./list.js";
 import LaptopList from "./laptopList.js";
 import MyPage from "./mypage.js";
+import Register from "./register.js";
 import axios from "axios";
 
 
@@ -41,8 +42,8 @@ function MainPage() {
             <Navbar.Text>
              {
               !userData.id
-              ?  <p>Signed in as: <a onClick={() => { navigate('/login')}}>로그인</a></p>
-              :  <p>Signed in as: <a onClick={() => { navigate('/mypage')}}>{userData.id}</a></p>
+              ?  <p><a onClick={() => { navigate('/login')}}>로그인 하러가기</a></p>
+              :  <p>환영합니다 <a onClick={() => { navigate('/mypage')}}>{userData.id}</a> 님!</p>
              }
             </Navbar.Text>
           </Navbar.Collapse>
@@ -52,6 +53,7 @@ function MainPage() {
         <Routes>
           <Route path="/" element={<ListTable />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="register" element={<Register />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<Home />}>
             <Route path="detail" element={<LaptopList/>} />
