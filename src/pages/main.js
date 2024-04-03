@@ -42,8 +42,8 @@ function MainPage() {
             <Navbar.Text>
              {
               !userData.id
-              ?  <p><a onClick={() => { navigate('/login')}}>로그인 하러가기</a></p>
-              :  <p>환영합니다 <a onClick={() => { navigate('/mypage')}}>{userData.id}</a> 님!</p>
+              ?  <p className="logintab"><a onClick={() => { navigate('/login')}}>로그인 하러가기</a>!</p>
+              :  <p className="logintab">환영합니다 <a onClick={() => { navigate('/mypage')}}>{userData.id}</a> 님!</p>
              }
             </Navbar.Text>
           </Navbar.Collapse>

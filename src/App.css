@@ -65,6 +65,10 @@
   height: 425px;
 }
 
+.logintab {
+  padding-top: 10px;
+}
+
 .loginTab2 {
   width: 100%;
   background-color: white;
@@ -174,13 +178,13 @@
 
 .mypage {
   width: 1184px;
-  background-color: thistle;
+  /* background-color: thistle; */
   margin-right: auto;
   margin-left: auto;
 }
 
 .userinfo {
-  background-color: beige;
+  /* background-color: beige; */
   flex-direction: column;
   justify-content: flex-start;
   margin-top: 50px;
@@ -192,27 +196,28 @@
 }
 
 .usr-id {
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   display: flex;
   margin-bottom: 10px;
 }
 
 .usr-pw {
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   display: flex;
   margin-bottom: 10px;
 }
 
 .usr-email {
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   display: flex;
   margin-bottom: 10px;
 }
 
 .usr-title {
+  margin-right: 10px;
   display: flex;
   width : 75px;
-  height: 82px;
+  height: 85px;
   justify-content: flex-start;
   
 }
@@ -223,6 +228,9 @@
 
 .usr-content-data {
   margin-bottom: 10px;
+  color: darkslateblue;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .divider {
@@ -237,6 +245,10 @@
   width:1300px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.rentlist{
+  margin-bottom: 10px;
 }
 
 @keyframes App-logo-spin {
