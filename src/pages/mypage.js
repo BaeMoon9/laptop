@@ -2,11 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import { Table } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 function MyPage() {
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState([])
   const [userRented, setUserRented] = useState([])
+  const logoutBtn = () => {
+    axios.get('http://localhost:8081/logout').catch(() => {
+      console.log('failed')
+    })
+    navigate('/', {state : null})
+  }
 
   // useEffect(() => {
   //   axios.get('http://localhost:8081/userpage').then((result) => {
@@ -17,7 +25,7 @@ function MyPage() {
   // }, [])
 
   useEffect(() => {
-    axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/userrented')])
+    axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/userrented'),])
     .then(
       axios.spread((res1, res2) => {
         setUserData(res1.data)
@@ -72,7 +80,7 @@ function MyPage() {
             <h4>Logout</h4>
           </div>
           <div className="usr-content">
-            <Button variant="danger" className="btnCss1">
+            <Button variant="danger" className="btnCss1" onClick={logoutBtn}>
               로그아웃
             </Button>
           </div>

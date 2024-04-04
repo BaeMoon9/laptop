@@ -15,9 +15,13 @@ import axios from "axios";
 
 function MainPage() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  const loactionData = useLocation()
 
   const [userData, setUserData] = useState([])
+
+  console.log(userData)
 
   useEffect(() => {
     axios.get('http://localhost:8081/userpage').then((result) => {
