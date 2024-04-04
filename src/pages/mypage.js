@@ -6,16 +6,30 @@ import { Table } from 'react-bootstrap';
 function MyPage() {
 
   const [userData, setUserData] = useState([])
+  const [userRented, setUserRented] = useState([])
+
+  // useEffect(() => {
+  //   axios.get('http://localhost:8081/userpage').then((result) => {
+  //     setUserData(result.data)
+  //   }).catch(() => {
+  //     console.log('failed')
+  //   })
+  // }, [])
 
   useEffect(() => {
-    axios.get('http://localhost:8081/userpage').then((result) => {
-      setUserData(result.data)
-    }).catch(() => {
+    axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/userrented')])
+    .then(
+      axios.spread((res1, res2) => {
+        setUserData(res1.data)
+        setUserRented(res2.data[0])
+      })
+    ).catch(() => {
       console.log('failed')
     })
   }, [])
 
   console.log('id : ', userData.id)
+  console.log(userRented)
 
   return (
     <div className="mypage">
@@ -36,7 +50,7 @@ function MyPage() {
             <h4>PW</h4>
           </div>
           <div className="usr-content">
-            <div className="usr-content-data">123123123</div>
+            <div className="usr-content-data">********</div>
             <Button variant="primary" className="btnCss1">
               변경하기
             </Button>
@@ -82,11 +96,11 @@ function MyPage() {
 
           <tbody>
             <tr>
-              <td>312</td>
-              <td>222</td>
-              <td>333</td>
-              <td>123</td>
-              <td>배문규</td>
+              <td>1</td>
+              <td>{userRented.name}</td>
+              <td>{userRented.ync_num}</td>
+              <td>{userRented.rent_student_id}</td>
+              <td>{userRented.rent_name}</td>
             </tr>
           </tbody>
 
