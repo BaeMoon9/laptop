@@ -251,6 +251,81 @@
   margin-bottom: 20px;
 }
 
+.registerpage {
+  margin-top: 50px;
+  /* background-color: antiquewhite; */
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.registertitle {
+  display: flex;
+  margin-bottom: 30px;
+  /* background-color: aliceblue; */
+  font-weight: bold;
+  font-size: 40px;
+  color: black;
+}
+
+.registersubtitle{
+  display: flex;
+  margin-bottom: 30px;
+  /* background-color: aliceblue; */
+  font-weight: bold;
+  font-size: 30px;
+  color: darkslateblue;
+}
+
+.registercontent{
+  
+}
+
+.registerinput {
+  width: 400px;
+  height: 60px;
+  border: 0;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  padding: 5px 10px 5px 20px;
+  background-color: #f4f4f4;
+  background-size: 30px;
+  margin-right: 20px;
+}
+
+.btnCss2 {
+  /* display: inline-block; */
+  width: 100px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: #1f4596;
+  color: #fff;
+}
+
+.registerid {
+  display: flex;
+}
+
+.registerpw {
+
+}
+
+.registerpw1 {
+  display: flex;
+}
+
+.registerpw2 {
+  display: flex;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

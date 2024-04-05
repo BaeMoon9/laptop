@@ -56,7 +56,7 @@ function MainPage() {
         <Routes>
           <Route path="/" element={<ListTable />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<Home />}>
             <Route path="detail" element={<LaptopList/>} />
