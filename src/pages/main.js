@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import LoginPage from './login.js';
 import Home from "./home.js";
 import ListTable from "./list.js";
@@ -16,12 +16,11 @@ import axios from "axios";
 function MainPage() {
 
   const navigate = useNavigate()
-
-  const loactionData = useLocation()
-
+  //const { info } = useLocation()
   const [userData, setUserData] = useState([])
-
-  console.log(userData)
+  
+  //setUserData(info)
+  //console.log('userLogout : ', info)
 
   useEffect(() => {
     axios.get('http://localhost:8081/userpage').then((result) => {
@@ -30,7 +29,7 @@ function MainPage() {
       console.log('failed')
     })
   }, [])
-
+  
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">

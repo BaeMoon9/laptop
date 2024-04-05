@@ -10,19 +10,13 @@ function MyPage() {
   const [userData, setUserData] = useState([])
   const [userRented, setUserRented] = useState([])
   const logoutBtn = () => {
-    axios.get('http://localhost:8081/logout').catch(() => {
-      console.log('failed')
+    axios.get('http://localhost:8081/logout')
+    .catch(() => {
+      console.log("failed")
     })
-    navigate('/', {state : null})
+    navigate('/', {replace: true})
+    window.location.reload(); //page reload 새로고침 안하니까 mainpage navbar에 아이디가 계속떠있네;;
   }
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:8081/userpage').then((result) => {
-  //     setUserData(result.data)
-  //   }).catch(() => {
-  //     console.log('failed')
-  //   })
-  // }, [])
 
   useEffect(() => {
     axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/userrented'),])
