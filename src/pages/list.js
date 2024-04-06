@@ -9,7 +9,7 @@ function ListTable() {
   useEffect(() => {
     axios.get('http://localhost:8081/laptopspecs').then((result) => {
       setLaptopData(result.data)
-      //console.log(laptopData)
+      console.log(laptopData)
     }).catch(() => {
       console.log('failed')
     })

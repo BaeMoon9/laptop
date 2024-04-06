@@ -29,7 +29,6 @@ function MyPage() {
       console.log('failed')
     })
   }, [])
-
   console.log('id : ', userData.id)
   console.log(userRented)
 

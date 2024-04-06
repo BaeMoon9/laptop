@@ -1,9 +1,14 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useEffect } from "react";
 import Container from 'react-bootstrap/Container';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 function LoginPage() {
+
+  const navigate = useNavigate();
+
   return (
     <div className="login">
       <Container>
@@ -18,7 +23,9 @@ function LoginPage() {
             <ul className="findBtnTab">
               <p><a className="findBtn">ID찾기</a></p>
               <p><a className="findBtn">PW찾기</a></p>
-              <p><a className="findBtn">회원가입</a></p>
+              <p><a className="findBtn" onClick={() => {
+                navigate('/register')
+              }}>회원가입</a></p>
             </ul>
           </div>
         </div>
