@@ -30,7 +30,7 @@ function MyPage() {
     })
   }, [])
   console.log('id : ', userData.id)
-  console.log(userRented)
+  console.log('userRented : ', userRented)
 
   return (
     <div className="mypage">
@@ -96,13 +96,17 @@ function MyPage() {
           </thead>
 
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>{userRented.name}</td>
-              <td>{userRented.ync_num}</td>
-              <td>{userRented.rent_student_id}</td>
-              <td>{userRented.rent_name}</td>
-            </tr>
+           {
+            !userRented
+            ? <tr></tr>
+            :  <tr>
+            <td>1</td>
+            <td>{userRented.name}</td>
+            <td>{userRented.ync_num}</td>
+            <td>{userRented.rent_student_id}</td>
+            <td>{userRented.rent_name}</td>
+          </tr>
+           }
           </tbody>
 
         </Table>

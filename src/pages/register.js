@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
 
 function Register() {
 
@@ -9,26 +10,29 @@ function Register() {
   const [checkNewPw, setCheckPw] = useState()
   const [checkNewPw2, setCheckPw2] = useState()
 
+  const [studentId, setStudentId] = useState()
+  const [studentName, setStudentName] = useState()
+
   const checkID = async () => {
     console.log('중복검색할 아이디 : ', checkNewId)
-    if(!checkNewId) {
+    if (!checkNewId) {
       setValidId(null)
       console.log('아이디미입력') //중복확인 아이디 미입력시 validId null 반환
     } else {
       await axios.get('http://localhost:8081/checkid', { params: { checkNewId } }).then((result) => {
-      console.log('result.data : ', result.data)
+        console.log('result.data : ', result.data)
 
-      if (result.data === checkNewId) {
-        setValidId(false)
-        console.log('중복임', result.data, checkNewId, validId)
-      }
-      else {
-        setValidId(true)
-        console.log('중복아님', result.data, checkNewId, validId)
-      }
-    }).catch(() => {
-      console.log('failed')
-    })
+        if (result.data === checkNewId) {
+          setValidId(false)
+          console.log('중복임', result.data, checkNewId, validId)
+        }
+        else {
+          setValidId(true)
+          console.log('중복아님', result.data, checkNewId, validId)
+        }
+      }).catch(() => {
+        console.log('failed')
+      })
     }
   }
 
@@ -42,7 +46,7 @@ function Register() {
       </div>
       <hr className="divider" />
       <div className="registercontent">
-        <form>
+        <form  action="http://localhost:8081/newregister" method="POST">
           <div className="registersubtitle">
             아이디
           </div>
@@ -69,7 +73,7 @@ function Register() {
               패스워드
             </div>
             <div className="registerpw1">
-              <input name="newpassword" className="registerinput" placeholder="PW를 입력하세요." type="password" 
+              <input name="newpassword" className="registerinput" placeholder="PW를 입력하세요." type="password"
                 onChange={(e) => {
                   setCheckPw(e.target.value)
                   console.log('입력한 첫번째줄 password: ', checkNewPw)
@@ -77,19 +81,19 @@ function Register() {
               />
             </div>
             <div className="registerpw2">
-              <input name="checknewpassword" className="registerinput" placeholder="한번더!" type="password" 
-              onChange={(e) => {
-                setCheckPw2(e.target.value)
-                console.log('입력한 첫번째줄 password: ', checkNewPw2)
-              }}
+              <input name="checknewpassword" className="registerinput" placeholder="한번더!" type="password"
+                onChange={(e) => {
+                  setCheckPw2(e.target.value)
+                  console.log('입력한 첫번째줄 password: ', checkNewPw2)
+                }}
               />
             </div>
             {
               !checkNewPw2
-              ? <div className="needuseid">비밀번호를 입력해주세요</div>
-              : (checkNewPw === checkNewPw2 ?
-                <div className="canuseid">비밀번호 일치.</div>
-                : <div className="cantuseid">비밀번호가 다릅니다.</div>
+                ? <div className="needuseid">비밀번호를 입력해주세요</div>
+                : (checkNewPw === checkNewPw2 ?
+                  <div className="canuseid">비밀번호 일치.</div>
+                  : <div className="cantuseid">비밀번호가 다릅니다.</div>
                 )
             }
             <hr className="divider" />
@@ -97,12 +101,26 @@ function Register() {
               학번, 이름
             </div>
             <div className="registerpw2">
-              <input name="" className="registerinput" placeholder="학번" />
-              <input name="" className="registerinput" placeholder="이름" />
+              <input name="studentid" className="registerinput" placeholder="학번" 
+              onChange={(e) => {
+                  setStudentId(e.target.value)
+                  console.log('학번 : ', studentId)
+                }}
+              />
+              <input name="studentname" className="registerinput" placeholder="이름" 
+              onChange={(e) => {
+                setStudentName(e.target.value)
+                console.log('이름 : ', studentName)
+              }}
+              />
             </div>
           </div>
           <hr className="divider" />
-          <button className="loginBtn" type="submit">가입하기</button>
+          {
+            !checkNewId || !checkNewPw || validId === false || !studentId || !studentName
+            ? <Button className="loginBtn" type="submit" disabled>가입하기</Button>
+            : <Button className="loginBtn" type="submit">가입하기</Button>
+          }
         </form>
       </div>
     </div>
