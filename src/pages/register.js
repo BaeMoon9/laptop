@@ -6,6 +6,9 @@ function Register() {
   const [checkNewId, setCheckID] = useState()
   const [validId, setValidId] = useState(null)
 
+  const [checkNewPw, setCheckPw] = useState()
+  const [checkNewPw2, setCheckPw2] = useState()
+
   const checkID = async () => {
     console.log('중복검색할 아이디 : ', checkNewId)
     if(!checkNewId) {
@@ -66,11 +69,29 @@ function Register() {
               패스워드
             </div>
             <div className="registerpw1">
-              <input name="" className="registerinput" placeholder="PW를 입력하세요." />
+              <input name="newpassword" className="registerinput" placeholder="PW를 입력하세요." type="password" 
+                onChange={(e) => {
+                  setCheckPw(e.target.value)
+                  console.log('입력한 첫번째줄 password: ', checkNewPw)
+                }}
+              />
             </div>
             <div className="registerpw2">
-              <input name="" className="registerinput" placeholder="한번더!" />
+              <input name="checknewpassword" className="registerinput" placeholder="한번더!" type="password" 
+              onChange={(e) => {
+                setCheckPw2(e.target.value)
+                console.log('입력한 첫번째줄 password: ', checkNewPw2)
+              }}
+              />
             </div>
+            {
+              !checkNewPw2
+              ? <div className="needuseid">비밀번호를 입력해주세요</div>
+              : (checkNewPw === checkNewPw2 ?
+                <div className="canuseid">비밀번호 일치.</div>
+                : <div className="cantuseid">비밀번호가 다릅니다.</div>
+                )
+            }
             <hr className="divider" />
             <div className="registersubtitle">
               학번, 이름
