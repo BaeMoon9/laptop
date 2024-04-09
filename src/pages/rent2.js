@@ -5,6 +5,18 @@ import Button from 'react-bootstrap/Button';
 
 function Rent2() {
 
+    const today = new Date();
+    const nowdate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
+
+    const [userData, setUserData] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:8081/userpage').then((result) => {
+          setUserData(result.data)
+        }).catch(() => {
+          console.log('failed')
+        })
+      }, [])
 
     return (
         <div className="rentpage">
@@ -31,26 +43,26 @@ function Rent2() {
                 <div className="userrentinfo">
                     <div className="rentcontain1">
                         <div className="registersubtitle">학번</div>
-                        <div className="renterinfo">123</div>
+                        <div className="renterinfo">{userData.studentid}</div>
                     </div>
                     <div className="rentcontain1">
                         <div className="registersubtitle">이름</div>
-                        <div className="renterinfo">123</div>
+                        <div className="renterinfo">{userData.username}</div>
                     </div>
                 </div>
                 <div className="userrentinfo">
                     <div className="rentcontain1">
                         <div className="registersubtitle">전화번호</div>
-                        <div className="renterinfo">123</div>
+                        <div className="renterinfo">010-1234-5678</div>
                     </div>
                     <div className="rentcontain1">
                         <div className="registersubtitle">이메일</div>
-                        <div className="renterinfo">123</div>
+                        <div className="renterinfo">asdf1234@naver.com</div>
                     </div>
                 </div>
                 <div className="userrentinfo">
                     <div className="registersubtitle">주소</div>
-                    <div className="renterinfo">123</div>
+                    <div className="renterinfo">대구 남구 현충로 170, 영남이공대학교</div>
                 </div>
                 <hr className="divider" />
                 <div className="rentsubtitle2">대여 노트북 정보</div>
@@ -63,6 +75,11 @@ function Rent2() {
                     <div className="renterinfo">123</div>
                 </div>
                 <hr className="divider" />
+                <div className="applicationdate">
+                    {nowdate} 
+                </div>
+                <div className="registername">신청자 : {userData.username}</div>
+                <Button variant="primary" className="btnCss2" >신청하기</Button>
             </div>
         </div>
     )
