@@ -118,8 +118,8 @@ function Register() {
           <hr className="divider" />
           {
             !checkNewId || !checkNewPw || validId === false || !studentId || !studentName
-            ? <Button className="loginBtn" type="submit" disabled>가입하기</Button>
-            : <Button className="loginBtn" type="submit">가입하기</Button>
+            ? <Button className="registerBtn" type="submit" disabled>가입하기</Button>
+            : <Button className="registerBtn" type="submit">가입하기</Button>
           }
         </form>
       </div>
