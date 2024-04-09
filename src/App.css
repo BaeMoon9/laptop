@@ -435,6 +435,35 @@
   margin-bottom: 15px;
 }
 
+.userrentinfo {
+  display: flex;
+  justify-content: space-around;
+}
+
+.renterinfo {
+  margin-left: 20px;
+  padding-top: 5px;
+  font-size: 25px;
+  color: black;
+}
+
+.rentcontain1 {
+  display: flex;
+}
+
+.rentcontain2 {
+  display: flex;
+  margin-left: 20px;
+}
+
+.rentsubtitle2 {
+  display: flex;
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

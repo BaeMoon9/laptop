@@ -11,6 +11,7 @@ import LaptopList from "./laptopList.js";
 import MyPage from "./mypage.js";
 import Register from "./register.js";
 import Rent from "./rent.js";
+import Rent2 from "./rent2.js";
 import axios from "axios";
 
 
@@ -60,6 +61,7 @@ function MainPage() {
           <Route path="/register" element={<Register />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/rent" element={<Rent />} />
+          <Route path="/rent2" element={<Rent2 />} />
           <Route path="/home" element={<Home />}>
             <Route path="detail" element={<LaptopList/>} />
           </Route>

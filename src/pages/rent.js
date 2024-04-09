@@ -2,8 +2,10 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 
 function Rent() {
+    const navigate = useNavigate()
 
     const today = new Date();
     const nowdate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
@@ -89,7 +91,7 @@ function Rent() {
                 </div>
                 <div className="registername">신청자 : {userData.username}</div>
             </div>
-            <Button variant="primary" className="btnCss1">다음</Button>
+            <Button variant="primary" className="btnCss1" onClick={() => {navigate('/rent2')}}>다음</Button>
         </div>
     )
 }
