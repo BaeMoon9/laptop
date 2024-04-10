@@ -2,22 +2,28 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
+import { useLocation } from "react-router-dom";
 
 function Rent2() {
 
+    const location = useLocation()
+    console.log('노트북 정보3', location.state.name[0])
     const today = new Date();
     const nowdate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
     const [userData, setUserData] = useState([])
+    const [laptopData, setLaptopData] = useState([])
+    
 
     useEffect(() => {
+        setLaptopData(location.state.name[0])
         axios.get('http://localhost:8081/userpage').then((result) => {
           setUserData(result.data)
         }).catch(() => {
           console.log('failed')
         })
       }, [])
-
+      console.log('laptopdata', laptopData)
     return (
         <div className="rentpage">
             <div className="registertitle">
@@ -68,11 +74,11 @@ function Rent2() {
                 <div className="rentsubtitle2">대여 노트북 정보</div>
                 <div className="rentcontain2">
                     <div className="registersubtitle">일련번호</div>
-                    <div className="renterinfo">123</div>
+                    <div className="renterinfo">{laptopData.ync_num}</div>
                 </div>
                 <div className="rentcontain2">
                     <div className="registersubtitle">노트북명</div>
-                    <div className="renterinfo">123</div>
+                    <div className="renterinfo">{laptopData.name}</div>
                 </div>
                 <hr className="divider" />
                 <div className="applicationdate">

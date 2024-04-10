@@ -2,10 +2,16 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Rent() {
     const navigate = useNavigate()
+    const location = useLocation()
+
+    console.log('노트북 정보2', location.state.laptop)
+    // const [laptopinfo, setLaptopinfo] = useState()
+    // setLaptopinfo(location.state.laptop)
+    // console.log('노트북 이름', laptopinfo)
 
     const today = new Date();
     const nowdate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
@@ -21,6 +27,11 @@ function Rent() {
       }, [])
 
       console.log(userData)
+
+    const nextBtn = (name) => {
+        console.log('name', name)
+        navigate('/rent2', {state : {name}})
+    }
 
     return (
         <div className="rentpage">
@@ -91,7 +102,7 @@ function Rent() {
                 </div>
                 <div className="registername">신청자 : {userData.username}</div>
             </div>
-            <Button variant="primary" className="btnCss1" onClick={() => {navigate('/rent2')}}>다음</Button>
+            <Button variant="primary" className="btnCss1" onClick={() => nextBtn([location.state.laptop])}>다음</Button>
         </div>
     )
 }

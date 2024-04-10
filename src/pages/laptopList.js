@@ -27,15 +27,15 @@ function LaptopList() {
       })
   }, [])
 
-  const rentBtn = (name) => {
-    console.log('노트북명 : ', name)
+  const rentBtn = ([laptop]) => {
+    console.log('노트북정보 : ', laptop)
     try {
       if (!userData) {
         window.alert("로그인 후 이용가능합니다.")
         navigate('/login')
       }
       else {
-        navigate('/rent')
+        navigate('/rent', {state : {laptop}})
       }
     } catch (e) {
       console.log('err', e)
@@ -81,7 +81,7 @@ function LaptopList() {
                   <td className='td1'>
                     {
                       a.status === '대여가능'
-                        ? <Button variant="primary" className="btnCss1" onClick={() => rentBtn(a.ync_num)}>
+                        ? <Button variant="primary" className="btnCss1" onClick={() => rentBtn([a])}>
                           대여하기 
                         </Button>
                         : <Button variant="primary" className="btnCss1" disabled>
