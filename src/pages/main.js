@@ -12,6 +12,7 @@ import MyPage from "./mypage.js";
 import Register from "./register.js";
 import Rent from "./rent.js";
 import Rent2 from "./rent2.js";
+import Approve from "./approve.js";
 import axios from "axios";
 
 
@@ -40,7 +41,11 @@ function MainPage() {
           <Nav className="me-auto">
             <Nav.Link onClick={()=> { navigate('/home')}}>Home</Nav.Link>
             <Nav.Link onClick={()=> { navigate('/list')}}>Labtop List</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            {
+              userData.id === 'admin'
+              ? <Nav.Link onClick={()=> { navigate('/approve')}}>신청자 목록</Nav.Link>
+              : <Nav.Link onClick={()=> { navigate('/approve')}}>신청 현황</Nav.Link>
+            }
           </Nav>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
@@ -58,6 +63,7 @@ function MainPage() {
         <Routes>
           <Route path="/" element={<ListTable />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/approve" element={<Approve />} />
           <Route path="/register" element={<Register />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/rent" element={<Rent />} />

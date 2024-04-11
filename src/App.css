@@ -378,7 +378,7 @@
 
 .rentpage {
   margin-top: 50px;
-  width: 1200px;
+  width: 1150px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
@@ -473,6 +473,10 @@
   font-size: 32px;
   margin-bottom: 20px;
   margin-left: 20px;
+}
+
+.approvetopcontainer {
+  margin-top: 40px;
 }
 
 @keyframes App-logo-spin {

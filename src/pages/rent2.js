@@ -2,11 +2,13 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Rent2() {
 
+    const navigate = useNavigate()
     const location = useLocation()
+
     console.log('노트북 정보3', location.state.name[0])
     const today = new Date();
     const nowdate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
@@ -24,6 +26,11 @@ function Rent2() {
         })
       }, [])
       console.log('laptopdata', laptopData)
+
+    const applyBtn = (user, device) => {
+        console.log('user, device', user, device)
+        navigate('/approve', {state : {user, device}} )
+    }
     return (
         <div className="rentpage">
             <div className="registertitle">
@@ -81,11 +88,17 @@ function Rent2() {
                     <div className="renterinfo">{laptopData.name}</div>
                 </div>
                 <hr className="divider" />
+                <div className="signcontent">
+                        본인은 노트북 대여 제도 시행 지침을 충분히 이해하였고, 특히 대여 후에 발생하는 분실 및 파손에 대한 제 6 조의 내용을 충분히
+                        확인하였으며 모든 노트북 대여 시행 지침을 성실히 준수할 것을 서약합니다.
+                    </div>
                 <div className="applicationdate">
                     {nowdate} 
                 </div>
                 <div className="registername">신청자 : {userData.username}</div>
-                <Button variant="primary" className="btnCss2" >신청하기</Button>
+                <Button variant="primary" className="btnCss2" 
+                    onClick={() => applyBtn([userData], [laptopData])}
+                >신청하기</Button>
             </div>
         </div>
     )
