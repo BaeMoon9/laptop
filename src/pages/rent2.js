@@ -15,21 +15,30 @@ function Rent2() {
 
     const [userData, setUserData] = useState([])
     const [laptopData, setLaptopData] = useState([])
-    
+
 
     useEffect(() => {
         setLaptopData(location.state.name[0])
         axios.get('http://localhost:8081/userpage').then((result) => {
-          setUserData(result.data)
+            setUserData(result.data)
         }).catch(() => {
-          console.log('failed')
+            console.log('failed')
         })
-      }, [])
-      console.log('laptopdata', laptopData)
+    }, [])
+    console.log('laptopdata', laptopData)
+    console.log('userData', userData)
 
     const applyBtn = (user, device) => {
         console.log('user, device', user, device)
-        navigate('/approve', {state : {user, device}} )
+        console.log( device[0].ync_num, device[0].name, user[0].username, user[0].studentid)
+        let laptopnum = device[0].ync_num
+        let laptopname = device[0].name
+        let studentname = user[0].username
+        let studentnumid = user[0].studentid
+        axios.post('http://localhost:8081/userrentedlaptop' , {     
+                laptopnum, laptopname, studentname, studentnumid
+        })
+        // navigate('/approve')
     }
     return (
         <div className="rentpage">
@@ -89,14 +98,14 @@ function Rent2() {
                 </div>
                 <hr className="divider" />
                 <div className="signcontent">
-                        본인은 노트북 대여 제도 시행 지침을 충분히 이해하였고, 특히 대여 후에 발생하는 분실 및 파손에 대한 제 6 조의 내용을 충분히
-                        확인하였으며 모든 노트북 대여 시행 지침을 성실히 준수할 것을 서약합니다.
-                    </div>
+                    본인은 노트북 대여 제도 시행 지침을 충분히 이해하였고, 특히 대여 후에 발생하는 분실 및 파손에 대한 제 6 조의 내용을 충분히
+                    확인하였으며 모든 노트북 대여 시행 지침을 성실히 준수할 것을 서약합니다.
+                </div>
                 <div className="applicationdate">
-                    {nowdate} 
+                    {nowdate}
                 </div>
                 <div className="registername">신청자 : {userData.username}</div>
-                <Button variant="primary" className="btnCss2" 
+                <Button variant="primary" className="btnCss2"
                     onClick={() => applyBtn([userData], [laptopData])}
                 >신청하기</Button>
             </div>
