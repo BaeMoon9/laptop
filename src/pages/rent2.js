@@ -16,6 +16,24 @@ function Rent2() {
     const [userData, setUserData] = useState([])
     const [laptopData, setLaptopData] = useState([])
 
+		const applyBtn = async (userdb, devicedb) => {
+			let db1 = [...userdb, ...devicedb]
+			const test1 = {
+				id : "TES"
+			}
+
+			axios.post('http://localhost:8081/userdevicerent', db1, {
+				headers : {'Content-Type' : 'application/x-www-form-urlencoded'},
+				//header에 Content-Type 디폴트값이 'application/json'인데 이게 안되고 왜 위에게 되는지 잘 모르겠다
+				//좀더 찾아보는걸로 하자 일단은 약 14시간만에 해결되긴했다.
+				//responseType: 'json'
+			})
+			.then((res) => {
+				console.log(res.data)
+			}).catch((e) => {
+				console.log(e)
+			})
+		}
 
     useEffect(() => {
         setLaptopData(location.state.name[0])
@@ -25,21 +43,11 @@ function Rent2() {
             console.log('failed')
         })
     }, [])
-    console.log('laptopdata', laptopData)
-    console.log('userData', userData)
+    // console.log('laptopdata', laptopData)
+    // console.log('userData', userData)
 
-    const applyBtn = (user, device) => {
-        console.log('user, device', user, device)
-        console.log( device[0].ync_num, device[0].name, user[0].username, user[0].studentid)
-        let laptopnum = device[0].ync_num
-        let laptopname = device[0].name
-        let studentname = user[0].username
-        let studentnumid = user[0].studentid
-        axios.post('http://localhost:8081/userrentedlaptop' , {     
-                laptopnum, laptopname, studentname, studentnumid
-        })
-        // navigate('/approve')
-    }
+    
+
     return (
         <div className="rentpage">
             <div className="registertitle">
