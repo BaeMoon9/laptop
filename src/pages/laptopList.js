@@ -13,7 +13,7 @@ function LaptopList() {
   const [userData, setUserData] = useState([])
   const location = useLocation()
   const modelYear = { ...location.state.a }
-  console.log(modelYear)
+  // console.log(modelYear)
 
   useEffect(() => {
     axios.all([axios.get('http://localhost:8081/laptopdatabases'), axios.get('http://localhost:8081/userpage')])
@@ -28,7 +28,6 @@ function LaptopList() {
   }, [])
 
   const rentBtn = ([laptop]) => {
-    console.log('노트북정보 : ', laptop)
     try {
       if (!userData) {
         window.alert("로그인 후 이용가능합니다.")
@@ -42,8 +41,6 @@ function LaptopList() {
     }
   }
 
-  console.log(laptopData)
-  console.log('id : ', userData)
   //console.log(laptopData[0])
 
   return (

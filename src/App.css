@@ -176,6 +176,7 @@
 .btnCss1 {
   width: 85px;
   height: 35px;
+	font-weight: bold;
 }
 
 .btnCss2 {
@@ -203,7 +204,7 @@
 }
 
 .mypage {
-  width: 1184px;
+  width: 1250px;
   /* background-color: thistle; */
   margin-right: auto;
   margin-left: auto;

@@ -18,9 +18,6 @@ function Rent2() {
 
 		const applyBtn = async (userdb, devicedb) => {
 			let db1 = [...userdb, ...devicedb]
-			const test1 = {
-				id : "TES"
-			}
 
 			axios.post('http://localhost:8081/userdevicerent', db1, {
 				headers : {'Content-Type' : 'application/x-www-form-urlencoded'},
@@ -30,6 +27,7 @@ function Rent2() {
 			})
 			.then((res) => {
 				console.log(res.data)
+				navigate('/approve')
 			}).catch((e) => {
 				console.log(e)
 			})
