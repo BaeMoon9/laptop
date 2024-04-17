@@ -27,7 +27,7 @@ function Approve() {
 				).catch(() => {
 					console.log("failed2")
 				})
-	}, [])
+	}, [setApply, setRentedData]) //실시간 데이터 반영
 
 	console.log('admin로그인할때 보이는 승인대기목록', apply)
 	console.log('로그인정보', user)
@@ -39,8 +39,9 @@ function Approve() {
 		try {
 			await axios.post('http://localhost:8081/applybtn', user, {
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			}).then((res) => {
+				setApply(res.data) //post로 제거요청을하면 select문으로 데이터 다시 받아와서 데이터 갱신및 useffect 재렌더링 가능
 			})
-			window.location.reload();
 		} catch (e) {
 			console.log('approve failed', e)
 		}
@@ -52,6 +53,8 @@ function Approve() {
 		try {
 			await axios.post('http://localhost:8081/returnbtn', returnUser, {
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			}).then((res) => {
+				setRentedData(res.data) //post로 제거요청을하면 select문으로 데이터 다시 받아와서 데이터 갱신및 useffect 재렌더링 가능
 			})
 		} catch (e) {
 			console.log(e)

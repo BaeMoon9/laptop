@@ -9,23 +9,24 @@ function ApproveUser() {
 	const location = useLocation()
 	const navigate = useNavigate();
 
-	console.log(location.state)
-	const user = location.state.userData //현재 로그인 사용자 정보
+	console.log('location state userdata', location.state.userData)
+	const [user, setUser] = useState([]) //현재 로그인 사용자 정보
 	const [userwanted, setUserWanted] = useState([]) //신청자 신청현황 db 저장
 
-	
 
 	useEffect(() => {
-		
-		axios.get('http://localhost:8081/userwantedapply', {
-			params : {studentnum : user.studentid}
-		})
-		.then((res4) => {
-			setUserWanted(res4.data)
-		})
+		axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/userwantedapply'),])
+			.then(
+				axios.spread((res1, res4) => {
+					setUser(res1.data)
+					setUserWanted(res4.data)
+				})
+			).catch(() => {
+				console.log("failed2")
+			})
 	}, [])
+
 	console.log('userwanted', userwanted)
-	console.log('user', user)
 
 	return (
 
@@ -46,17 +47,22 @@ function ApproveUser() {
 								<th class="col-md-2">승인</th>
 							</tr>
 						</thead>
-						<tbody>
-
-							<tr>
-								<td>1</td>
-								<td>{userwanted[0].laptop_name}</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>진행중...</td>
-							</tr>
-						</tbody>
+						{
+							userwanted.map((a, inx) => (
+								userwanted[inx].student_name !== null
+									? <tbody key={inx}>
+										<tr>
+											<td>{inx + 1}</td>
+											<td>{a.laptop_name}</td>
+											<td>{a.laptop_num}</td>
+											<td>{a.student_num_id}</td>
+											<td>{a.student_name}</td>
+											<td>진행중...</td>
+										</tr>
+									</tbody>
+									: null
+							))
+						}
 					</Table>
 				</div>
 				<hr className="divider" />
@@ -65,6 +71,7 @@ function ApproveUser() {
 		</>
 
 	)
+
 }
 
 export default ApproveUser;
