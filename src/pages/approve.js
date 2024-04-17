@@ -1,49 +1,48 @@
 import { Table } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
 
 function Approve() {
 
-	const location = useLocation()
+	//const location = useLocation()
 	const navigate = useNavigate();
 
 	const [rentedData, setRentedData] = useState([]) // 현재 대여중인 노트북 정보(관리자만 보기)
 	const [user, setUser] = useState([]) //현재 로그인 사용자 정보
 	const [apply, setApply] = useState([]) //노트북 대여 신청 목록담기
-	const [userwanted, setUserWanted] = useState([]) //신청자 신청현황 db 저장
+
 
 	useEffect(() => {
-		axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/laptopdatabases'),
-		axios.get('http://localhost:8081/rentapply'), axios.get('http://localhost:8081/userwantedapply')
-		])
-			.then(
-				axios.spread((res1, res2, res3, res4) => {
-					setUser(res1.data)
-					setRentedData(res2.data)
-					setApply(res3.data)
-					setUserWanted(res4.data)
+		axios.all([axios.get('http://localhost:8081/userpage'),axios.get('http://localhost:8081/laptopdatabases'),
+			axios.get('http://localhost:8081/rentapply')])
+				.then(
+					axios.spread((res1, res2, res3) => {
+						setUser(res1.data)
+						setRentedData(res2.data)
+						setApply(res3.data)
+					})
+				).catch(() => {
+					console.log("failed2")
 				})
-			).catch(() => {
-				console.log("failed")
-			})
-		//window.location.reload();
 	}, [])
 
-	console.log('userwanted', userwanted[0])
+	console.log('admin로그인할때 보이는 승인대기목록', apply)
+	console.log('로그인정보', user)
+	console.log('노트북', rentedData)
 
 	const applyBtn = async ([user]) => {
 		console.log('승인버튼 누른 신청유저', user)
 
-		try{
+		try {
 			await axios.post('http://localhost:8081/applybtn', user, {
-			headers : {'Content-Type' : 'application/x-www-form-urlencoded'}
-		})
-		window.location.reload();
-		}catch (e) {
-			console.log ('approve failed', e)
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+			window.location.reload();
+		} catch (e) {
+			console.log('approve failed', e)
 		}
 	}
 
@@ -52,9 +51,9 @@ function Approve() {
 
 		try {
 			await axios.post('http://localhost:8081/returnbtn', returnUser, {
-			headers : {'Content-Type' : 'application/x-www-form-urlencoded'}
-		})
-		}catch (e) {
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			})
+		} catch (e) {
 			console.log(e)
 		}
 	}
@@ -62,9 +61,7 @@ function Approve() {
 	return (
 
 		<>
-			{
-				user.id === 'admin' //관리자 계정일때만 보이는 ui
-					? <div className="mypage">
+					<div className="mypage">
 						<div className="approvetopcontainer">
 							<div className="registersubtitle">
 								신청 승인 대기 목록
@@ -129,8 +126,8 @@ function Approve() {
 													<td className='td1'>{a.rent_name}</td>
 													<td className='td1'>
 														<Button variant="danger" className="btnCss1" onClick={() => returnBtn([a])}>
-														반납
-													</Button></td>
+															반납
+														</Button></td>
 												</tr>
 											</tbody>
 											: null
@@ -139,39 +136,6 @@ function Approve() {
 							</Table>
 						</div>
 					</div>
-					: <div className="mypage">
-						<div className="approvetopcontainer">
-							<div className="registersubtitle">
-								{user.username} 신청현황
-							</div>
-							<Table striped bordered hover>
-								<thead>
-									<tr>
-										<th class="col-md-1">순번</th>
-										<th class="col-md-2">상품명</th>
-										<th class="col-md-3">물품번호</th>
-										<th class="col-md-2">학번</th>
-										<th class="col-md-2">이름</th>
-										<th class="col-md-2">승인</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-									<tr>
-										<td>1</td>
-										<td>{userwanted}</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>진행중...</td>
-									</tr>
-								</tbody>
-							</Table>
-						</div>
-						<hr className="divider" />
-
-					</div>
-			}
 		</>
 
 	)

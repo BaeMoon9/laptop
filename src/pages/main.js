@@ -14,6 +14,7 @@ import Rent from "./rent.js";
 import Rent2 from "./rent2.js";
 import Approve from "./approve.js";
 import Test1 from "./test1.js";
+import ApproveUser from "./approveUser.js";
 import axios from "axios";
 
 
@@ -33,6 +34,10 @@ function MainPage() {
       console.log('failed')
     })
   }, [])
+
+	const handleUserData = (a) => {
+		navigate('/approveUser', {state : a})
+	}
   
   return (
     <div>
@@ -43,9 +48,11 @@ function MainPage() {
             <Nav.Link onClick={()=> { navigate('/home')}}>Home</Nav.Link>
             <Nav.Link onClick={()=> { navigate('/list')}}>Labtop List</Nav.Link>
             {
-              userData.id === 'admin'
+              !userData.id
+							? null
+							: (userData.id === 'admin'
               ? <Nav.Link onClick={()=> { navigate('/approve')}}>신청자 목록</Nav.Link>
-              : <Nav.Link onClick={()=> { navigate('/approve')}}>신청 현황</Nav.Link>
+              : <Nav.Link onClick={()=> {handleUserData({userData})}}>신청 현황</Nav.Link>)
             }
           </Nav>
           <Navbar.Toggle />
@@ -65,6 +72,7 @@ function MainPage() {
           <Route path="/" element={<ListTable />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/approve" element={<Approve />} />
+					<Route path="/approveUser" element={<ApproveUser />} />
           <Route path="/register" element={<Register />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/rent" element={<Rent />} />

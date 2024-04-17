@@ -56,7 +56,7 @@ function Home() {
               </Row>
             </Container>
             <div className="detailComponent">
-              <Outlet><laptopList /></Outlet>
+						<Outlet></Outlet>
             </div>
           </div>
   )

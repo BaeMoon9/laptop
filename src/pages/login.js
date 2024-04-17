@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 
 function LoginPage() {
