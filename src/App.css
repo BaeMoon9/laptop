@@ -173,6 +173,8 @@
   height: 25px;
 }
 
+
+
 .btnCss1 {
   width: 85px;
   height: 35px;
@@ -197,10 +199,13 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .td1 {
   text-align: center;
+	
 }
 
 .mypage {

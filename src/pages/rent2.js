@@ -27,10 +27,12 @@ function Rent2() {
 			})
 			.then((res) => {
 				console.log(res.data)
-				navigate('/approve')
+				
 			}).catch((e) => {
 				console.log(e)
 			})
+			window.alert("신청이 완료되었습니다.")
+				navigate('/home')
 		}
 
     useEffect(() => {

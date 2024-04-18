@@ -69,7 +69,7 @@ function MainPage() {
       </Navbar>
       <div className="Components">
         <Routes>
-          <Route path="/" element={<ListTable />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/approve" element={<Approve />} />
 					<Route path="/approveUser" element={<ApproveUser />} />
