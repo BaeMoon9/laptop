@@ -60,7 +60,7 @@ function ApproveUser() {
 											<td>진행중...</td>
 										</tr>
 									</tbody>
-									: null
+									: <div className="needuseid">현재 신청대기중인 노트북이 없습니다.</div>
 							))
 						}
 					</Table>

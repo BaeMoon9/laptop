@@ -27,7 +27,7 @@ function Approve() {
 				).catch(() => {
 					console.log("failed2")
 				})
-	}, [setApply, setRentedData]) //실시간 데이터 반영
+	}, [setApply, setRentedData]) //실시간 데이터 반영 : 재랜더링
 
 	console.log('admin로그인할때 보이는 승인대기목록', apply)
 	console.log('로그인정보', user)
@@ -37,11 +37,13 @@ function Approve() {
 		console.log('승인버튼 누른 신청유저', user)
 
 		try {
-			await axios.post('http://localhost:8081/applybtn', user, {
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-			}).then((res) => {
-				setApply(res.data) //post로 제거요청을하면 select문으로 데이터 다시 받아와서 데이터 갱신및 useffect 재렌더링 가능
-			})
+			await axios.all([axios.post('http://localhost:8081/applybtn', user, {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }}),
+			axios.get('http://localhost:8081/laptoprentedbyuser')])
+			.then(
+				axios.spread((res5, res6) => {
+					setApply(res5.data)
+					setRentedData(res6.data)
+				}))
 		} catch (e) {
 			console.log('approve failed', e)
 		}
@@ -58,6 +60,18 @@ function Approve() {
 			})
 		} catch (e) {
 			console.log(e)
+		}
+	}
+
+	const reRenderBtn = async () => {
+		try{
+			await axios.get('http://localhost:8081/laptoprentedbyuser')
+			.then((res6) => {
+				setRentedData(res6.data)
+			})
+			console.log('rerendered')
+		}catch (e) {
+			console.log('rerender failed', e)
 		}
 	}
 
@@ -104,8 +118,9 @@ function Approve() {
 						<hr className="divider" />
 						<div className="approvebottomcontainer">
 							<div className="registersubtitle">
-								대여 목록
+								대여 목록 <Button className="rerenderBtn" onClick={() => reRenderBtn()}>갱신하기</Button>
 							</div>
+							
 							<Table striped bordered hover>
 								<thead>
 									<tr>
