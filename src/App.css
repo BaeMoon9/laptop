@@ -272,6 +272,10 @@
   margin-bottom: 30px;
 }
 
+.listTable {
+	margin-top: 40px;
+}
+
 .tables{
   display: flex;
   width:1300px;
