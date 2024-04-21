@@ -20,7 +20,9 @@ function LoginPage() {
               <button className="loginBtn" type="submit">로그인</button>
             </form>
             <ul className="findBtnTab">
-              <p><a className="findBtn">ID찾기</a></p>
+              <p><a className="findBtn" onClick={() => {
+                navigate('/findid')
+							}}>ID찾기</a></p>
               <p><a className="findBtn">PW찾기</a></p>
               <p><a className="findBtn" onClick={() => {
                 navigate('/register')

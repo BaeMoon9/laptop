@@ -518,6 +518,24 @@
   margin-top: 40px;
 }
 
+.findidBtn {
+	display: inline-block;
+  width: 150px;
+  height: 60px;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: #1f4596;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
