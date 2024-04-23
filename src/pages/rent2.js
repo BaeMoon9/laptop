@@ -16,6 +16,12 @@ function Rent2() {
     const [userData, setUserData] = useState([])
     const [laptopData, setLaptopData] = useState([])
 
+		const [radiobtn, setRadiobtn] = useState("diagree")
+
+		const handleRadioChange = (e) => {
+			setRadiobtn(e.target.value)
+		}
+
 		const applyBtn = async (userdb, devicedb) => {
 			let db1 = [...userdb, ...devicedb]
 
@@ -69,6 +75,10 @@ function Rent2() {
                     대여가 어려울 수 있습니다.
                 </div>
                 <div>개인정보의 수집 및 이용에 동의하십니까?</div>
+								<div>
+									<input type="radio" value="agree" onChange={handleRadioChange} checked={radiobtn === "agree"}/>동의
+									<input type="radio" value="disagree" onChange={handleRadioChange} checked={radiobtn === "disagree"}/>비동의
+								</div>
                 <hr className="divider" />
                 <div className="userrentinfo">
                     <div className="rentcontain1">
