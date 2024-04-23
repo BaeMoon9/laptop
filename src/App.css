@@ -536,6 +536,14 @@
   margin-bottom: 50px;
 }
 
+.agreeradiobtn {
+	margin-right: 5px;
+}
+
+.disagreeradiobtn {
+	margin-left: 5px;
+	margin-right: 5px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
