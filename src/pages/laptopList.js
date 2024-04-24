@@ -35,6 +35,7 @@ function LaptopList() {
       }
 			else if (userData.id === "test1") {
 				console.log('guset logined')
+				navigate('/guestrent', {state : {laptop}})
 			}
       else {
         navigate('/rent', {state : {laptop}})

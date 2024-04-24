@@ -4,17 +4,17 @@ import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Test1() {
+function GuestRent2() {
 
 	const navigate = useNavigate()
-	// const location = useLocation()
+	const location = useLocation()
 
-	// console.log('노트북 정보3', location.state.name[0])
+	console.log('노트북 정보3', location.state.name[0])
 	const today = new Date();
 	const nowdate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
-	// const [userData, setUserData] = useState([])
-	// const [laptopData, setLaptopData] = useState([])
+	const [userData, setUserData] = useState([])
+	const [laptopData, setLaptopData] = useState([])
 
 	const [radiobtn, setRadiobtn] = useState("diagree")
 
@@ -22,33 +22,33 @@ function Test1() {
 		setRadiobtn(e.target.value)
 	}
 
-	const applyBtn = async () => {
-		// let db1 = [...userdb, ...devicedb]
+	const applyBtn = async (userdb, devicedb) => {
+		let db1 = [...userdb, ...devicedb]
 
-		// axios.post('http://localhost:8081/userdevicerent', db1, {
-		// 	headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		// 	//header에 Content-Type 디폴트값이 'application/json'인데 이게 안되고 왜 위에게 되는지 잘 모르겠다
-		// 	//좀더 찾아보는걸로 하자 일단은 약 14시간만에 해결되긴했다.
-		// 	//responseType: 'json'
-		// })
-		// 	.then((res) => {
-		// 		console.log(res.data)
+		axios.post('http://localhost:8081/userdevicerent', db1, {
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			//header에 Content-Type 디폴트값이 'application/json'인데 이게 안되고 왜 위에게 되는지 잘 모르겠다
+			//좀더 찾아보는걸로 하자 일단은 약 14시간만에 해결되긴했다.
+			//responseType: 'json'
+		})
+			.then((res) => {
+				console.log(res.data)
 
-		// 	}).catch((e) => {
-		// 		console.log(e)
-		// 	})
+			}).catch((e) => {
+				console.log(e)
+			})
 		window.alert("신청이 완료되었습니다.")
 		navigate('/home')
 	}
 
-	// useEffect(() => {
-	// 	setLaptopData(location.state.name[0])
-	// 	axios.get('http://localhost:8081/userpage').then((result) => {
-	// 		setUserData(result.data)
-	// 	}).catch(() => {
-	// 		console.log('failed')
-	// 	})
-	// }, [])
+	useEffect(() => {
+		setLaptopData(location.state.name[0])
+		axios.get('http://localhost:8081/userpage').then((result) => {
+			setUserData(result.data)
+		}).catch(() => {
+			console.log('failed')
+		})
+	}, [])
 	// console.log('laptopdata', laptopData)
 	// console.log('userData', userData)
 
@@ -85,7 +85,7 @@ function Test1() {
 						<div className="guestrentinfo">
 							<div className="guestinfo">학번</div>
 							<div>
-							<input name="studentid" className="registerinput" />
+								<input name="studentid" className="registerinput" />
 							</div>
 						</div>
 						<div className="guestrentinfo">
@@ -108,12 +108,12 @@ function Test1() {
 					<hr className="divider" />
 					<div className="rentsubtitle2">대여 노트북 정보</div>
 					<div className="rentcontain2">
-						<div className="guestinfo">일련번호</div>
-						<div className="renterinfo"></div>
+						<div className="registersubtitle">일련번호</div>
+						<div className="renterinfo">{laptopData.ync_num}</div>
 					</div>
 					<div className="rentcontain2">
-						<div className="guestinfo">노트북명</div>
-						<div className="renterinfo"></div>
+						<div className="registersubtitle">노트북명</div>
+						<div className="renterinfo">{laptopData.name}</div>
 					</div>
 					<hr className="divider" />
 					<div className="signcontent">
@@ -123,14 +123,14 @@ function Test1() {
 					<div className="applicationdate">
 						{nowdate}
 					</div>
-					<div className="registername">신청자 : { }</div>
+					<div className="registername">신청자 : {userData.username}</div>
 					{
 						radiobtn === "agree" ?
 							<Button variant="primary" className="btnCss2"
-								onClick={() => applyBtn()}
+								onClick={() => applyBtn([userData], [laptopData])}
 							>신청하기</Button>
 							: <Button variant="primary" className="btnCss2"
-								onClick={() => applyBtn()} disabled
+								onClick={() => applyBtn([userData], [laptopData])} disabled
 							>신청하기</Button>
 					}
 				</form>
@@ -139,4 +139,4 @@ function Test1() {
 	)
 }
 
-export default Test1;
+export default GuestRent2;

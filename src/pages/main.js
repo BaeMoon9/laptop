@@ -17,6 +17,8 @@ import Test1 from "./test1.js";
 import ApproveUser from "./approveUser.js";
 import axios from "axios";
 import FindID from "./findid.js";
+import GuestRent from "./guestrent.js";
+import GuestRent2 from "./guestrent2.js";
 
 
 function MainPage() {
@@ -85,6 +87,8 @@ function MainPage() {
 					<Route path="/mypage" element={<MyPage />} />
 					<Route path="/rent" element={<Rent />} />
 					<Route path="/rent2" element={<Rent2 />} />
+					<Route path="/guestrent" element={<GuestRent />} />
+					<Route path="/guestrent2" element={<GuestRent2 />} />
 					<Route path="/test1" element={<Test1 />} />
 					<Route path="/home" element={<Home />}>
 						<Route path="detail" element={<LaptopList />} />

@@ -486,8 +486,26 @@
 }
 
 .userrentinfo {
-  display: flex;
+	display: flex;
   justify-content: space-around;
+	flex-direction: column;
+}
+
+.guestrentinfo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.guestinfo {
+	width: 250px;
+  margin-bottom: 30px;
+  /* background-color: aliceblue; */
+  font-weight: bold;
+  font-size: 30px;
+  color: darkslateblue;
 }
 
 .renterinfo {
