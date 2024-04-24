@@ -33,6 +33,9 @@ function LaptopList() {
         window.alert("로그인 후 이용가능합니다.")
         navigate('/login')
       }
+			else if (userData.id === "test1") {
+				console.log('guset logined')
+			}
       else {
         navigate('/rent', {state : {laptop}})
       }
@@ -41,7 +44,7 @@ function LaptopList() {
     }
   }
 
-  //console.log(laptopData[0])
+console.log('userdata', userData)
 
   return (
     <div className="tables">

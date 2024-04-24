@@ -68,6 +68,14 @@ function MyPage() {
             </Button>
           </div>
         </div>
+				<div className="usr-email">
+          <div className="usr-title">
+            <h4>PhoneNum</h4>
+          </div>
+          <div className="usr-content">
+					<div className="usr-content-data"></div>
+          </div>
+        </div>
         <div className="usr-email">
           <div className="usr-title">
             <h4>Logout</h4>
