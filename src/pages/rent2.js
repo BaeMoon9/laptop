@@ -76,33 +76,31 @@ function Rent2() {
 				</div>
 				<div>개인정보의 수집 및 이용에 동의하십니까?</div>
 				<div>
-					<input type="radio" value="agree" onChange={handleRadioChange} checked={radiobtn === "agree"} className="agreeradiobtn"/>동의
+					<input type="radio" value="agree" onChange={handleRadioChange} checked={radiobtn === "agree"} className="agreeradiobtn" />동의
 					<input type="radio" value="disagree" onChange={handleRadioChange} checked={radiobtn === "disagree"} className="disagreeradiobtn" />비동의
 				</div>
 				<hr className="divider" />
 				<div className="userrentinfo">
-					<div className="rentcontain1">
-						<div className="registersubtitle">학번</div>
+					<div className="guestrentinfo">
+						<div className="guestinfo">학번</div>
 						<div className="renterinfo">{userData.studentid}</div>
 					</div>
-					<div className="rentcontain1">
-						<div className="registersubtitle">이름</div>
+					<div className="guestrentinfo">
+						<div className="guestinfo">이름</div>
 						<div className="renterinfo">{userData.username}</div>
 					</div>
-				</div>
-				<div className="userrentinfo">
-					<div className="rentcontain1">
-						<div className="registersubtitle">전화번호</div>
+					<div className="guestrentinfo">
+						<div className="guestinfo">전화번호</div>
 						<div className="renterinfo">010-1234-5678</div>
 					</div>
-					<div className="rentcontain1">
-						<div className="registersubtitle">이메일</div>
+					<div className="guestrentinfo">
+						<div className="guestinfo">이메일</div>
 						<div className="renterinfo">asdf1234@naver.com</div>
 					</div>
-				</div>
-				<div className="userrentinfo">
-					<div className="registersubtitle">주소</div>
-					<div className="renterinfo">대구 남구 현충로 170, 영남이공대학교</div>
+					<div className="guestrentinfo">
+						<div className="guestinfo">주소</div>
+						<div className="renterinfo">대구 남구 현충로 170, 영남이공대학교</div>
+					</div>
 				</div>
 				<hr className="divider" />
 				<div className="rentsubtitle2">대여 노트북 정보</div>

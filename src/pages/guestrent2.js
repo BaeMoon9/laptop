@@ -84,9 +84,7 @@ function GuestRent2() {
 					<div className="userrentinfo">
 						<div className="guestrentinfo">
 							<div className="guestinfo">학번</div>
-							<div>
-								<input name="studentid" className="registerinput" />
-							</div>
+							<input name="studentid" className="registerinput" />
 						</div>
 						<div className="guestrentinfo">
 							<div className="guestinfo">이름</div>
