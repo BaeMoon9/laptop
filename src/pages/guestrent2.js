@@ -22,25 +22,6 @@ function GuestRent2() {
 		setRadiobtn(e.target.value)
 	}
 
-	const applyBtn = async (userdb, devicedb) => {
-		let db1 = [...userdb, ...devicedb]
-
-		axios.post('http://localhost:8081/userdevicerent', db1, {
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			//header에 Content-Type 디폴트값이 'application/json'인데 이게 안되고 왜 위에게 되는지 잘 모르겠다
-			//좀더 찾아보는걸로 하자 일단은 약 14시간만에 해결되긴했다.
-			//responseType: 'json'
-		})
-			.then((res) => {
-				console.log(res.data)
-
-			}).catch((e) => {
-				console.log(e)
-			})
-		window.alert("신청이 완료되었습니다.")
-		navigate('/home')
-	}
-
 	useEffect(() => {
 		setLaptopData(location.state.name[0])
 		axios.get('http://localhost:8081/userpage').then((result) => {
@@ -80,27 +61,19 @@ function GuestRent2() {
 					<input type="radio" value="disagree" onChange={handleRadioChange} checked={radiobtn === "disagree"} className="disagreeradiobtn" />비동의
 				</div>
 				<hr className="divider" />
-				<form action="http://localhost:8081/userdevicerent" method="POST">
+				<form action="http://localhost:8081/guestdevicerent" method="POST">
 					<div className="userrentinfo">
 						<div className="guestrentinfo">
 							<div className="guestinfo">학번</div>
-							<input name="studentid" className="registerinput" />
+							<input name="studentid" type="text" className="registerinput" />
 						</div>
 						<div className="guestrentinfo">
 							<div className="guestinfo">이름</div>
-							<input name="studentid" className="registerinput" />
+							<input name="studentname" type="text" className="registerinput" />
 						</div>
 						<div className="guestrentinfo">
 							<div className="guestinfo">전화번호</div>
-							<input name="studentid" className="registerinput" />
-						</div>
-						<div className="guestrentinfo">
-							<div className="guestinfo">이메일</div>
-							<input name="studentid" className="registerinput" />
-						</div>
-						<div className="guestrentinfo">
-							<div className="guestinfo">주소</div>
-							<input name="studentid" className="registerinput" />
+							<input name="studentphone" type="text" className="registerinput" />
 						</div>
 					</div>
 					<hr className="divider" />
@@ -108,10 +81,12 @@ function GuestRent2() {
 					<div className="rentcontain2">
 						<div className="registersubtitle">일련번호</div>
 						<div className="renterinfo">{laptopData.ync_num}</div>
+						<input name="laptopnum" value={laptopData.ync_num} hidden/>
 					</div>
 					<div className="rentcontain2">
 						<div className="registersubtitle">노트북명</div>
 						<div className="renterinfo">{laptopData.name}</div>
+						<input name="laptopname" value={laptopData.name} hidden/>
 					</div>
 					<hr className="divider" />
 					<div className="signcontent">
@@ -125,10 +100,10 @@ function GuestRent2() {
 					{
 						radiobtn === "agree" ?
 							<Button variant="primary" className="btnCss2"
-								onClick={() => applyBtn([userData], [laptopData])}
+								type="submit"
 							>신청하기</Button>
 							: <Button variant="primary" className="btnCss2"
-								onClick={() => applyBtn([userData], [laptopData])} disabled
+								type="button" disabled
 							>신청하기</Button>
 					}
 				</form>
