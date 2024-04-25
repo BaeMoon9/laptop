@@ -67,9 +67,10 @@ function ListTable() {
 						<tr>
 							<th class="col-md-1">순번</th>
 							<th class="col-md-1">상품명</th>
-							<th class="col-md-2">물품번호</th>
+							<th class="col-md-1">물품번호</th>
 							<th class="col-md-1">학번</th>
 							<th class="col-md-1">이름</th>
+							<th class="col-md-1">연락처</th>
 							<th class="col-md-1">상태</th>
 							<th class="col-md-1">비고</th>
 						</tr>
@@ -83,6 +84,7 @@ function ListTable() {
 									<td className='td1'>{a.ync_num}</td>
 									<td className='td1'>{a.rent_student_id}</td>
 									<td className='td1'>{a.rent_name}</td>
+									<td className='td1'>{a.student_phone_num}</td>
 									<td className='td1'>
 										{
 											a.status === '대여가능'
