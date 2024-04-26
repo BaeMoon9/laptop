@@ -65,15 +65,15 @@ function GuestRent2() {
 					<div className="userrentinfo">
 						<div className="guestrentinfo">
 							<div className="guestinfo">학번</div>
-							<input name="studentid" type="text" className="registerinput" />
+							<input name="studentid" type="text" className="registerinput" placeholder="ex) 1805013" />
 						</div>
 						<div className="guestrentinfo">
 							<div className="guestinfo">이름</div>
-							<input name="studentname" type="text" className="registerinput" />
+							<input name="studentname" type="text" className="registerinput" placeholder="ex) 홍길동"/>
 						</div>
 						<div className="guestrentinfo">
 							<div className="guestinfo">전화번호</div>
-							<input name="studentphone" type="text" className="registerinput" />
+							<input name="studentphone" type="text" className="registerinput" placeholder="ex) 010-1234-1234" />
 						</div>
 					</div>
 					<hr className="divider" />
