@@ -88,9 +88,10 @@ function Approve() {
 									<tr>
 										<th class="col-md-1">순번</th>
 										<th class="col-md-2">상품명</th>
-										<th class="col-md-3">물품번호</th>
-										<th class="col-md-2">학번</th>
+										<th class="col-md-2">물품번호</th>
 										<th class="col-md-2">이름</th>
+										<th class="col-md-2">학번</th>
+										<th class="col-md-2">연락처</th>
 										<th class="col-md-2">승인</th>
 									</tr>
 								</thead>
@@ -104,6 +105,7 @@ function Approve() {
 													<td className='td1'>{a.laptop_num}</td>
 													<td className='td1'>{a.student_name}</td>
 													<td className='td1'>{a.student_num_id}</td>
+													<td className='td1'>{a.phone_num}</td>
 													<td className='td1'>
 														<Button variant="primary" className="btnCss1" onClick={() => applyBtn([a])}>
 															승인하기
