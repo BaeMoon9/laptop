@@ -3,11 +3,23 @@ import axios from 'axios'
 import React, { useState, useEffect } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { utils, writeFile } from "xlsx";
+import Pagination from "react-js-pagination";
 
 function ListTable() {
 
 	const [laptopData, setLaptopData] = useState([])
+	const [slicedData, setSlicedData] = useState([]) //laptopData 10개씩
 	const [excelExport, setExcelExport] = useState([])
+
+	const [page, setPage] = useState(1) //페이지
+	const limit = 10 //1페이지당 데이터 10개
+	const lastData = page*limit
+	const firstData = lastData-limit
+
+	const handleNextPage = (page) => { //페이지 이동 onchange
+		setPage(page)
+		console.log('page누름', page)
+	}
 
 	useEffect(() => {
 		axios.get('http://localhost:8081/laptopdatabases').then((result) => {
@@ -18,6 +30,9 @@ function ListTable() {
 		})
 	}, [])
 
+	useEffect(() => {
+		setSlicedData(laptopData.slice(firstData, lastData))
+	}, [laptopData, page])
 	// console.log(laptopData)
 	// console.log(laptopData[0])
 
@@ -76,7 +91,7 @@ function ListTable() {
 						</tr>
 					</thead>
 					{
-						laptopData.map((a, inx) => (
+						slicedData.map((a, inx) => (
 							<tbody key={inx} className='tbody1'>
 								<tr className='tr1'>
 									<td className='td1'>{inx + 1}</td>
@@ -102,6 +117,16 @@ function ListTable() {
 						))}
 				</Table>
 			</div>
+			<Pagination
+					className='pagination'
+          activePage={page}
+          itemsCountPerPage={limit}
+          totalItemsCount={laptopData.length}
+          pageRangeDisplayed={10}
+					prevPageText={"<"}
+					nextPageText={">"}
+          onChange={handleNextPage}
+        />
 		</div>
 	)
 }

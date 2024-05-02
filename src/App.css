@@ -563,6 +563,13 @@
 	margin-left: 5px;
 	margin-right: 5px;
 }
+
+.pagination {
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+	gap: 5px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
