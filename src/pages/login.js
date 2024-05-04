@@ -9,6 +9,7 @@ function LoginPage() {
 	const navigate = useNavigate();
 
 	return (
+		<div className="loginbg">
 		<div className="login">
 			<Container>
 				<div className="loginBox">
@@ -36,6 +37,7 @@ function LoginPage() {
 					</div>
 				</div>
 			</Container>
+		</div>
 		</div>
 	)
 }
