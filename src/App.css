@@ -15,6 +15,7 @@
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
+	min-height: 920px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -568,8 +569,42 @@
 	align-items: center;
 	justify-content: center;
 	margin-top: 10px;
-	gap: 5px;
+	gap: 7px;
+	text-decoration: none;
 }
+
+.mainfooter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footcontainer {
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+	width: 1200px;
+	height: auto;
+}
+
+.footcontainer >p {
+	font-weight: bold;
+	padding-top: 15px;
+	font-size: 12px;
+	min-width: 1px;
+	text-align: left;
+	color: #999999;
+}
+
+.ynclogo{
+	font-size: 0;
+	width: 163px;
+	background: url(/public/ynclogo.png) left center no-repeat;
+	margin-right: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

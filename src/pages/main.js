@@ -43,7 +43,7 @@ function MainPage() {
 	}
 
 	return (
-		<div>
+		<div className="main">
 			<Navbar bg="dark" data-bs-theme="dark">
 				<Container>
 					<Navbar.Brand onClick={() => { navigate('/') }}>노트북 관리 대장</Navbar.Brand>
@@ -97,7 +97,17 @@ function MainPage() {
 
 				</Routes>
 			</div>
-
+			<div className="mainfooter">
+				<div className="footcontainer">
+					<div className="ynclogo">
+						영남이공대학교
+					</div>
+					<p>대구광역시 남구 현충로 170(대명동) 영남이공대학교 컴퓨터정보관3층 실습준비실3 Tel : 053-650-9255
+							<br/>
+							Copyrightⓒ 2023 Yeungnam University College All Rights Reserved
+					</p>
+				</div>
+			</div>
 		</div>
 	)
 }
