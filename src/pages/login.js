@@ -30,7 +30,7 @@ function LoginPage() {
 							}}>회원가입</a></p>
 						</ul>
 						<form action="http://localhost:8081/login1" method="POST">
-							<input type="hidden" name="username" className="IdInput" value={"test1"}/>
+							<input type="hidden" name="username" className="IdInput" value={"guest"}/>
 							<input type="hidden" name="password" className="PwInput" value={"1234"}/>
 							<button className="loginBtn" type="submit">비회원 대여하기</button>
 						</form>
