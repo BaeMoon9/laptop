@@ -85,6 +85,7 @@ function ListTable() {
 					<Table striped bordered hover>
 						<thead>
 							<tr>
+								<th class="col-md-1">delete</th>
 								<th class="col-md-1">순번</th>
 								<th class="col-md-1">상품명</th>
 								<th class="col-md-1">물품번호</th>
@@ -99,6 +100,9 @@ function ListTable() {
 							slicedData.map((a, inx) => (
 								<tbody key={inx} className='tbody1'>
 									<tr className='tr1'>
+										<td className='td1'>
+											<input type="checkbox"/>
+										</td>
 										<td className='td1'>{inx + 1}</td>
 										<td className='td1'>{a.name}</td>
 										<td className='td1'>{a.ync_num}</td>
