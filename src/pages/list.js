@@ -1,6 +1,6 @@
 import { Table } from 'react-bootstrap';
 import axios from 'axios'
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { utils, writeFile } from "xlsx";
 import Pagination from "react-js-pagination";
@@ -10,14 +10,44 @@ function ListTable() {
 	const [laptopData, setLaptopData] = useState([])
 	const [slicedData, setSlicedData] = useState([]) //laptopData 10개씩
 	const [excelExport, setExcelExport] = useState([])
+	const [deleteState, setDeleteState] = useState(false); //노트북목록 삭제 체크박스 state
 
 	const [page, setPage] = useState(1) //페이지
 	const limit = 10 //1페이지당 데이터 10개
 	const lastData = page * limit
 	const firstData = lastData - limit
 
+	const [deleteChecked, setDeleteChecked] = useState([])
+
+	const onSelect = (checked, val) => {
+		console.log('e.target.checked', checked)
+		if (checked) { //배열에 id 추가
+			console.log('체크', val)
+			setDeleteChecked([...deleteChecked, val])
+		} else if (!checked) { //배열에 id 제거
+			console.log('체크해제', val)
+			let newDeleteChecked = deleteChecked.filter((e) => e !== val)
+			setDeleteChecked(newDeleteChecked)
+		}
+		console.log('체크된리스트', deleteChecked)
+	}
+
+	const handleDeleteState = () => {
+		if (deleteState === false) {
+			setDeleteState(true)
+		} else {
+			setDeleteState(false)
+		}
+	}
+
+	const handleDeleteLaptop = () => {
+
+	}
+
+
 	const handleNextPage = (page) => { //페이지 이동 onchange
 		setPage(page)
+		setDeleteState(false) //삭제탭 취소
 		console.log('page누름', page)
 	}
 
@@ -80,12 +110,24 @@ function ListTable() {
 						노트북 목록
 					</div>
 					<button className="excelBtn" onClick={excelExportHandler}>내보내기</button>
+					{
+						deleteState === false
+							? <button className="delBtn" onClick={handleDeleteState}>삭제하기</button>
+							: <div>
+								<button className="delBtn" onClick={handleDeleteLaptop}>선택제거</button>
+								<button className="delBtn2" onClick={handleDeleteState}>취소하기</button>
+							</div>
+					}
 				</div>
 				<div className="tables">
 					<Table striped bordered hover>
 						<thead>
 							<tr>
-								<th class="col-md-1">delete</th>
+								{
+									deleteState === true
+									? <th class="col-md-1">삭제</th>
+									: null
+								}
 								<th class="col-md-1">순번</th>
 								<th class="col-md-1">상품명</th>
 								<th class="col-md-1">물품번호</th>
@@ -100,9 +142,15 @@ function ListTable() {
 							slicedData.map((a, inx) => (
 								<tbody key={inx} className='tbody1'>
 									<tr className='tr1'>
-										<td className='td1'>
-											<input type="checkbox"/>
+										{
+											deleteState === true 
+											? <td className="checkboxcontain">
+											<input type="checkbox" value={inx} onChange={(e) => { onSelect(e.target.checked, e.target.value) }}
+											//체크표시 치크해제 로직
+											/>
 										</td>
+										: null
+										}
 										<td className='td1'>{inx + 1}</td>
 										<td className='td1'>{a.name}</td>
 										<td className='td1'>{a.ync_num}</td>
@@ -139,7 +187,7 @@ function ListTable() {
 			</div>
 			<form action="http://localhost:8081/addlist" method="POST">
 				<div className='addlisttop'>
-				<div className="registertitle">
+					<div className="registertitle">
 						노트북 등록하기
 					</div>
 					<button className="excelBtn" type='submit'>등록하기</button>
