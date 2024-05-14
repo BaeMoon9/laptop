@@ -18,18 +18,23 @@ function ListTable() {
 	const firstData = lastData - limit
 
 	const [deleteChecked, setDeleteChecked] = useState([])
+	const [deleteNum, setDeleteNum] = useState([]) //체크된 물품번호 추출
 
-	const onSelect = (checked, val) => {
-		console.log('e.target.checked', checked)
+	const onSelect = (checked, val, yncnum) => {
+		console.log('e.target.checked', checked, yncnum)
 		if (checked) { //배열에 id 추가
 			console.log('체크', val)
 			setDeleteChecked([...deleteChecked, val])
+			setDeleteNum([...deleteNum, yncnum])
 		} else if (!checked) { //배열에 id 제거
 			console.log('체크해제', val)
 			let newDeleteChecked = deleteChecked.filter((e) => e !== val)
+			let newDeleteNum = deleteChecked.filter((e) => e !== yncnum)
 			setDeleteChecked(newDeleteChecked)
+			setDeleteNum(newDeleteNum)
+
 		}
-		console.log('체크된리스트', deleteChecked)
+		console.log('체크된리스트', deleteNum)
 	}
 
 	const handleDeleteState = () => {
@@ -37,17 +42,29 @@ function ListTable() {
 			setDeleteState(true)
 		} else {
 			setDeleteState(false)
+			setDeleteChecked([])
 		}
 	}
 
-	const handleDeleteLaptop = () => {
-
+	const handleDeleteLaptop = async () => {
+		// console.log(deleteChecked)
+		try {
+			await axios.post('http://localhost:8081/deletelaptoplists', deleteNum,
+				{ headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+				.then(() => {
+					setDeleteState(false)
+				})
+		} catch (e) {
+			console.log(e)
+		}
+		setDeleteChecked([])
 	}
 
 
 	const handleNextPage = (page) => { //페이지 이동 onchange
 		setPage(page)
 		setDeleteState(false) //삭제탭 취소
+		setDeleteChecked([])
 		console.log('page누름', page)
 	}
 
@@ -114,7 +131,7 @@ function ListTable() {
 						deleteState === false
 							? <button className="delBtn" onClick={handleDeleteState}>삭제하기</button>
 							: <div>
-								<button className="delBtn" onClick={handleDeleteLaptop}>선택제거</button>
+								<button className="delBtn" onClick={() => handleDeleteLaptop()}>선택제거</button> 
 								<button className="delBtn2" onClick={handleDeleteState}>취소하기</button>
 							</div>
 					}
@@ -125,8 +142,8 @@ function ListTable() {
 							<tr>
 								{
 									deleteState === true
-									? <th class="col-md-1">삭제</th>
-									: null
+										? <th class="col-md-1">삭제</th>
+										: null
 								}
 								<th class="col-md-1">순번</th>
 								<th class="col-md-1">상품명</th>
@@ -143,13 +160,13 @@ function ListTable() {
 								<tbody key={inx} className='tbody1'>
 									<tr className='tr1'>
 										{
-											deleteState === true 
-											? <td className="checkboxcontain">
-											<input type="checkbox" value={inx} onChange={(e) => { onSelect(e.target.checked, e.target.value) }}
-											//체크표시 치크해제 로직
-											/>
-										</td>
-										: null
+											deleteState === true
+												? <td className="checkboxcontain">
+													<input type="checkbox" value={inx} onChange={(e) => { onSelect(e.target.checked, e.target.value, a.ync_num) }}
+													//체크표시 치크해제 로직
+													/>
+												</td>
+												: null
 										}
 										<td className='td1'>{inx + 1}</td>
 										<td className='td1'>{a.name}</td>
