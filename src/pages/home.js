@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate, Outlet } from "react-router-dom";
@@ -25,8 +25,11 @@ function Home() {
   // console.log(laptopData)
   // console.log(laptopData[0])
 
+	const scrollLists = useRef(null); //스크롤 이동 함수
   const handleRentLaptop = (a) => { //대여하기 버튼 누를떄 연도별 노트북 정보 전달
     navigate('/home/detail', {state : a})
+		scrollLists.current.scrollIntoView({behavior: 'smooth', block: 'start'}) //해당컴포넌트로 스크롤 이동시키기
+
     // console.log(a)
   }
 
@@ -55,7 +58,7 @@ function Home() {
                  ))}
               </Row>
             </Container>
-            <div className="detailComponent">
+            <div className="detailComponent" ref={scrollLists}>
 						<Outlet></Outlet>
             </div>
           </div>
