@@ -236,6 +236,46 @@ function ListTable() {
 					</div>
 				</div>
 			</form>
+			<form action="http://localhost:8081/updatelist" method="POST">
+			<div className='addlisttop'>
+					<div className="registertitle">
+						노트북 정보 갱신
+					</div>
+					<button className="excelBtn" type='submit'>업데이트</button>
+				</div>
+				<div className='addlist'>
+					<div className='addlistcontent'>
+						<div className="addlistsubtitle">
+							업데이트 대상 물품번호
+						</div>
+						<input name="yncnum" className="addinput" placeholder="ex) 20180918-0001" type="text" />
+					</div>
+					<div className='addlistcontent'>
+						<div className="addlistsubtitle">
+							학번
+						</div>
+						<input name="studentnum" className="addinput" placeholder="ex) 1805013" type="text" />
+					</div>
+					<div className='addlistcontent'>
+						<div className="addlistsubtitle">
+							이름
+						</div>
+						<input name="studentname" className="addinput" placeholder="ex) 홍길동" type="text" />
+					</div>
+					<div className='addlistcontent'>
+						<div className="addlistsubtitle">
+							연락처
+						</div>
+						<input name="phone" className="addinput" placeholder="ex) 010-1234-1234" type="text" />
+					</div>
+					<div className='addlistcontent'>
+						<div className="addlistsubtitle">
+							대여 상태
+						</div>
+						<input name="status" className="addinput" placeholder="ex) 대여가능, 대여불가(사유)" type="text" />
+					</div>
+				</div>
+			</form>
 		</div>
 	)
 }

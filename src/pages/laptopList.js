@@ -33,7 +33,7 @@ function LaptopList() {
         window.alert("로그인 후 이용가능합니다.")
         navigate('/login')
       }
-			else if (userData.id === "test1") {
+			else if (userData.id === "guest") { //게스트로그인시 신청화면에서 개인정보 입력하는 다른페이지로 이동하기
 				console.log('guset logined')
 				navigate('/guestrent', {state : {laptop}})
 			}
