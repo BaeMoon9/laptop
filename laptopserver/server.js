@@ -254,13 +254,14 @@ app.post('/userdevicerent', async (req, res) => {
 		)
 	} catch (e) {
 		console.log(e)
-		res.send(
-			`<script>
-				alert('이미 대여가 완료된 물품이거나 대여 승인중인 물품입니다.');
-				location.href='${URL}';
-			</script>`
-		);
-		res.json({ message: '오류로 인한 신청 실패' })
+		return res.json(e)
+		// return res.send(
+		// 	`<script>
+		// 		alert('이미 대여가 완료된 물품이거나 대여 승인중인 물품입니다.');
+		// 		location.href='${URL}';
+		// 	</script>`
+		// );
+		// res.json({ message: '오류로 인한 신청 실패' })
 	}
 
 	// )
