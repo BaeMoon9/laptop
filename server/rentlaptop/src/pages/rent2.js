@@ -32,13 +32,17 @@ function Rent2() {
 			//responseType: 'json'
 		})
 			.then((res) => {
-				console.log(res.data)
-
+					//console.log('res 보기 :', res.data.sqlMessage)
+					if (res.data.sqlMessage) {
+						window.alert("관리자에게 문의바랍니다.") //sql에러처리
+						navigate('/home')
+					} else {
+						window.alert("신청이 완료되었습니다.")
+						navigate('/home')
+					}
 			}).catch((e) => {
 				console.log(e)
 			})
-		window.alert("신청이 완료되었습니다.")
-		navigate('/home')
 	}
 
 	useEffect(() => {
