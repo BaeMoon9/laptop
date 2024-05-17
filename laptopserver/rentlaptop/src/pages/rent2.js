@@ -32,7 +32,7 @@ function Rent2() {
 			//responseType: 'json'
 		})
 			.then((res) => {
-				console.log(res.data)
+				console.log('res 보기 :', res.data)
 
 			}).catch((e) => {
 				console.log(e)
