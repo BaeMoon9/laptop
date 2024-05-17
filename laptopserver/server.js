@@ -234,13 +234,7 @@ app.post('/guestdevicerent', async (req, res) => {
 		)
 		res.redirect('/')
 	} catch (e) {
-		console.log(e)
-		res.send(
-			`<script>
-				alert('이미 대여가 완료된 물품이거나 대여 승인중인 물품입니다.');
-				location.href='${URL}';
-			</script>`
-		)
+		return res.json(e)
 	}
 })
 
