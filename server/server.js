@@ -249,18 +249,19 @@ app.post('/userdevicerent', async (req, res) => {
 	console.log('deviceresult', req.body)
 
 	try {
-		await pool.query('insert into RentApply values (?, ?, ?, ?)',
-			[req.body[1].ync_num, req.body[1].name, req.body[0].username, req.body[0].studentid]
+		await pool.query('insert into RentApply values (?, ?, ?, ?, ?)',
+			[req.body[1].ync_num, req.body[1].name, req.body[0].username, req.body[0].studentid, req.body[0].phone]
 		)
 	} catch (e) {
 		console.log(e)
-		res.send(
-			`<script>
-				alert('이미 대여가 완료된 물품이거나 대여 승인중인 물품입니다.');
-				location.href='${URL}';
-			</script>`
-		);
-		res.json({ message: '오류로 인한 신청 실패' })
+		return res.json(e)
+		// res.send(
+		// 	`<script>
+		// 		alert('이미 대여가 완료된 물품이거나 대여 승인중인 물품입니다.');
+		// 		location.href='${URL}';
+		// 	</script>`
+		// );
+		// res.json({ message: '오류로 인한 신청 실패' })
 	}
 
 	// )
