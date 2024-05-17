@@ -249,8 +249,8 @@ app.post('/userdevicerent', async (req, res) => {
 	console.log('deviceresult', req.body)
 
 	try {
-		await pool.query('insert into RentApply values (?, ?, ?, ?)',
-			[req.body[1].ync_num, req.body[1].name, req.body[0].username, req.body[0].studentid]
+		await pool.query('insert into RentApply values (?, ?, ?, ?, ?)',
+			[req.body[1].ync_num, req.body[1].name, req.body[0].username, req.body[0].studentid, req.body[0].phone]
 		)
 	} catch (e) {
 		console.log(e)
