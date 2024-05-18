@@ -232,15 +232,10 @@ app.post('/guestdevicerent', async (req, res) => {
 		await pool.query('insert into RentApply values(?, ?, ?, ?, ?)',
 			[req.body.laptopnum, req.body.laptopname, req.body.studentname, req.body.studentid, req.body.studentphone]
 		)
-		res.redirect('/')
+		res.send("<script>alert('신청이 완료되었습니다.'); window.location.replace('/')</script>")
 	} catch (e) {
 		console.log(e)
-		res.send(
-			`<script>
-				alert('이미 대여가 완료된 물품이거나 대여 승인중인 물품입니다.');
-				location.href='${URL}';
-			</script>`
-		)
+		res.json(e)
 	}
 })
 
@@ -252,20 +247,12 @@ app.post('/userdevicerent', async (req, res) => {
 		await pool.query('insert into RentApply values (?, ?, ?, ?, ?)',
 			[req.body[1].ync_num, req.body[1].name, req.body[0].username, req.body[0].studentid, req.body[0].phone]
 		)
+		console.log('신청 성공')
+		res.json(res)
 	} catch (e) {
-		console.log(e)
-		return res.json(e)
-		// res.send(
-		// 	`<script>
-		// 		alert('이미 대여가 완료된 물품이거나 대여 승인중인 물품입니다.');
-		// 		location.href='${URL}';
-		// 	</script>`
-		// );
-		// res.json({ message: '오류로 인한 신청 실패' })
+		//console.log('신청 실패', e)
+	 	res.json(e)
 	}
-
-	// )
-	// res.json(result)
 })
 
 
