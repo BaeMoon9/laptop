@@ -34,7 +34,7 @@ function Rent2() {
 			.then((res) => {
 					//console.log('res 보기 :', res.data.sqlMessage)
 					if (res.data.sqlMessage) {
-						window.alert("관리자에게 문의바랍니다.") //sql에러처리
+						window.alert("요청 실패! 관리자에게 문의바랍니다.") //sql에러처리
 						navigate('/home')
 					} else {
 						window.alert("신청이 완료되었습니다.")
