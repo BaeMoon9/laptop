@@ -1,9 +1,6 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from "react";
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import { Routes, Route, Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import LoginPage from './login.js';
 import Home from "./home.js";
 import ListTable from "./list.js";
@@ -15,36 +12,35 @@ import Rent2 from "./rent2.js";
 import Approve from "./approve.js";
 import Test1 from "./test1.js";
 import ApproveUser from "./approveUser.js";
-import axios from "axios";
 import FindID from "./findid.js";
 import GuestRent from "./guestrent.js";
 import GuestRent2 from "./guestrent2.js";
+import Navbarpage from "./navpage.js";
 
 
 function MainPage() {
 
-	const navigate = useNavigate()
 	//const { info } = useLocation()
-	const [userData, setUserData] = useState([])
+	// const [userData, setUserData] = useState([])
 
-	//setUserData(info)
-	//console.log('userLogout : ', info)
+	// //setUserData(info)
+	// //console.log('userLogout : ', info)
 
-	useEffect(() => {
-		axios.get('http://localhost:8081/userpage').then((result) => {
-			setUserData(result.data)
-		}).catch(() => {
-			console.log('failed')
-		})
-	}, [])
+	// useEffect(() => {
+	// 	axios.get('http://localhost:8081/userpage').then((result) => {
+	// 		setUserData(result.data)
+	// 	}).catch(() => {
+	// 		console.log('failed')
+	// 	})
+	// }, [])
 
-	const handleUserData = (a) => {
-		navigate('/approveUser', { state: a })
-	}
+	// const handleUserData = (a) => {
+	// 	navigate('/approveUser', { state: a })
+	// }
 
 	return (
 		<div className="main">
-			<Navbar bg="light" data-bs-theme="light">
+			{/* <Navbar bg="light" data-bs-theme="light">
 				<Container>
 					<Navbar.Brand onClick={() => { navigate('/') }}>
 						<div className="navtitle">
@@ -88,7 +84,8 @@ function MainPage() {
 						</Navbar.Text>
 					</Navbar.Collapse>
 				</Container>
-			</Navbar>
+			</Navbar> */}
+			<Navbarpage />
 			<div className="Components">
 				<Routes>
 					<Route path="/" element={<Home />} />
