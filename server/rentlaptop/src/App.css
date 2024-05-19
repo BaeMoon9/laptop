@@ -8,7 +8,6 @@
 }
 
 .Components {
-	background-color: whitesmoke;
   /* display: flex; */
   align-items: center;
   justify-content: center;
@@ -662,7 +661,6 @@
 }
 
 .mainfooter {
-	background-color: whitesmoke;
 	display: flex;
 	align-items: center;
 	justify-content: center;
