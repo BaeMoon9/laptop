@@ -2,6 +2,7 @@ import { Table } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
+import Navbarpage from "./navpage.js";
 
 
 function ApproveUser() {
@@ -31,6 +32,7 @@ function ApproveUser() {
 	return (
 
 		<>
+		<Navbarpage/>
 			<div className="mypage">
 				<div className="approvetopcontainer">
 					<div className="registersubtitle">

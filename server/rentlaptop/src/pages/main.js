@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React from "react";
-import { Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import LoginPage from './login.js';
 import Home from "./home.js";
 import ListTable from "./list.js";
@@ -15,14 +15,13 @@ import ApproveUser from "./approveUser.js";
 import FindID from "./findid.js";
 import GuestRent from "./guestrent.js";
 import GuestRent2 from "./guestrent2.js";
-import Navbarpage from "./navpage.js";
+
 
 
 function MainPage() {
 
 	return (
 		<div className="main">
-			<Navbarpage />
 			<div className="Components">
 				<Routes>
 					<Route path="/" element={<Home />} />

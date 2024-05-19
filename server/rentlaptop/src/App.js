@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MainPage from './pages/main.js';
 
 function App() {
-  return (
-    <MainPage />
-  );
+	return (
+		<MainPage/>
+		);
 }
 
 export default App;

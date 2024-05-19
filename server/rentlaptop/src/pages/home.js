@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios'
+import Navbarpage from "./navpage.js";
 
 
 function Home() {
@@ -34,6 +35,7 @@ function Home() {
 
   return (
           <div className="home">
+						<Navbarpage />
             <Container>
               <Row xs={1} md={3} className="g-5">
                 {laptopData.map((a, inx) => (

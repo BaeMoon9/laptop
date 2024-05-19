@@ -63,7 +63,7 @@ function Navbarpage() {
 						<Navbar.Text>
 							{
 								!userData.id
-									? <p className="logintab"><a className="navlogin" onClick={() => { navigate('/login') }}>로그인 하러가기</a>!</p>
+									? <p className="logintab"><a className="navlogin" onClick={() => { navigate('/login') }}>로그인 하러가기!</a></p>
 									: <p className="logintab"><a className="navlogin" onClick={() => { navigate('/mypage') }}>환영합니다 {userData.id}님!</a></p>
 							}
 						</Navbar.Text>
