@@ -75,6 +75,7 @@
 }
 
 .logintab {
+	display: flex;
   padding-top: 10px;
   cursor: pointer;
 }
@@ -719,7 +720,7 @@
 
 .navlogout {
 	cursor: pointer;
-	margin-left: 10px;
+	margin-left: 12px;
 	color: rgb(0, 55, 255);
   font-size: 18px;
   font-weight: bold;
