@@ -471,10 +471,6 @@
   display: flex;
 }
 
-.registerpw {
-
-}
-
 .registerpw1 {
   display: flex;
 }
@@ -694,6 +690,30 @@
 	width: 163px;
 	background: url(/public/ynclogo.png) left center no-repeat;
 	margin-right: 10px;
+}
+
+.ynclogo2 {
+	width: 40px;
+	margin-right: 10px;
+}
+
+.navtitle {
+	color: midnightblue;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.navtabs {
+	color: rgb(83, 83, 83);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navlogin {
+	color: rgb(83, 83, 83);
+  font-size: 18px;
+  font-weight: bold;
+	text-decoration: none;
 }
 
 @keyframes App-logo-spin {
