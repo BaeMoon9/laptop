@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -28,11 +28,9 @@ function Rent() {
 
 	console.log(userData)
 
-	const scrollLists = useRef(null); //스크롤이동함수
 	const nextBtn = (name) => {
 		console.log('name', name)
 		navigate('/rent2', { state: { name } })
-		scrollLists.current.scrollIntoView({ behavior: 'smooth', block: 'start' }) //해당컴포넌트로 스크롤 이동시키기
 	}
 
 	return (

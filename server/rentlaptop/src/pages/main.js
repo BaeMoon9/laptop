@@ -19,6 +19,7 @@ import axios from "axios";
 import FindID from "./findid.js";
 import GuestRent from "./guestrent.js";
 import GuestRent2 from "./guestrent2.js";
+import ScrollToTop from "./scrollToTop.js";
 
 
 function MainPage() {
@@ -77,6 +78,7 @@ function MainPage() {
 				</Container>
 			</Navbar>
 			<div className="Components">
+			<ScrollToTop />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<LoginPage />} />
@@ -94,7 +96,6 @@ function MainPage() {
 						<Route path="detail" element={<LaptopList />} />
 					</Route>
 					<Route path="/list" element={<ListTable />} />
-
 				</Routes>
 			</div>
 			<div className="mainfooter">
