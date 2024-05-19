@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Badge from 'react-bootstrap/Badge';
 import { utils, writeFile } from "xlsx";
 import Pagination from "react-js-pagination";
+import Navbarpage from "./navpage.js";
 
 function ListTable() {
 
@@ -121,6 +122,7 @@ function ListTable() {
 
 	return (
 		<div>
+			<Navbarpage />
 			<div className="listtable">
 				<div className="listtop">
 					<div className="registertitle">
@@ -131,7 +133,7 @@ function ListTable() {
 						deleteState === false
 							? <button className="delBtn" onClick={handleDeleteState}>삭제하기</button>
 							: <div>
-								<button className="delBtn" onClick={() => handleDeleteLaptop()}>선택제거</button> 
+								<button className="delBtn" onClick={() => handleDeleteLaptop()}>선택제거</button>
 								<button className="delBtn2" onClick={handleDeleteState}>취소하기</button>
 							</div>
 					}
@@ -237,7 +239,7 @@ function ListTable() {
 				</div>
 			</form>
 			<form action="http://localhost:8081/updatelist" method="POST">
-			<div className='addlisttop'>
+				<div className='addlisttop'>
 					<div className="registertitle">
 						노트북 정보 갱신
 					</div>
