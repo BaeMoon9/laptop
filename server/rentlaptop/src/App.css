@@ -710,7 +710,17 @@
 }
 
 .navlogin {
+	cursor: pointer;
 	color: rgb(83, 83, 83);
+  font-size: 18px;
+  font-weight: bold;
+	text-decoration: none;
+}
+
+.navlogout {
+	cursor: pointer;
+	margin-left: 10px;
+	color: rgb(0, 55, 255);
   font-size: 18px;
   font-weight: bold;
 	text-decoration: none;
