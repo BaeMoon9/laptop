@@ -24,7 +24,7 @@ function Navbarpage() {
 	}
 
 	return(
-		<div>
+		<div className="main">
 			<Navbar bg="light" data-bs-theme="light">
 				<Container>
 					<Navbar.Brand onClick={() => { navigate('/') }}>
