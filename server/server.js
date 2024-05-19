@@ -371,5 +371,7 @@ app.post('/findyourid', async (req, res) => {
 })
 
 app.get('*', function (req, res) { //
-	res.sendFile(path.join(__dirname, '/rentlaptop/build/index.htm/'));
+	res.sendFile(path.join(__dirname, './rentlaptop/build/'));
 })
+
+
