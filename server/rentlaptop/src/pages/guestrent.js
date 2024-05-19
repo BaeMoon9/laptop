@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import { useNavigate, useLocation } from "react-router-dom";
+import ScrollToTop from "./scrollToTop";
 
 function GuestRent() {
     const navigate = useNavigate()
@@ -35,6 +36,7 @@ function GuestRent() {
 
     return (
         <div className="rentpage">
+					<ScrollToTop />
             <div className="registertitle">
                 노트북 대여 서약서
             </div>

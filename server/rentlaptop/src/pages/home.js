@@ -29,7 +29,6 @@ function Home() {
   const handleRentLaptop = (a) => { //대여하기 버튼 누를떄 연도별 노트북 정보 전달
     navigate('/home/detail', {state : a})
 		scrollLists.current.scrollIntoView({behavior: 'smooth', block: 'start'}) //해당컴포넌트로 스크롤 이동시키기
-
     // console.log(a)
   }
 

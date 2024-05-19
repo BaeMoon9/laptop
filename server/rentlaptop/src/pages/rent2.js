@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import { useLocation, useNavigate } from "react-router-dom";
+import ScrollToTop from "./scrollToTop";
 
 function Rent2() {
 
@@ -60,6 +61,7 @@ function Rent2() {
 
 	return (
 		<div className="rentpage">
+			<ScrollToTop />
 			<div className="registertitle">
 				노트북 대여 신청서
 			</div>
