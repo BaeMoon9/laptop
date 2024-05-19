@@ -8,11 +8,12 @@
 }
 
 .Components {
+	background-color: whitesmoke;
   /* display: flex; */
   align-items: center;
   justify-content: center;
   text-align: center;
-	min-height: 920px;
+	min-height: 750px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -41,7 +42,7 @@
 }
 
 .loginbg {
-	min-height: 920px;
+	min-height: 750px;
 	background: url(/public/pic1.jpg);
 	background-size: cover;
 }
@@ -661,6 +662,7 @@
 }
 
 .mainfooter {
+	background-color: whitesmoke;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -669,7 +671,7 @@
 }
 
 .footcontainer {
-	margin-top: 40px;
+	margin-top: 20px;
 	display: flex;
 	justify-content: center;
 	width: 1200px;

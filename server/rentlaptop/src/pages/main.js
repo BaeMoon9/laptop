@@ -21,7 +21,7 @@ import GuestRent2 from "./guestrent2.js";
 function MainPage() {
 
 	return (
-		<div className="main">
+		<div>
 			<div className="Components">
 				<Routes>
 					<Route path="/" element={<Home />} />
