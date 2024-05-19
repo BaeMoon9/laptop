@@ -19,6 +19,15 @@ function Navbarpage() {
 		})
 	}, [])
 
+	const logoutBtn = () => {
+		axios.get('http://localhost:8081/logout')
+			.catch(() => {
+				console.log("failed")
+			})
+		navigate('/', { replace: true })
+		window.location.reload(); //page reload 새로고침 안하니까 mainpage navbar에 아이디가 계속떠있네;;
+	}
+
 	const handleUserData = (a) => {
 		navigate('/approveUser', { state: a })
 	}
@@ -35,7 +44,7 @@ function Navbarpage() {
 					</Navbar.Brand>
 					<Nav className="me-auto">
 						<Nav.Link onClick={() => { navigate('/home') }}>
-							<div className="navtabs">Home</div>
+							<div className="navtabs">대여하기</div>
 						</Nav.Link>
 						{
 							!userData.id
@@ -64,7 +73,10 @@ function Navbarpage() {
 							{
 								!userData.id
 									? <p className="logintab"><a className="navlogin" onClick={() => { navigate('/login') }}>로그인 하러가기!</a></p>
-									: <p className="logintab"><a className="navlogin" onClick={() => { navigate('/mypage') }}>환영합니다 {userData.id}님!</a></p>
+									: <p className="logintab">
+										<a className="navlogin" onClick={() => { navigate('/mypage') }}>환영합니다 {userData.id}님!</a>
+										<a className="navlogin" onClick={logoutBtn}>로그아웃</a>
+										</p>
 							}
 						</Navbar.Text>
 					</Navbar.Collapse>
