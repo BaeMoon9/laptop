@@ -17,11 +17,11 @@ function FindID() {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		})
 			.then((res) => {
-				console.log('res', res.data[0])
-				if(res.data[0] = '') {
-					alert('찾으시려는 아이디가 없습니다.')
-				} else if (res.data[0]) {
-					alert('아이디찾음')
+				console.log('0: 데이터없음, 1: 데이터있음', res.data.length)
+				if (res.data.length === 1) { //res 반환받은 데이터 길이로 데이터 유무 판단
+					alert('찾으시는 아이디는 ' + res.data[0].user_id + ' 입니다.')
+				} else if (res.data.length === 0) {
+					alert('아이디가 없습니다.')
 				} else {
 					alert('관리자에게 문의바랍니다.')
 				}
