@@ -14,6 +14,15 @@ function Home() {
 
 	const [laptopData, setLaptopData] = useState([])
 
+	const [mouseOver, setMouseOver] = useState(false)
+	const handleMouseOver = () => {
+		setMouseOver(true);
+	}
+	const handleMouseOut = () => {
+		setMouseOver(false);
+	}
+	
+
 	useEffect(() => {
 		axios.get('http://localhost:8081/laptopspecs').then((result) => {
 			setLaptopData(result.data)
@@ -33,37 +42,49 @@ function Home() {
 		// console.log(a)
 	}
 
+	const scrollLaptops = useRef(null)
+	const handleLaptopLeft = () => {
+		scrollLaptops.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+	}
+	const handleLaptopRight = () => {
+		scrollLaptops.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
+	}
+
+
+	//row className="g-5"
 	return (
 		<div>
 			<Navbarpage />
-			<div className="home">
-				<Container>
-					<Row xs={1} md={3} className="g-5">
-						{laptopData.map((a, inx) => (
-							<Col key={inx}>
-								<Card className="cardstyle">
-									<Card.Img variant="top" src="/laptop01.jpeg" width="250px" height="250px" />
-									<Card.Body className="cardcontent">
-										<Card.Title>{a.Name}</Card.Title>
-										<Card.Text>
-											<div className="cardtext">
-												<li>CPU : {a.CPU}</li>
-												<li>RAM : {a.RAM}</li>
-												<li>SSD : {a.SSD}</li>
-												<li>HDD : {a.HDD}</li>
-											</div>
-										</Card.Text>
-										<Button variant="primary" onClick={() => { handleRentLaptop({ a }) }}>대여하기</Button>
-									</Card.Body>
-								</Card>
-							</Col>
-						))}
-					</Row>
-				</Container>
-				<div className="detailComponent" ref={scrollLists}>
-					<Outlet></Outlet>
+			<div className="home" onMouseOver={() => {handleMouseOver()}} onMouseOut={() => {handleMouseOut()}}>
+				<div className={mouseOver ? "lefttab" : "lefttabnone" } onMouseOver={() => {handleMouseOver()}} onClick={() => {handleLaptopLeft()}}>
+				</div>
+				<div className="cardlist" ref={scrollLaptops}>
+					{laptopData.map((a, inx) => (
+						<Col key={inx} className="lists">
+							<Card className="cardstyle" >
+								<Card.Img variant="top" src="/laptop01.jpeg" width="250px" height="250px" />
+								<Card.Body className="cardcontent">
+									<Card.Title><div className="cardtitletext">{a.Name}</div></Card.Title>
+									<Card.Text>
+										<div className="cardtext">
+											<li>CPU : {a.CPU}</li>
+											<li>RAM : {a.RAM}</li>
+											<li>SSD : {a.SSD}</li>
+											<li>HDD : {a.HDD}</li>
+										</div>
+									</Card.Text>
+									<button className="rentBtn" onClick={() => { handleRentLaptop({ a }) }}>대여하기</button>
+								</Card.Body>
+							</Card>
+						</Col>
+					))}
+				</div>
+				<div className={mouseOver ? "righttab" : "righttabnone" } onMouseOver={() => {handleMouseOver()}} onClick={() => {handleLaptopRight()}}>
 				</div>
 			</div>
+			<div className="detailComponent" ref={scrollLists}>
+					<Outlet></Outlet>
+				</div>
 		</div>
 	)
 }

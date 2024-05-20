@@ -2,13 +2,12 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import ScrollToTop from "./scrollToTop";
 import Navbarpage from "./navpage.js";
 
 function GuestRent2() {
 
-	const navigate = useNavigate()
 	const location = useLocation()
 
 	console.log('노트북 정보3', location.state.name[0])
@@ -17,12 +16,7 @@ function GuestRent2() {
 
 	const [userData, setUserData] = useState([])
 	const [laptopData, setLaptopData] = useState([])
-
 	const [radiobtn, setRadiobtn] = useState("diagree")
-
-	const handleRadioChange = (e) => {
-		setRadiobtn(e.target.value)
-	}
 
 	useEffect(() => {
 		setLaptopData(location.state.name[0])
@@ -32,11 +26,11 @@ function GuestRent2() {
 			console.log('failed')
 		})
 	}, [])
-	// console.log('laptopdata', laptopData)
-	// console.log('userData', userData)
 
-
-
+	const handleRadioChange = (e) => {
+		setRadiobtn(e.target.value)
+	}
+	
 	return (
 		<div>
 			<Navbarpage />
