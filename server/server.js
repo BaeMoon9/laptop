@@ -142,12 +142,12 @@ app.post('/login1', async (req, res, next) => {
 		if (error) {
 			console.log(error)
 			// return res.status(500).json(error)
-			return res.send("<script>alert('오류'); history.back()</script>")
+			return res.send("<script>alert('오류 : 관리자에게 문의 바랍니다.'); window.location.replace('/login')</script>")
 		}
 		if (!user) {
 			//console.log('!user', user)
 			// return res.status(401).json(info.message)
-			return res.send("<script>alert('없는아이디거나 비밀번호가 틀립니다.'); window.history.back()</script>");
+			return res.send("<script>alert('없는아이디거나 비밀번호가 틀립니다.'); window.location.replace('/login')</script>");
 		}
 		req.logIn(user, (err) => {
 			if (err) {
@@ -368,6 +368,15 @@ app.post('/deletelaptoplists', async (req, res) => {
 
 app.post('/findyourid', async (req, res) => {
 	console.log('findyourid', req.body)
+
+	try {
+		let result = await pool.query('select user_id from User where student_id = ? and name = ?', 
+			[req.body[0], req.body[1]]
+		)
+		res.json(result)
+	}catch (e) {
+		return res.send("<script>alert('오류발생 관리자에게 문의 바랍니다.'); window.location.reload()</script>");
+	}
 })
 
 app.get('*', function (req, res) { //
