@@ -204,6 +204,7 @@ function ListTable() {
 					onChange={handleNextPage}
 				/>
 			</div>
+			<div className="listtable">
 			<form action="http://localhost:8081/addlist" method="POST">
 				<div className='addlisttop'>
 					<div className="registertitle">
@@ -278,6 +279,7 @@ function ListTable() {
 					</div>
 				</div>
 			</form>
+			</div>
 		</div>
 	)
 }

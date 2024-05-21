@@ -308,16 +308,54 @@
 }
 
 .btnCss1 {
+  display: inline-block;
   width: 85px;
   height: 35px;
+  font-size: 18px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-radius: 5px;
+  /* padding: 10px 10px; */
+  cursor: pointer;
+  background-color: #0059be;
+  color: #fff;
 }
 
 .btnCss2 {
+  /* display: inline-block; */
+  width: 100px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: #1f4596;
+  color: #fff;
+}
+
+.btnCss3 {
+	display: inline-block;
   width: 85px;
   height: 35px;
-  margin-bottom: 20px;
+  font-size: 18px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-radius: 5px;
+  /* padding: 10px 10px; */
+  cursor: pointer;
+  background-color: #be0000;
+  color: #fff;
 }
 
 .tbody1 {
@@ -563,10 +601,22 @@
 }
 
 .rerenderBtn {
-  width: 85px;
-  height: 37px;
-  margin-left: 15px;
-  margin-top: 8px;
+	display: inline-block;
+  width: 90px;
+  height: 35px;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-radius: 5px;
+  /* padding: 10px 10px; */
+  cursor: pointer;
+  background-color: #007a22;
+  color: #fff;
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 .registerinput {
@@ -581,22 +631,6 @@
   margin-right: 20px;
 }
 
-.btnCss2 {
-  /* display: inline-block; */
-  width: 100px;
-  height: 50px;
-  font-size: 18px;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-  border-radius: 15px;
-  padding: 10px 10px;
-  cursor: pointer;
-  background-color: #1f4596;
-  color: #fff;
-}
 
 .registerid {
   display: flex;

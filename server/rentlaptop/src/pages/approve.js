@@ -2,7 +2,6 @@ import { Table } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
 import Navbarpage from "./navpage.js";
 
 
@@ -109,9 +108,9 @@ function Approve() {
 											<td className='td1'>{a.student_num_id}</td>
 											<td className='td1'>{a.phone_num}</td>
 											<td className='td1'>
-												<Button variant="primary" className="btnCss1" onClick={() => applyBtn([a])}>
+												<button className="btnCss1" onClick={() => applyBtn([a])}>
 													승인하기
-												</Button></td>
+												</button></td>
 										</tr>
 									</tbody>
 									: null
@@ -122,7 +121,7 @@ function Approve() {
 				<hr className="divider" />
 				<div className="approvebottomcontainer">
 					<div className="registersubtitle">
-						대여 목록 <Button className="rerenderBtn" onClick={() => reRenderBtn()}>갱신하기</Button>
+						대여 목록 <button className="rerenderBtn" onClick={() => reRenderBtn()}>갱신하기</button>
 					</div>
 
 					<Table striped bordered hover>
@@ -147,9 +146,9 @@ function Approve() {
 											<td className='td1'>{a.rent_student_id}</td>
 											<td className='td1'>{a.rent_name}</td>
 											<td className='td1'>
-												<Button variant="danger" className="btnCss1" onClick={() => returnBtn([a])}>
+												<button className="btnCss3" onClick={() => returnBtn([a])}>
 													반납
-												</Button></td>
+												</button></td>
 										</tr>
 									</tbody>
 									: null
