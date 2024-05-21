@@ -42,13 +42,16 @@ function Home() {
 		// console.log(a)
 	}
 
-	const scrollLaptops = useRef(null)
-	const handleLaptopLeft = () => {
-		scrollLaptops.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+	const scrollLaptops = useRef()
+	const scrollBtn = (x) => {
+
+		if (x === "left") {
+			scrollLaptops.current.scrollLeft -= 450
+		} else if (x === "right") {
+			scrollLaptops.current.scrollLeft += 450
+		}
 	}
-	const handleLaptopRight = () => {
-		scrollLaptops.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
-	}
+
 
 
 	//row className="g-5"
@@ -56,7 +59,7 @@ function Home() {
 		<div>
 			<Navbarpage />
 			<div className="home" onMouseOver={() => {handleMouseOver()}} onMouseOut={() => {handleMouseOut()}}>
-				<div className={mouseOver ? "lefttab" : "lefttabnone" } onMouseOver={() => {handleMouseOver()}} onClick={() => {handleLaptopLeft()}}>
+				<div className={mouseOver ? "lefttab" : "lefttabnone" } onMouseOver={() => {handleMouseOver()}} onClick={() => {scrollBtn("left")}}>
 				</div>
 				<div className="cardlist" ref={scrollLaptops}>
 					{laptopData.map((a, inx) => (
@@ -79,7 +82,7 @@ function Home() {
 						</Col>
 					))}
 				</div>
-				<div className={mouseOver ? "righttab" : "righttabnone" } onMouseOver={() => {handleMouseOver()}} onClick={() => {handleLaptopRight()}}>
+				<div className={mouseOver ? "righttab" : "righttabnone" } onMouseOver={() => {handleMouseOver()}} onClick={() => {scrollBtn("right")}}>
 				</div>
 			</div>
 			<div className="detailComponent" ref={scrollLists}>

@@ -182,10 +182,11 @@
   width: 100%;
   display: flex;
   min-height: 14em;
-  overflow-x: visible;
+  overflow-x: hidden;
+	scroll-behavior: smooth;
   flex-wrap: nowrap;
   padding: 0px 3.125em;
-  transform: translate3d(-24em, 0px, 0px);
+  transform: translate3d(-0.5em, 0px, 0px);
 }
 
 .lefttab {
@@ -195,10 +196,10 @@
   top: 0px;
   width: 2.875em;
   height: 32em;
-  background-color: whitesmoke;
+  background-color: gray;
   cursor: pointer;
   justify-content: flex-start;
-  border-radius: 0px 0.25em 0.25em 0px;
+  border-radius: 0.25em;
   left: 0px;
 	opacity: 70%;
 }
@@ -214,7 +215,7 @@
   background-color: whitesmoke;
   cursor: pointer;
   justify-content: flex-start;
-  border-radius: 0px 0.25em 0.25em 0px;
+  border-radius: 0.25em;
   left: 0px;
 }
 
@@ -225,10 +226,10 @@
   top: 0px;
   width: 2.875em;
   height: 32em;
-  background-color: whitesmoke;
+  background-color: gray;
   cursor: pointer;
   justify-content: flex-end;
-  border-radius: 0px 0.25em 0.25em 0px;
+  border-radius: 0.25em;
   right: 0px;
 	opacity: 70%;
 }
@@ -244,13 +245,13 @@
   background-color: whitesmoke;
   cursor: pointer;
   justify-content: flex-end;
-  border-radius: 0px 0.25em 0.25em 0px;
+  border-radius: 0.25em;
   right: 0px;
 }
 
 .lists {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .cardstyle {
