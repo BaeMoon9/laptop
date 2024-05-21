@@ -36,6 +36,11 @@
   color: #61dafb;
 }
 
+::-webkit-scrollbar{
+	display: none; 
+	/* 스크롤바 지우기 */
+}
+
 .detailComponent {
   margin-top: 20px;
 }
@@ -204,12 +209,11 @@
   top: 0px;
   width: 2.875em;
   height: 31em;
-  background-color: gray;
+  background-color : rgb(0,0,0); opacity : 0.25;
   cursor: pointer;
   justify-content: flex-start;
   border-radius: 0.25em;
   left: 0px;
-	opacity: 70%;
 }
 
 .lefttabnone{
@@ -234,12 +238,11 @@
   top: 0px;
   width: 2.875em;
   height: 31em;
-  background-color: gray;
+	background-color : rgb(0,0,0); opacity : 0.25;
   cursor: pointer;
   justify-content: flex-end;
   border-radius: 0.25em;
   right: 0px;
-	opacity: 70%;
 }
 
 .righttabnone {
@@ -513,6 +516,16 @@
   width: 1250px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.notprepared {
+	
+	margin-top: 20px;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+  font-size: 30px;
+  color: black;
 }
 
 .checkboxcontain {

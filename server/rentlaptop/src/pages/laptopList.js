@@ -48,13 +48,13 @@ function LaptopList() {
 
 	//console.log('userdata', userData)
 	console.log(' modelYear.Model_Year',  modelYear.Model_Year)
-	console.log('laptopData', laptopData.filter((a) => a.Year === modelYear.Model_Year))
+	console.log('연도별 필터링', laptopData.filter((a) => a.Year === modelYear.Model_Year).length)
 	//console.log('modelyear, laptopyear', modelYear.Model_Year === laptopData.Year)
 
 	return (
 		<div>
 			{
-				laptopData.filter((a) => a.Year === modelYear.Model_Year)
+				laptopData.filter((a) => a.Year === modelYear.Model_Year).length !== 0
 				? 
 				<div className="tables">
 				<Table striped bordered hover>
@@ -104,8 +104,9 @@ function LaptopList() {
 				</Table>
 			</div>
 				:
-				<div className="tables">
-					<div>노트북 준비중,,,</div>
+				<div className="notprepared">
+					<div>{modelYear.Name}</div>
+					<div>자세한 사항은 관리자에게 문의바랍니다.</div>
 				</div>
 			}
 		</div>
