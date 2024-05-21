@@ -40,6 +40,14 @@
   margin-top: 20px;
 }
 
+.emptytitle {
+	cursor: pointer;
+  color: rgb(83, 83, 83);
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 .loginbg {
   min-height: 750px;
   background: url(/public/pic1.jpg);
@@ -195,7 +203,7 @@
   position: absolute;
   top: 0px;
   width: 2.875em;
-  height: 32em;
+  height: 31em;
   background-color: gray;
   cursor: pointer;
   justify-content: flex-start;
@@ -225,7 +233,7 @@
   position: absolute;
   top: 0px;
   width: 2.875em;
-  height: 32em;
+  height: 31em;
   background-color: gray;
   cursor: pointer;
   justify-content: flex-end;
@@ -408,7 +416,7 @@
 }
 
 .addlisttop {
-  width: 1300px;
+  min-width: 1300px;
   display: flex;
   margin-right: auto;
   margin-left: auto;
@@ -502,7 +510,7 @@
 
 .tables {
   display: flex;
-  width: 1300px;
+  width: 1250px;
   margin-left: auto;
   margin-right: auto;
 }

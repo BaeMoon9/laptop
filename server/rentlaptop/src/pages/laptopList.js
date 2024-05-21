@@ -13,7 +13,8 @@ function LaptopList() {
 	const [userData, setUserData] = useState([])
 	const location = useLocation()
 	const modelYear = { ...location.state.a }
-	// console.log(modelYear)
+	 console.log('laptopdata', laptopData)
+	 console.log('modelyear', modelYear)
 
 	useEffect(() => {
 		axios.all([axios.get('http://localhost:8081/laptopdatabases'), axios.get('http://localhost:8081/userpage')])
@@ -45,25 +46,31 @@ function LaptopList() {
 		}
 	}
 
-	console.log('userdata', userData)
+	//console.log('userdata', userData)
+	console.log(' modelYear.Model_Year',  modelYear.Model_Year)
+	console.log('laptopData', laptopData.filter((a) => a.Year === modelYear.Model_Year))
+	//console.log('modelyear, laptopyear', modelYear.Model_Year === laptopData.Year)
 
 	return (
 		<div>
-			<div className="tables">
+			{
+				laptopData.filter((a) => a.Year === modelYear.Model_Year)
+				? 
+				<div className="tables">
 				<Table striped bordered hover>
 					<thead>
 						<tr>
 							<th class="col-md-1">순번</th>
 							<th class="col-md-1">상품명</th>
-							<th class="col-md-3">물품번호</th>
+							<th class="col-md-2">물품번호</th>
 							<th class="col-md-1">대여가능여부</th>
 							<th class="col-md-1">대여하기</th>
 						</tr>
 					</thead>
 					{
-						laptopData.map((a, inx) => (
-							modelYear.Model_Year === a.Year
-								?
+						laptopData
+						.filter((a) => a.Year === modelYear.Model_Year)
+						.map((a, inx) => (
 								<tbody key={inx} className='tbody1'>
 									<tr className='tr1'>
 										<td className='td1'>{inx + 1}</td>
@@ -93,10 +100,14 @@ function LaptopList() {
 										</td>
 									</tr>
 								</tbody>
-								: null
 						))}
 				</Table>
 			</div>
+				:
+				<div className="tables">
+					<div>노트북 준비중,,,</div>
+				</div>
+			}
 		</div>
 	)
 }

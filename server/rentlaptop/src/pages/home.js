@@ -83,6 +83,7 @@ function Home() {
 					))}
 				</div>
 				<div className={mouseOver ? "righttab" : "righttabnone" } onMouseOver={() => {handleMouseOver()}} onClick={() => {scrollBtn("right")}}>
+				
 				</div>
 			</div>
 			<div className="detailComponent" ref={scrollLists}>
