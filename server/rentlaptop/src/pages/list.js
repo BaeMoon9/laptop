@@ -50,7 +50,7 @@ function ListTable() {
 	const handleDeleteLaptop = async () => {
 		// console.log(deleteChecked)
 		try {
-			await axios.post('http://localhost:8081/deletelaptoplists', deleteNum, //체크한 번호들 삭제 요청하기
+			await axios.post('http://221.142.94.196:8081/deletelaptoplists', deleteNum, //체크한 번호들 삭제 요청하기
 				{ headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
 				.then(() => {
 					setDeleteState(false)
@@ -70,7 +70,7 @@ function ListTable() {
 	}
 
 	useEffect(() => {
-		axios.get('http://localhost:8081/laptopdatabases').then((result) => {
+		axios.get('http://221.142.94.196:8081/laptopdatabases').then((result) => {
 			setLaptopData(result.data)
 			console.log(laptopData)
 		}).catch(() => {
@@ -205,7 +205,7 @@ function ListTable() {
 				/>
 			</div>
 			<div className="listtable">
-			<form action="http://localhost:8081/addlist" method="POST">
+			<form action="http://221.142.94.196:8081/addlist" method="POST">
 				<div className='addlisttop'>
 					<div className="registertitle">
 						노트북 등록하기
@@ -239,7 +239,7 @@ function ListTable() {
 					</div>
 				</div>
 			</form>
-			<form action="http://localhost:8081/updatelist" method="POST">
+			<form action="http://221.142.94.196:8081/updatelist" method="POST">
 				<div className='addlisttop'>
 					<div className="registertitle">
 						노트북 정보 갱신

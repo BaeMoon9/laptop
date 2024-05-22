@@ -1,6 +1,5 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Container from 'react-bootstrap/Container';
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -12,7 +11,7 @@ function Navbarpage() {
 	const [userData, setUserData] = useState([])
 
 	useEffect(() => {
-		axios.get('http://localhost:8081/userpage').then((result) => {
+		axios.get('http://221.142.94.196:8081/userpage').then((result) => {
 			setUserData(result.data)
 		}).catch(() => {
 			console.log('failed')
@@ -20,7 +19,7 @@ function Navbarpage() {
 	}, [])
 
 	const logoutBtn = () => {
-		axios.get('http://localhost:8081/logout')
+		axios.get('http://221.142.94.196:8081/logout')
 			.catch(() => {
 				console.log("failed")
 			})
@@ -34,17 +33,17 @@ function Navbarpage() {
 
 	return(
 		<div className="main">
-			<Navbar bg="light" data-bs-theme="light">
-				<Container>
-					<Navbar.Brand onClick={() => { navigate('/') }}>
+			<Navbar className="topnavbar" bg="light" data-bs-theme="light">
+				<div className="navbars">
+					<Navbar.Brand className="navtitlecontainer" onClick={() => { navigate('/') }}>
 						<div className="navtitle">
 							<img className="ynclogo2" src="./ynclogo1.ico" />
 							소프트웨어융합과 노트북
 						</div>
 					</Navbar.Brand>
-					<Nav className="me-auto">
+					<Nav className="navtabscontainer">
 						<Nav.Link onClick={() => { navigate('/home') }}>
-							<div className="navtabs">대여하기</div>
+							<div className="navtabs">홈</div>
 						</Nav.Link>
 						{
 							!userData.id
@@ -68,7 +67,7 @@ function Navbarpage() {
 						}
 					</Nav>
 					<Navbar.Toggle />
-					<Navbar.Collapse className="justify-content-end">
+					<Navbar.Collapse className="navlogintab">
 						<Navbar.Text>
 							{
 								!userData.id
@@ -82,7 +81,7 @@ function Navbarpage() {
 							}
 						</Navbar.Text>
 					</Navbar.Collapse>
-				</Container>
+				</div>
 			</Navbar>
 		</div>
 	)

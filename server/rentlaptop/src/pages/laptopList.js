@@ -1,8 +1,6 @@
 import { Table } from 'react-bootstrap';
 import axios from 'axios'
 import React, { useState, useEffect } from "react";
-import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -13,11 +11,11 @@ function LaptopList() {
 	const [userData, setUserData] = useState([])
 	const location = useLocation()
 	const modelYear = { ...location.state.a }
-	 console.log('laptopdata', laptopData)
-	 console.log('modelyear', modelYear)
+	//  console.log('laptopdata', laptopData)
+	//  console.log('modelyear', modelYear)
 
 	useEffect(() => {
-		axios.all([axios.get('http://localhost:8081/laptopdatabases'), axios.get('http://localhost:8081/userpage')])
+		axios.all([axios.get('http://221.142.94.196:8081/laptopdatabases'), axios.get('http://221.142.94.196:8081/userpage')])
 			.then(
 				axios.spread((res1, res2) => {
 					setLaptopData(res1.data)
@@ -47,8 +45,8 @@ function LaptopList() {
 	}
 
 	//console.log('userdata', userData)
-	console.log(' modelYear.Model_Year',  modelYear.Model_Year)
-	console.log('연도별 필터링', laptopData.filter((a) => a.Year === modelYear.Model_Year).length)
+	// console.log(' modelYear.Model_Year',  modelYear.Model_Year)
+	// console.log('연도별 필터링', laptopData.filter((a) => a.Year === modelYear.Model_Year).length)
 	//console.log('modelyear, laptopyear', modelYear.Model_Year === laptopData.Year)
 
 	return (
@@ -79,23 +77,23 @@ function LaptopList() {
 										<td className='td1'>
 											{
 												a.status === '대여가능'
-													? <Badge bg="success" className="badgeCss">
+													? <button  className="badgeCss1" disabled={true}>
 														대여가능
-													</Badge>
-													: <Badge bg="danger" className='badgeCss'>
+													</button>
+													: <button className='badgeCss2' disabled={true}>
 														대여불가
-													</Badge>
+													</button>
 											}
 										</td>
 										<td className='td1'>
 											{
 												a.status === '대여가능'
-													? <Button variant="primary" className="btnCss1" onClick={() => rentBtn([a])}>
+													? <button  className="btnCss1" onClick={() => rentBtn([a])}>
 														대여하기
-													</Button>
-													: <Button variant="primary" className="btnCss1" disabled>
+													</button>
+													: <button  className="btnCss1disabled" disabled={true}>
 														대여하기
-													</Button>
+													</button>
 											}
 										</td>
 									</tr>

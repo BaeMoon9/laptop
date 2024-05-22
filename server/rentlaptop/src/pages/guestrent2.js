@@ -10,7 +10,7 @@ function GuestRent2() {
 
 	const location = useLocation()
 
-	console.log('노트북 정보3', location.state.name[0])
+	// console.log('노트북 정보3', location.state.name[0])
 	const today = new Date();
 	const nowdate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
@@ -20,7 +20,7 @@ function GuestRent2() {
 
 	useEffect(() => {
 		setLaptopData(location.state.name[0])
-		axios.get('http://localhost:8081/userpage').then((result) => {
+		axios.get('http://221.142.94.196:8081/userpage').then((result) => {
 			setUserData(result.data)
 		}).catch(() => {
 			console.log('failed')
@@ -60,7 +60,7 @@ function GuestRent2() {
 						<input type="radio" value="disagree" onChange={handleRadioChange} checked={radiobtn === "disagree"} className="disagreeradiobtn" />비동의
 					</div>
 					<hr className="divider" />
-					<form action="http://localhost:8081/guestdevicerent" method="POST">
+					<form action="http://221.142.94.196:8081/guestdevicerent" method="POST">
 						<div className="userrentinfo">
 							<div className="guestrentinfo">
 								<div className="guestinfo">학번</div>

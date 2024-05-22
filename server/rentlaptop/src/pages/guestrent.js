@@ -10,7 +10,7 @@ function GuestRent() {
 	const navigate = useNavigate()
 	const location = useLocation()
 
-	console.log('노트북 정보2', location.state.laptop)
+	// console.log('노트북 정보2', location.state.laptop)
 	// const [laptopinfo, setLaptopinfo] = useState()
 	// setLaptopinfo(location.state.laptop)
 	// console.log('노트북 이름', laptopinfo)
@@ -21,17 +21,17 @@ function GuestRent() {
 	const [userData, setUserData] = useState([])
 
 	useEffect(() => {
-		axios.get('http://localhost:8081/userpage').then((result) => {
+		axios.get('http://221.142.94.196:8081/userpage').then((result) => {
 			setUserData(result.data)
 		}).catch(() => {
 			console.log('failed')
 		})
 	}, [])
 
-	console.log(userData)
+	// console.log(userData)
 
 	const nextBtn = (name) => {
-		console.log('name', name)
+		// console.log('name', name)
 		navigate('/guestrent2', { state: { name } })
 	}
 

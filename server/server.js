@@ -37,7 +37,7 @@ const mariadb = require('mariadb');
 
 const pool = mariadb.createPool(
 	{
-		host: 'localhost',
+		host: '221.142.94.196',
 		port: 3306,
 		user: 'user2',
 		password: 'mysql',

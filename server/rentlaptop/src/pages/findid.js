@@ -13,11 +13,11 @@ function FindID() {
 	const findID = async (stunum, stuname) => {
 		let db1 = [...stunum, ...stuname]
 
-		await axios.post('http://localhost:8081/findyourid', db1, {
+		await axios.post('http://221.142.94.196:8081/findyourid', db1, {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		})
 			.then((res) => {
-				console.log('0: 데이터없음, 1: 데이터있음', res.data.length)
+				// console.log('0: 데이터없음, 1: 데이터있음', res.data.length)
 				if (res.data.length === 1) { //res 반환받은 데이터 길이로 데이터 유무 판단
 					alert('찾으시는 아이디는 ' + res.data[0].user_id + ' 입니다.')
 				} else if (res.data.length === 0) {

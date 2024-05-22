@@ -16,8 +16,8 @@ function Approve() {
 
 
 	useEffect(() => {
-		axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/laptopdatabases'),
-		axios.get('http://localhost:8081/rentapply')])
+		axios.all([axios.get('http://221.142.94.196:8081/userpage'), axios.get('http://221.142.94.196:8081/laptopdatabases'),
+		axios.get('http://221.142.94.196:8081/rentapply')])
 			.then(
 				axios.spread((res1, res2, res3) => {
 					setUser(res1.data)
@@ -29,16 +29,16 @@ function Approve() {
 			})
 	}, [setApply, setRentedData]) //실시간 데이터 반영 : 재랜더링
 
-	console.log('admin로그인할때 보이는 승인대기목록', apply)
-	console.log('로그인정보', user)
-	console.log('노트북', rentedData)
+	// console.log('admin로그인할때 보이는 승인대기목록', apply)
+	// console.log('로그인정보', user)
+	// console.log('노트북', rentedData)
 
 	const applyBtn = async ([user]) => {
-		console.log('승인버튼 누른 신청유저', user)
+		// console.log('승인버튼 누른 신청유저', user)
 
 		try {
-			await axios.all([axios.post('http://localhost:8081/applybtn', user, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }),
-			axios.get('http://localhost:8081/laptoprentedbyuser')])
+			await axios.all([axios.post('http://221.142.94.196:8081/applybtn', user, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }),
+			axios.get('http://221.142.94.196:8081/laptoprentedbyuser')])
 				.then(
 					axios.spread((res5, res6) => {
 						setApply(res5.data)
@@ -50,10 +50,10 @@ function Approve() {
 	}
 
 	const returnBtn = async ([returnUser]) => {
-		console.log('반납처리된 유저', returnUser)
+		// console.log('반납처리된 유저', returnUser)
 
 		try {
-			await axios.post('http://localhost:8081/returnbtn', returnUser, {
+			await axios.post('http://221.142.94.196:8081/returnbtn', returnUser, {
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 			}).then((res) => {
 				setRentedData(res.data) //post로 제거요청을하면 select문으로 데이터 다시 받아와서 데이터 갱신및 useffect 재렌더링 가능
@@ -65,7 +65,7 @@ function Approve() {
 
 	const reRenderBtn = async () => {
 		try {
-			await axios.get('http://localhost:8081/laptoprentedbyuser')
+			await axios.get('http://221.142.94.196:8081/laptoprentedbyuser')
 				.then((res6) => {
 					setRentedData(res6.data)
 				})

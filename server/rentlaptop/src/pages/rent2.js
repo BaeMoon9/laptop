@@ -27,7 +27,7 @@ function Rent2() {
 	const applyBtn = async (userdb, devicedb) => {
 		let db1 = [...userdb, ...devicedb]
 
-		axios.post('http://localhost:8081/userdevicerent', db1, {
+		axios.post('http://221.142.94.196:8081/userdevicerent', db1, {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			//header에 Content-Type 디폴트값이 'application/json'인데 이게 안되고 왜 위에게 되는지 잘 모르겠다
 			//좀더 찾아보는걸로 하자 일단은 약 14시간만에 해결되긴했다.
@@ -130,16 +130,16 @@ function Rent2() {
 						{nowdate}
 					</div>
 					<div className="registername">신청자 : {userData.username}</div>
-					{
-						radiobtn === "agree" ?
-							<Button variant="primary" className="btnCss2"
-								onClick={() => applyBtn([userData], [laptopData])}
-							>신청하기</Button>
-							: <Button variant="primary" className="btnCss2"
-								onClick={() => applyBtn([userData], [laptopData])} disabled
-							>신청하기</Button>
-					}
 				</div>
+				{
+						radiobtn === "agree" ?
+							<button className="btnCss1"
+								onClick={() => applyBtn([userData], [laptopData])}
+							>신청하기</button>
+							: <button className="btnCss1"
+								onClick={() => alert('개인정보 수집 및 이용에 동의하셔아힙니다.')}
+							>신청하기</button>
+					}
 			</div>
 		</div>
 	)

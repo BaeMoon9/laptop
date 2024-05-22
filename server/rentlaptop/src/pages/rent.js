@@ -21,17 +21,17 @@ function Rent() {
 	const [userData, setUserData] = useState([])
 
 	useEffect(() => {
-		axios.get('http://localhost:8081/userpage').then((result) => {
+		axios.get('http://221.142.94.196:8081/userpage').then((result) => {
 			setUserData(result.data)
 		}).catch(() => {
 			console.log('failed')
 		})
 	}, [])
 
-	console.log(userData)
+	// console.log(userData)
 
 	const nextBtn = (name) => {
-		console.log('name', name)
+		// console.log('name', name)
 		navigate('/rent2', { state: { name } })
 	}
 

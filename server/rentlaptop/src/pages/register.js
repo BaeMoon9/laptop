@@ -16,21 +16,21 @@ function Register() {
 	const [phonenum, setPhonenum] = useState()
 
 	const checkID = async () => {
-		console.log('중복검색할 아이디 : ', checkNewId)
+		// console.log('중복검색할 아이디 : ', checkNewId)
 		if (!checkNewId) {
 			setValidId(null)
 			console.log('아이디미입력') //중복확인 아이디 미입력시 validId null 반환
 		} else {
-			await axios.get('http://localhost:8081/checkid', { params: { checkNewId } }).then((result) => {
-				console.log('result.data : ', result.data)
+			await axios.get('http://221.142.94.196:8081/checkid', { params: { checkNewId } }).then((result) => {
+				// console.log('result.data : ', result.data)
 
 				if (result.data === checkNewId) {
 					setValidId(false)
-					console.log('중복임', result.data, checkNewId, validId)
+					// console.log('중복임', result.data, checkNewId, validId)
 				}
 				else {
 					setValidId(true)
-					console.log('중복아님', result.data, checkNewId, validId)
+					// console.log('중복아님', result.data, checkNewId, validId)
 				}
 			}).catch(() => {
 				console.log('failed')
@@ -50,7 +50,7 @@ function Register() {
 				</div>
 				<hr className="divider" />
 				<div className="registercontent">
-					<form action="http://localhost:8081/newregister" method="POST">
+					<form action="http://221.142.94.196:8081/newregister" method="POST">
 						<div className="registersubtitle">
 							아이디
 						</div>
@@ -59,7 +59,7 @@ function Register() {
 								className="registerinput" placeholder="ID를 입력하세요."
 								onChange={(e) => {
 									setCheckID(e.target.value)
-									console.log(checkNewId)
+									// console.log(checkNewId)
 								}}
 							/>
 							<button type="button" className="btnCss2" onClick={checkID}>중복확인</button>
@@ -80,7 +80,7 @@ function Register() {
 								<input name="newpassword" className="registerinput" placeholder="PW를 입력하세요." type="password"
 									onChange={(e) => {
 										setCheckPw(e.target.value)
-										console.log('입력한 첫번째줄 password: ', checkNewPw)
+										// console.log('입력한 첫번째줄 password: ', checkNewPw)
 									}}
 								/>
 							</div>
@@ -88,7 +88,7 @@ function Register() {
 								<input name="checknewpassword" className="registerinput" placeholder="한번더!" type="password"
 									onChange={(e) => {
 										setCheckPw2(e.target.value)
-										console.log('입력한 첫번째줄 password: ', checkNewPw2)
+										// console.log('입력한 첫번째줄 password: ', checkNewPw2)
 									}}
 								/>
 							</div>
@@ -108,13 +108,13 @@ function Register() {
 								<input name="studentid" className="registerinput" placeholder="학번"
 									onChange={(e) => {
 										setStudentId(e.target.value)
-										console.log('학번 : ', studentId)
+										// console.log('학번 : ', studentId)
 									}}
 								/>
 								<input name="studentname" className="registerinput" placeholder="이름"
 									onChange={(e) => {
 										setStudentName(e.target.value)
-										console.log('이름 : ', studentName)
+										// console.log('이름 : ', studentName)
 									}}
 								/>
 							</div>
@@ -125,7 +125,7 @@ function Register() {
 								<input name="phonenum" className="registerinput" placeholder="ex) 010-1234-1234"
 									onChange={(e) => {
 										setPhonenum(e.target.value)
-										console.log('전화번호 : ', phonenum)
+										// console.log('전화번호 : ', phonenum)
 									}}
 								/>
 							</div>

@@ -10,13 +10,13 @@ function ApproveUser() {
 	const location = useLocation()
 	const navigate = useNavigate();
 
-	console.log('location state userdata', location.state.userData)
+	// console.log('location state userdata', location.state.userData)
 	const [user, setUser] = useState([]) //현재 로그인 사용자 정보
 	const [userwanted, setUserWanted] = useState([]) //신청자 신청현황 db 저장
 
 
 	useEffect(() => {
-		axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/userwantedapply'),])
+		axios.all([axios.get('http://221.142.94.196:8081/userpage'), axios.get('http://221.142.94.196:8081/userwantedapply'),])
 			.then(
 				axios.spread((res1, res4) => {
 					setUser(res1.data)
@@ -27,7 +27,7 @@ function ApproveUser() {
 			})
 	}, [])
 
-	console.log('userwanted', userwanted)
+	// console.log('userwanted', userwanted)
 
 	return (
 
