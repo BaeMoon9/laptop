@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Button from 'react-bootstrap/Button';
 import { useLocation } from "react-router-dom";
 import ScrollToTop from "./scrollToTop";
 import Navbarpage from "./navpage.js";
@@ -98,12 +97,12 @@ function GuestRent2() {
 						<div className="registername">신청자 : {userData.username}</div>
 						{
 							radiobtn === "agree" ?
-								<Button variant="primary" className="btnCss2"
+								<button className="btnCss2"
 									type="submit"
-								>신청하기</Button>
-								: <Button variant="primary" className="btnCss2"
-									type="button" disabled
-								>신청하기</Button>
+								>신청하기</button>
+								: <button className="btnCss1disabled"
+									type="button" disabled={true}
+								>신청하기</button>
 						}
 					</form>
 				</div>

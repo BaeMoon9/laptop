@@ -642,8 +642,8 @@
 
 .rerenderBtn {
 	display: inline-block;
-  width: 90px;
-  height: 35px;
+  width: 86px;
+  height: 36px;
   font-size: 1em;
   font-weight: bold;
   white-space: nowrap;
@@ -653,7 +653,7 @@
   border-radius: 5px;
   /* padding: 10px 10px; */
   cursor: pointer;
-  background-color: #007a22;
+  background-color: #0059be;
   color: #fff;
   margin-left: 20px;
   margin-top: 5px;

@@ -27,13 +27,14 @@ function LaptopList() {
 	}, [])
 
 	const rentBtn = ([laptop]) => {
+		// console.log('버튼누른순간 데이터', laptop)
 		try {
 			if (!userData) {
 				window.alert("로그인 후 이용가능합니다.")
 				navigate('/login')
 			}
 			else if (userData.id === "guest") { //게스트로그인시 신청화면에서 개인정보 입력하는 다른페이지로 이동하기
-				console.log('guset logined')
+				console.log('guset 계정 대여')
 				navigate('/guestrent', { state: { laptop } })
 			}
 			else {
@@ -44,10 +45,11 @@ function LaptopList() {
 		}
 	}
 
-	//console.log('userdata', userData)
+	// console.log('userdata', userData)
 	// console.log(' modelYear.Model_Year',  modelYear.Model_Year)
-	// console.log('연도별 필터링', laptopData.filter((a) => a.Year === modelYear.Model_Year).length)
-	//console.log('modelyear, laptopyear', modelYear.Model_Year === laptopData.Year)
+	// console.log('연도별 필터링', laptopData.filter((a) => a.Year === modelYear.Model_Year))
+	// console.log('modelyear === laptopyear', modelYear.Model_Year === laptopData.Year)
+	// console.log('위에 두개 값', modelYear.Model_Year, laptopData.Year)
 
 	return (
 		<div>

@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Button from 'react-bootstrap/Button';
 import { useNavigate, useLocation } from "react-router-dom";
 import ScrollToTop from "./scrollToTop";
 import Navbarpage from "./navpage.js";
@@ -107,7 +106,7 @@ function GuestRent() {
 					</div>
 					<div className="registername">신청자 : {userData.username}</div>
 				</div>
-				<Button variant="primary" className="btnCss1" onClick={() => nextBtn([location.state.laptop])}>다음</Button>
+				<button className="btnCss1" onClick={() => nextBtn([location.state.laptop])}>다음</button>
 			</div>
 		</div>
 	)

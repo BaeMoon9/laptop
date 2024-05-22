@@ -49,14 +49,14 @@ function Rent2() {
 
 	useEffect(() => {
 		setLaptopData(location.state.name[0])
-		axios.get('http://localhost:8081/userpage').then((result) => {
-			setUserData(result.data)
+		axios.get('http://221.142.94.196:8081/userpage').then((res) => {
+			 setUserData(res.data)
 		}).catch(() => {
 			console.log('failed')
 		})
 	}, [])
-	// console.log('laptopdata', laptopData)
-	// console.log('userData', userData)
+	console.log('rent2 laptopdata', laptopData)
+	console.log('rent2 userData', userData)
 
 
 
