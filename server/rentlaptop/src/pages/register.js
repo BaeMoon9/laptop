@@ -11,15 +11,33 @@ var idState = { //아이디 체크 상태
 
 var pwState1 = {
 	0: <div className="needuseid">패스워드를 입력해주세요.</div>,
-	1: <div className="regexuseid">패스워드를 영문자, 숫자포함 8자이상으로 작성해주세요.</div>,
+	1: <div className="regexuseid">패스워드를 영문자 또는 숫자 8자이상으로 작성해주세요.</div>,
 	2: <div className="regexuseid2">패스워드 조건 충족</div>,
 }
 
- var pwState2 = {
+var pwState2 = {
 	0: null,
 	1: <div className="cantuseid">패스워드와 패스워드 확인이 다릅니다.</div>,
 	2: <div className="canuseid">패스워드 일치.</div>,
- }
+}
+
+var phoneState = {
+	0: null,
+	1: <div className="cantuseid">전화번호 형식을 바르게 입력해주세요. ex&#41;010-1234-1234</div>,
+	2: <div className="canuseid">사용가능</div>,
+}
+
+var stuNumState = {
+	0: null,
+	1: <div className="cantuseid">학번은 숫자만 입력할 수 있습니다.</div>,
+	2: <div className="canuseid">사용가능</div>,
+}
+
+var nameState = {
+	0: null,
+	1: <div className="cantuseid">이름은 올바른 한글 형식으로 입력할 수 있습니다.</div>,
+	2: <div className="canuseid">사용가능</div>,
+}
 
 
 function Register() {
@@ -27,41 +45,21 @@ function Register() {
 	const [checkNewId, setCheckID] = useState()
 	const [validId, setValidId] = useState(0)
 
-
 	const [newPw1, setNewPw1] = useState()
 	const [validPw1, setValidPw1] = useState(0)
 	const [validPw2, setValidPw2] = useState(0)
 
-	const [studentId, setStudentId] = useState()
-	const [studentName, setStudentName] = useState()
-	const [phonenum, setPhonenum] = useState()
+	const [validPhone, setValidPhone] = useState(0)
+
+	const [validStuNum, setValidStuNum] = useState(0)
+
+	const [validName, setValidName] = useState(0)
 
 	const idRegEx = /^[A-Za-z0-9]{6,20}$/; //영문자 + 숫자, 6자이상 20자이하
-	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/ //영문자 + 숫자, 8자이상 20자이하
-
-	const checkPw = (checkPwTop) => {
-		console.log('정규식 비번 테스트', passwordRegEx.test(checkPwTop))
-		if (!checkPwTop) {
-			setValidPw1(0) //비번 미입력
-		} else if (passwordRegEx.test(checkPwTop) === false) { //정규식 미충족
-			setValidPw1(1)
-		} else if (passwordRegEx.test(checkPwTop) === true) {
-			setValidPw1(2)
-		} else {
-			console.log('관리자에게 문의해주세요(pw error)')
-			alert('관리자에게 문의해주세요(pw error)')
-		}
-	}
-
-	const checkPw2 = (checkPwBot) => {
-		console.log(checkPwBot, newPw1)
-		if (checkPwBot === newPw1) {
-			setValidPw2(2)
-		} else if (checkPwBot !== newPw1) {
-			setValidPw2(1)
-		}
-	}
-
+	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/; //영문자 + 숫자, 8자이상 20자이하
+	const phoneRegEx = /^\d{3}-\d{3,4}-\d{4}$/; //휴대폰번호 정규식
+	const stuNumRegEx = /[0-9]/g;
+	const nameRegEx = /^[가-힣]+$/;
 
 	const checkID = async () => {
 		// console.log('정규식 아이디 테스트', idRegEx.test(checkNewId))
@@ -93,6 +91,60 @@ function Register() {
 		} else {
 			console.log('관리자에게 문의해주세요(id error)')
 			alert('관리자에게 문의해주세요(id error)')
+		}
+	}
+
+	const checkPw = (checkPwTop) => {
+		console.log('정규식 비번 테스트', passwordRegEx.test(checkPwTop))
+		console.log(validPw1)
+		if (!checkPwTop) {
+			setValidPw1(0) //비번 미입력
+		} else if (passwordRegEx.test(checkPwTop) === false) { //정규식 미충족
+			setValidPw1(1)
+		} else if (passwordRegEx.test(checkPwTop) === true) {
+			setValidPw1(2)
+		} else {
+			console.log('관리자에게 문의해주세요(pw error)')
+			alert('관리자에게 문의해주세요(pw error)')
+		}
+	}
+
+	const checkPw2 = (checkPwBot) => {
+		console.log(checkPwBot, newPw1)
+		if (checkPwBot === newPw1) {
+			setValidPw2(2)
+		} else if (checkPwBot !== newPw1) {
+			setValidPw2(1)
+		}
+	}
+
+	const checkPhoneNum = (checkPhone) => {
+		if (checkPhone === '') {
+			setValidPhone(0)
+		} else if (phoneRegEx.test(checkPhone) === true) {
+			setValidPhone(2)
+		} else if (phoneRegEx.test(checkPhone) === false) {
+			setValidPhone(1)
+		}
+	}
+
+	const checkStuNum = (stuNum) => {
+		if (stuNum === '') {
+			setValidStuNum(0)
+		} else if (stuNumRegEx.test(stuNum) === true) {
+			setValidStuNum(2)
+		} else if (stuNumRegEx.test(stuNum) === false) {
+			setValidStuNum(1)
+		}
+	}
+
+	const checkName = (name) => {
+		if (name === '') {
+			setValidName(0)
+		} else if (nameRegEx.test(name) === true) {
+			setValidName(2)
+		} else if (stuNumRegEx.test(name) === false) {
+			setValidName(1)
 		}
 	}
 
@@ -155,18 +207,28 @@ function Register() {
 								학번, 이름
 							</div>
 							<div className="registerpw2">
-								<input name="studentid" className="registerinput" placeholder="학번"
-									onChange={(e) => {
-										setStudentId(e.target.value)
-										// console.log('학번 : ', studentId)
-									}}
-								/>
-								<input name="studentname" className="registerinput" placeholder="이름"
-									onChange={(e) => {
-										setStudentName(e.target.value)
-										// console.log('이름 : ', studentName)
-									}}
-								/>
+								<div>
+									<input name="studentid" className="registerinput" placeholder="학번"
+										onChange={(e) => {
+											checkStuNum(e.target.value)
+										}}
+									/>
+									{
+										stuNumState[validStuNum]
+									}
+								</div>
+								<div>
+									<input name="studentname" className="registerinput" placeholder="이름"
+										onChange={(e) => {
+											checkName(e.target.value)
+										}}
+									/>
+									{
+										nameState[validName]
+									}
+								</div>
+
+
 							</div>
 							<div className="registersubtitle">
 								전화번호
@@ -174,17 +236,20 @@ function Register() {
 							<div className="registerpw2">
 								<input name="phonenum" className="registerinput" placeholder="ex) 010-1234-1234"
 									onChange={(e) => {
-										setPhonenum(e.target.value)
+										checkPhoneNum(e.target.value)
 										// console.log('전화번호 : ', phonenum)
 									}}
 								/>
 							</div>
+							{
+								phoneState[validPhone]
+							}
 						</div>
 						<hr className="divider" />
-						{
-							!checkNewId || validId === false || !studentId || !studentName
-								? <button className="doneBtndiabled" type="submit" disabled={true}>가입하기</button>
-								: <button className="doneBtn" type="submit">가입하기</button>
+						{	//정규식을 전부 통과했을때 버튼 활성화하기
+							validId === 3 && validPw1 === 2 && validPw2 === 2 && validPhone === 2 && validStuNum === 2 && validName === 2
+								? <button className="doneBtn" type="submit">가입하기</button>
+								: <button className="doneBtndiabled" type="submit" disabled={true}>가입하기</button>
 						}
 					</form>
 				</div>
