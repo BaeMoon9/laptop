@@ -1,36 +1,72 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
 import Navbarpage from "./navpage.js";
 
 var idState = { //아이디 체크 상태
-	0 : <div className="needuseid">아이디를 입력해주세요</div>, 
-	1 : <div className="needuseid">아이디를 영문자, 숫자포함 6자이상으로 작성해주세요</div>,
-	2 : <div className="cantuseid">사용중인 아이디 입니다.</div>,
-	3 : <div className="canuseid">사용 가능한 아이디 입니다.</div>,
+	0: <div className="needuseid">아이디를 입력해주세요.</div>,
+	1: <div className="regexuseid">아이디를 영문자, 숫자포함 6자이상으로 작성해주세요.</div>,
+	2: <div className="cantuseid">사용중인 아이디 입니다.</div>,
+	3: <div className="canuseid">사용 가능한 아이디 입니다.</div>,
 }
+
+var pwState1 = {
+	0: <div className="needuseid">패스워드를 입력해주세요.</div>,
+	1: <div className="regexuseid">패스워드를 영문자, 숫자포함 8자이상으로 작성해주세요.</div>,
+	2: <div className="regexuseid2">패스워드 조건 충족</div>,
+}
+
+ var pwState2 = {
+	0: null,
+	1: <div className="cantuseid">패스워드와 패스워드 확인이 다릅니다.</div>,
+	2: <div className="canuseid">패스워드 일치.</div>,
+ }
+
 
 function Register() {
 
 	const [checkNewId, setCheckID] = useState()
 	const [validId, setValidId] = useState(0)
 
-	const [checkNewPw, setCheckPw] = useState()
-	const [checkNewPw2, setCheckPw2] = useState()
+
+	const [newPw1, setNewPw1] = useState()
+	const [validPw1, setValidPw1] = useState(0)
+	const [validPw2, setValidPw2] = useState(0)
 
 	const [studentId, setStudentId] = useState()
 	const [studentName, setStudentName] = useState()
 	const [phonenum, setPhonenum] = useState()
-	
-	const idRegEx = /^[A-Za-z0-9]{6,20}$/; //영문자 + 숫자, 6자이상
-	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
 
-	
+	const idRegEx = /^[A-Za-z0-9]{6,20}$/; //영문자 + 숫자, 6자이상 20자이하
+	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/ //영문자 + 숫자, 8자이상 20자이하
 
-	const checkID = async () => { 
-		console.log('정규식 테스트', idRegEx.test(checkNewId)) 
-		console.log('id길이', checkNewId.length)
-		console.log()
+	const checkPw = (checkPwTop) => {
+		console.log('정규식 비번 테스트', passwordRegEx.test(checkPwTop))
+		if (!checkPwTop) {
+			setValidPw1(0) //비번 미입력
+		} else if (passwordRegEx.test(checkPwTop) === false) { //정규식 미충족
+			setValidPw1(1)
+		} else if (passwordRegEx.test(checkPwTop) === true) {
+			setValidPw1(2)
+		} else {
+			console.log('관리자에게 문의해주세요(pw error)')
+			alert('관리자에게 문의해주세요(pw error)')
+		}
+	}
+
+	const checkPw2 = (checkPwBot) => {
+		console.log(checkPwBot, newPw1)
+		if (checkPwBot === newPw1) {
+			setValidPw2(2)
+		} else if (checkPwBot !== newPw1) {
+			setValidPw2(1)
+		}
+	}
+
+
+	const checkID = async () => {
+		// console.log('정규식 아이디 테스트', idRegEx.test(checkNewId))
+		// console.log('id길이', checkNewId.length)
+		// console.log()
 
 		if (!checkNewId) {
 			setValidId(0)
@@ -51,10 +87,12 @@ function Register() {
 				}
 			}).catch(() => {
 				console.log('failed')
+				alert('관리자에게 문의해주세요(db error)')
 			})
 
 		} else {
 			console.log('관리자에게 문의해주세요(id error)')
+			alert('관리자에게 문의해주세요(id error)')
 		}
 	}
 
@@ -76,7 +114,6 @@ function Register() {
 								className="registerinput" placeholder="ID를 입력하세요."
 								onChange={(e) => {
 									setCheckID(e.target.value)
-									// console.log(checkNewId)
 								}}
 							/>
 							<button type="button" className="btnCss2" onClick={checkID}>중복확인</button>
@@ -91,26 +128,27 @@ function Register() {
 							<div className="registerpw1">
 								<input name="newpassword" className="registerinput" placeholder="PW를 입력하세요." type="password"
 									onChange={(e) => {
-										setCheckPw(e.target.value)
+										setNewPw1(e.target.value)
+										checkPw(e.target.value)
 										// console.log('입력한 첫번째줄 password: ', checkNewPw)
 									}}
 								/>
 							</div>
+							{
+								pwState1[validPw1]
+							}
+							<div className="registersubtitle">
+								패스워드 확인
+							</div>
 							<div className="registerpw2">
 								<input name="checknewpassword" className="registerinput" placeholder="한번더!" type="password"
 									onChange={(e) => {
-										setCheckPw2(e.target.value)
-										// console.log('입력한 첫번째줄 password: ', checkNewPw2)
+										checkPw2(e.target.value)
 									}}
 								/>
 							</div>
 							{
-								!checkNewPw2
-									? <div className="needuseid">비밀번호를 입력해주세요</div>
-									: (checkNewPw === checkNewPw2 ?
-										<div className="canuseid">비밀번호 일치.</div>
-										: <div className="cantuseid">비밀번호가 다릅니다.</div>
-									)
+								pwState2[validPw2]
 							}
 							<hr className="divider" />
 							<div className="registersubtitle">
@@ -144,7 +182,7 @@ function Register() {
 						</div>
 						<hr className="divider" />
 						{
-							!checkNewId || !checkNewPw || validId === false || !studentId || !studentName
+							!checkNewId || validId === false || !studentId || !studentName
 								? <button className="doneBtndiabled" type="submit" disabled={true}>가입하기</button>
 								: <button className="doneBtn" type="submit">가입하기</button>
 						}

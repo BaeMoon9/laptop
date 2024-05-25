@@ -721,7 +721,23 @@
 
 .needuseid {
   display: flex;
-  color: orange;
+  color: rgb(214, 139, 0);
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.regexuseid {
+	display: flex;
+  color: rgb(153, 0, 255);
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.regexuseid2 {
+	display: flex;
+  color: rgb(0, 94, 31);
   font-weight: bold;
   margin-bottom: 20px;
   margin-left: 10px;
