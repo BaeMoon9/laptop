@@ -35,7 +35,7 @@ function Rent2() {
 		})
 			.then((res) => {
 				//console.log('res 보기 :', res.data.sqlMessage)
-				if (res.data.sqlMessage) {
+				if (res.data.sqlMessage) { //sql 에러처리
 					window.alert("요청 실패! 관리자에게 문의바랍니다.") //sql에러처리
 					navigate('/home')
 				} else {
@@ -100,7 +100,7 @@ function Rent2() {
 						</div>
 						<div className="guestrentinfo">
 							<div className="guestinfo">전화번호</div>
-							<div className="renterinfo">010-1234-5678</div>
+							<div className="renterinfo">{userData.phone}</div>
 						</div>
 						<div className="guestrentinfo">
 							<div className="guestinfo">이메일</div>

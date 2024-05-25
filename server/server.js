@@ -218,7 +218,7 @@ app.post('/newregister', async (req, res) => {
 		await pool.query('insert into User values (?, ?, ?, ?, ?)',
 			[req.body.userid, hashed, req.body.studentid, req.body.studentname, req.body.phonenum]
 		)
-		res.redirect('/')
+		res.send("<script>alert('회원가입이 완료되었습니다.'); window.location.replace('/')</script>")
 
 	} catch (e) {
 		console.log(e)
