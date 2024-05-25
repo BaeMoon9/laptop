@@ -91,7 +91,7 @@ passport.use(new LocalStrategy({
 		}
 	} catch (e) {
 		console.log(e)
-		return cb(null, false, { message: "없는아이디거나 비밀번호가 틀립니다." })
+		return cb(null, false, { message: "없는 아이디거나 비밀번호가 틀립니다." })
 	}
 }))
 
@@ -196,13 +196,13 @@ app.get('/logout', async (req, res, next) => {
 
 app.get('/checkid', async (req, res) => {
 	try {
-		console.log('req : ', req.query)
+		console.log('중복확인 요청한 입력 아이디 : ', req.query)
 		let check = await pool.query('select * from User where user_id = ?',
 			req.query.checkNewId)
 		console.log('check[0].user_id ==>', check[0].user_id)
 		res.json(check[0].user_id)
 	} catch (e) { //db조회 실패시 --> 아이디중복아니기때문에 null을 전달해서 컨트롤
-		console.log('TypeError ==>', e)
+		console.log('아이디 중복아님', e)
 		res.json(null)
 	}
 
@@ -250,7 +250,7 @@ app.post('/userdevicerent', async (req, res) => {
 		console.log('신청 성공')
 		res.json(res)
 	} catch (e) {
-		//console.log('신청 실패', e)
+		console.log('신청 실패이유', e)
 	 	res.json(e)
 	}
 })
@@ -333,7 +333,8 @@ app.post('/addlist', async (req, res) => {
 		return res.send("<script>alert('등록이 완료되었습니다.'); window.history.back()</script>");
 	} catch (e) {
 		console.log(e)
-		res.json({ message: '오류로 인한 신청 실패' })
+		// res.json({ message: '오류로 인한 신청 실패' })
+		res.send("<script>alert('등록에 실패하였습니다.'); </script>")
 	}
 })
 
@@ -347,7 +348,7 @@ app.post('/updatelist', async (req, res) => {
 		return res.send("<script>alert('업데이트가 완료되었습니다.'); window.history.back()</script>");
 	} catch (e) {
 		console.log(e)
-		res.json({ message: '오류로 인한 신청 실패' })
+		res.send("<script>alert('업데이트에 실패하였습니다.'); </script>")
 	}
 })
 
@@ -375,7 +376,7 @@ app.post('/findyourid', async (req, res) => {
 		)
 		res.json(result)
 	}catch (e) {
-		return res.send("<script>alert('오류발생 관리자에게 문의 바랍니다.'); window.location.reload()</script>");
+		return res.send("<script>alert('오류발생! 관리자에게 문의 바랍니다.'); window.location.reload()</script>");
 	}
 })
 

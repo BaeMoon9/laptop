@@ -136,9 +136,12 @@ function Rent2() {
 							<button className="btnCss1"
 								onClick={() => applyBtn([userData], [laptopData])}
 							>신청하기</button>
-							: <button className="btnCss1"
+							: <div>
+								<button className="btnCss1"
 								onClick={() => alert('개인정보 수집 및 이용에 동의하셔아힙니다.')}
 							>신청하기</button>
+							<ScrollToTop />
+							</div>
 					}
 			</div>
 		</div>

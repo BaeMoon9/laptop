@@ -3,10 +3,17 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Navbarpage from "./navpage.js";
 
+var idState = { //아이디 체크 상태
+	0 : <div className="needuseid">아이디를 입력해주세요</div>, 
+	1 : <div className="needuseid">아이디를 영문자, 숫자포함 6자이상으로 작성해주세요</div>,
+	2 : <div className="cantuseid">사용중인 아이디 입니다.</div>,
+	3 : <div className="canuseid">사용 가능한 아이디 입니다.</div>,
+}
+
 function Register() {
 
 	const [checkNewId, setCheckID] = useState()
-	const [validId, setValidId] = useState(null)
+	const [validId, setValidId] = useState(0)
 
 	const [checkNewPw, setCheckPw] = useState()
 	const [checkNewPw2, setCheckPw2] = useState()
@@ -14,32 +21,42 @@ function Register() {
 	const [studentId, setStudentId] = useState()
 	const [studentName, setStudentName] = useState()
 	const [phonenum, setPhonenum] = useState()
+	
+	const idRegEx = /^[A-Za-z0-9]{6,20}$/; //영문자 + 숫자, 6자이상
+	const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
 
-	const checkID = async () => {
-		// console.log('중복검색할 아이디 : ', checkNewId)
+	
+
+	const checkID = async () => { 
+		console.log('정규식 테스트', idRegEx.test(checkNewId)) 
+		console.log('id길이', checkNewId.length)
+		console.log()
+
 		if (!checkNewId) {
-			setValidId(null)
+			setValidId(0)
 			console.log('아이디미입력') //중복확인 아이디 미입력시 validId null 반환
-		} else {
+		} else if (idRegEx.test(checkNewId) === false) { //정규식 조건 미충족
+			setValidId(1)
+		} else if (idRegEx.test(checkNewId) === true) {
 			await axios.get('http://221.142.94.196:8081/checkid', { params: { checkNewId } }).then((result) => {
 				// console.log('result.data : ', result.data)
 
 				if (result.data === checkNewId) {
-					setValidId(false)
+					setValidId(2)
 					// console.log('중복임', result.data, checkNewId, validId)
 				}
 				else {
-					setValidId(true)
+					setValidId(3)
 					// console.log('중복아님', result.data, checkNewId, validId)
 				}
 			}).catch(() => {
 				console.log('failed')
 			})
+
+		} else {
+			console.log('관리자에게 문의해주세요(id error)')
 		}
 	}
-
-
-
 
 	return (
 		<div>
@@ -65,12 +82,7 @@ function Register() {
 							<button type="button" className="btnCss2" onClick={checkID}>중복확인</button>
 						</div>
 						{
-							validId === null
-								? <div className="needuseid">아이디를 입력해주세요</div>
-								: (validId === false ?
-									<div className="cantuseid">사용중인 아이디 입니다.</div>
-									: <div className="canuseid">사용 가능한 아이디 입니다.</div>
-								)
+							idState[validId]
 						}
 						<div className="registerpw">
 							<div className="registersubtitle">
@@ -133,8 +145,8 @@ function Register() {
 						<hr className="divider" />
 						{
 							!checkNewId || !checkNewPw || validId === false || !studentId || !studentName
-								? <Button className="registerBtn" type="submit" disabled>가입하기</Button>
-								: <Button className="registerBtn" type="submit">가입하기</Button>
+								? <button className="doneBtndiabled" type="submit" disabled={true}>가입하기</button>
+								: <button className="doneBtn" type="submit">가입하기</button>
 						}
 					</form>
 				</div>
