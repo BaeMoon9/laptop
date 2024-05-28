@@ -42,8 +42,8 @@ function Navbarpage() {
 						</div>
 					</Navbar.Brand>
 					<Nav className="navtabscontainer">
-						<Nav.Link onClick={() => { navigate('/home') }}>
-							<div className="navtabs">홈</div>
+						<Nav.Link onClick={() => { navigate('/howtorent') }}>
+							<div className="navtabs">대여방법</div>
 						</Nav.Link>
 						{
 							!userData.id

@@ -54,7 +54,7 @@
 }
 
 .loginbg {
-  min-height: 750px;
+  min-height: 850px;
   background: url(/public/pic1.jpg);
   background-size: cover;
 }
@@ -499,6 +499,13 @@
   margin-bottom: 30px;
 }
 
+.divider2 {
+  border: 0px;
+  border-top: 2px solid;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
 .listtable {
   margin-top: 40px;
   width: 1300px;
@@ -906,11 +913,15 @@
 }
 
 .pagination {
+	color: black;
   align-items: center;
   justify-content: center;
   margin-top: 10px;
   gap: 7px;
   text-decoration: none;
+	&:active {
+		color: #999999;
+	}
 }
 
 .mainfooter {
@@ -1004,6 +1015,46 @@
   font-size: 1em;
   font-weight: bold;
   text-decoration: none;
+}
+
+.howtorentnav {
+	display: flex;
+}
+
+.howtorentbtncontain {
+	display: flex;
+}
+
+.howtorentsubtitle {
+	display: flex;
+  /* margin-bottom: 30px; */
+  /* background-color: aliceblue; */
+  font-weight: bold;
+	margin-right: 20px;
+  font-size: 30px;
+  color: darkslateblue;
+	border: none;
+	background-color: white;
+
+	&:active {
+		color : lightblue;
+	}
+}
+
+.howtorentsubtitleonclick {
+	display: flex;
+  /* margin-bottom: 30px; */
+  /* background-color: aliceblue; */
+  font-weight: bold;
+	margin-right: 20px;
+  font-size: 30px;
+  color: lightblue;
+	border: none;
+	background-color: white;
+
+	&:active {
+		color : lightblue;
+	}
 }
 
 @keyframes App-logo-spin {

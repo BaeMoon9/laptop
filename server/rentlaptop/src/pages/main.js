@@ -15,6 +15,7 @@ import ApproveUser from "./approveUser.js";
 import FindID from "./findid.js";
 import GuestRent from "./guestrent.js";
 import GuestRent2 from "./guestrent2.js";
+import HowtoRent from "./howtorent.js";
 
 
 
@@ -39,7 +40,8 @@ function MainPage() {
 					<Route path="/home" element={<Home />}>
 						<Route path="detail" element={<LaptopList />} />
 					</Route>
-					<Route path="/list" element={<ListTable />} />			
+					<Route path="/list" element={<ListTable />} />	
+					<Route path="/howtorent" element={<HowtoRent />} />
 				</Routes>
 			</div>
 			<div className="mainfooter">
