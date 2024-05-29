@@ -643,7 +643,7 @@
 .registerpage {
   margin-top: 50px;
   /* background-color: antiquewhite; */
-  width: 1000px;
+  width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1056,6 +1056,29 @@
 		color : lightblue;
 	}
 }
+
+.clientcontainer {
+	display: flex;
+	flex-direction: column;
+	padding-left: 10px;
+	padding-right: 10px;
+	align-items: center;
+}
+
+.clienttitle {
+	display: flex;
+  font-weight: bold;
+  font-size: 25px;
+  color: darkslateblue;
+}
+
+.clientimgcontain {
+	display: flex;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+
 
 @keyframes App-logo-spin {
   from {

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Navbarpage from "./navpage";
+import HowtoClient from "./howtoclient";
+import HowtoGuest from "./howtoguest";
 
 function HowtoRent() {
 
@@ -16,7 +18,6 @@ function HowtoRent() {
 	return (
 		<div>
 			<Navbarpage />
-			<div className="howtorentpage">
 				<div className="registerpage">
 					<div className="registertitle">
 						대여방법
@@ -43,9 +44,13 @@ function HowtoRent() {
 						}
 					</div>
 					<hr className="divider2" />
+					{
+							btn === 0
+							? <HowtoGuest />
+							: <HowtoClient />
+						}
 				</div>
 			</div>
-		</div>
 	)
 }
 
