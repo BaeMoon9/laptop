@@ -1,17 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.884c6db0.css",
-    "main.js": "/static/js/main.f2842fb3.js",
+    "main.css": "/static/css/main.aa48557b.css",
+    "main.js": "/static/js/main.8d8c2be2.js",
     "static/js/10.efdd08e4.chunk.js": "/static/js/10.efdd08e4.chunk.js",
+    "static/media/howtorent2.png": "/static/media/howtorent2.0a54ce3ad834d323899e.png",
     "static/media/pic1.jpg": "/static/media/pic1.c55abd37bfab3b469c5e.jpg",
+    "static/media/howtorent3.png": "/static/media/howtorent3.ecdf97cb032efa90fb62.png",
+    "static/media/howtorent4.png": "/static/media/howtorent4.059eff5388cb4512e350.png",
+    "static/media/howtorent1.png": "/static/media/howtorent1.3a7e0c6023bddab9c464.png",
+    "static/media/howtoclient1.png": "/static/media/howtoclient1.c23b9afc11e0f6ef9990.png",
+    "static/media/howtoguest1.png": "/static/media/howtoguest1.5c5e46bce6bf97150c66.png",
+    "static/media/howtoclient2.png": "/static/media/howtoclient2.cc70e72bf13e7e90d328.png",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html",
-    "main.884c6db0.css.map": "/static/css/main.884c6db0.css.map",
-    "main.f2842fb3.js.map": "/static/js/main.f2842fb3.js.map",
+    "main.aa48557b.css.map": "/static/css/main.aa48557b.css.map",
+    "main.8d8c2be2.js.map": "/static/js/main.8d8c2be2.js.map",
     "10.efdd08e4.chunk.js.map": "/static/js/10.efdd08e4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.884c6db0.css",
-    "static/js/main.f2842fb3.js"
+    "static/css/main.aa48557b.css",
+    "static/js/main.8d8c2be2.js"
   ]
 }

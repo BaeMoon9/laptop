@@ -222,7 +222,7 @@ app.post('/newregister', async (req, res) => {
 
 	} catch (e) {
 		console.log(e)
-		res.json({ message: 'failed' })
+		res.send("<script>alert('회원가입이 완료되었습니다.'); window.location.replace('/')</script>")
 	}
 })
 
@@ -232,7 +232,7 @@ app.post('/guestdevicerent', async (req, res) => {
 		await pool.query('insert into RentApply values(?, ?, ?, ?, ?)',
 			[req.body.laptopnum, req.body.laptopname, req.body.studentname, req.body.studentid, req.body.studentphone]
 		)
-		res.send("<script>alert('신청이 완료되었습니다.'); window.location.replace('/')</script>")
+		res.send("<script>alert('신청이 완료되었습니다.'); window.location.replace('/register')</script>")
 	} catch (e) {
 		console.log(e)
 		res.json(e)
@@ -280,7 +280,7 @@ app.post('/applybtn', async (req, res) => {
 		)
 	} catch (e) {
 		console.log(e)
-		res.json({ message: '승인요청에러' })
+		res.send("<script>alert('승인 요청 에러 발생.'); window.location.reload(</script>")
 	}
 	try {
 		let db1 = await pool.query('select * from RentApply')
@@ -297,6 +297,7 @@ app.post('/returnbtn', async (req, res) => {
 		)
 	} catch (e) {
 		console.log('return failed', e)
+		res.send("<script>alert('오류 발생.'); window.location.reload()</script>")
 	}
 	try {
 		let db1 = await pool.query('select * from LaptopDetail where rent_student_id is not null')
