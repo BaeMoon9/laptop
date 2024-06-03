@@ -346,7 +346,7 @@ app.post('/updatelist', async (req, res) => {
 		await pool.query('update LaptopDetail set rent_student_id = ?, rent_name = ?, student_phone_num = ?, status = ? where ync_num = ?',
 			[req.body.studentnum, req.body.studentname, req.body.phone, req.body.status, req.body.yncnum]
 		)
-		return res.send("<script>alert('업데이트가 완료되었습니다.'); window.history.back()</script>");
+		return res.send("<script>alert('업데이트가 완료되었습니다.'); window.location.reload()</script>");
 	} catch (e) {
 		console.log(e)
 		res.send("<script>alert('업데이트에 실패하였습니다.'); </script>")
