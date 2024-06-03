@@ -222,7 +222,7 @@ app.post('/newregister', async (req, res) => {
 
 	} catch (e) {
 		console.log(e)
-		res.send("<script>alert('회원가입이 완료되었습니다.'); window.location.replace('/')</script>")
+		res.send("<script>alert('회원가입 실패! 관리자에게 문의 바랍니다.'); window.location.replace('/')</script>")
 	}
 })
 
