@@ -13,7 +13,7 @@ function FindID() {
 	const findID = async (stunum, stuname) => {
 		let db1 = [...stunum, ...stuname]
 
-		await axios.post('http://221.142.94.196:8081/findyourid', db1, {
+		await axios.post('http://localhost:8081/findyourid', db1, {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		})
 			.then((res) => {

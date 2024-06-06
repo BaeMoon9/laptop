@@ -22,20 +22,20 @@ function ListTable() {
 	const [deleteNum, setDeleteNum] = useState([]) //체크된 물품번호 추출
 
 	const onSelect = (checked, val, yncnum) => {
-		console.log('e.target.checked', checked, yncnum)
+		// console.log('e.target.checked', checked, yncnum)
 		if (checked) { //배열에 id 추가
-			console.log('체크', val)
+			// console.log('체크', val)
 			setDeleteChecked([...deleteChecked, val])
 			setDeleteNum([...deleteNum, yncnum])
 		} else if (!checked) { //배열에 id 제거
-			console.log('체크해제', val)
+			// console.log('체크해제', val)
 			let newDeleteChecked = deleteChecked.filter((e) => e !== val)
 			let newDeleteNum = deleteChecked.filter((e) => e !== yncnum)
 			setDeleteChecked(newDeleteChecked)
 			setDeleteNum(newDeleteNum)
 
 		}
-		console.log('체크된리스트', deleteNum)
+		// console.log('체크된리스트', deleteNum)
 	}
 
 	const handleDeleteState = () => {
@@ -50,7 +50,7 @@ function ListTable() {
 	const handleDeleteLaptop = async () => {
 		// console.log(deleteChecked)
 		try {
-			await axios.post('http://221.142.94.196:8081/deletelaptoplists', deleteNum, //체크한 번호들 삭제 요청하기
+			await axios.post('http://localhost:8081/deletelaptoplists', deleteNum, //체크한 번호들 삭제 요청하기
 				{ headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
 				.then(() => {
 					setDeleteState(false)
@@ -66,13 +66,13 @@ function ListTable() {
 		setPage(page)
 		setDeleteState(false) //삭제탭 취소
 		setDeleteChecked([])
-		console.log('page누름', page)
+		// console.log('page누름', page)
 	}
 
 	useEffect(() => {
-		axios.get('http://221.142.94.196:8081/laptopdatabases').then((result) => {
+		axios.get('http://localhost:8081/laptopdatabases').then((result) => {
 			setLaptopData(result.data)
-			console.log(laptopData)
+			// console.log(laptopData)
 		}).catch(() => {
 			console.log('failed')
 		})
@@ -205,7 +205,7 @@ function ListTable() {
 				/>
 			</div>
 			<div className="listtable">
-			<form action="http://221.142.94.196:8081/addlist" method="POST">
+			<form action="http://localhost:8081/addlist" method="POST">
 				<div className='addlisttop'>
 					<div className="registertitle">
 						노트북 등록하기
@@ -239,7 +239,7 @@ function ListTable() {
 					</div>
 				</div>
 			</form>
-			<form action="http://221.142.94.196:8081/updatelist" method="POST">
+			<form action="http://localhost:8081/updatelist" method="POST">
 				<div className='addlisttop'>
 					<div className="registertitle">
 						노트북 정보 갱신

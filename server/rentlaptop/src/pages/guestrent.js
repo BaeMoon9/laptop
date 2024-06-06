@@ -20,7 +20,7 @@ function GuestRent() {
 	const [userData, setUserData] = useState([])
 
 	useEffect(() => {
-		axios.get('http://221.142.94.196:8081/userpage').then((result) => {
+		axios.get('http://localhost:8081/userpage').then((result) => {
 			setUserData(result.data)
 		}).catch(() => {
 			console.log('failed')

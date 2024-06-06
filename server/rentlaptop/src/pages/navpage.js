@@ -11,7 +11,7 @@ function Navbarpage() {
 	const [userData, setUserData] = useState([])
 
 	useEffect(() => {
-		axios.get('http://221.142.94.196:8081/userpage').then((result) => {
+		axios.get('http://localhost:8081/userpage').then((result) => {
 			setUserData(result.data)
 		}).catch(() => {
 			console.log('failed')
@@ -19,7 +19,7 @@ function Navbarpage() {
 	}, [])
 
 	const logoutBtn = () => {
-		axios.get('http://221.142.94.196:8081/logout')
+		axios.get('http://localhost:8081/logout')
 			.catch(() => {
 				console.log("failed")
 			})
