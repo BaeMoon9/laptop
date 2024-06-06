@@ -37,7 +37,7 @@ const mariadb = require('mariadb');
 
 const pool = mariadb.createPool(
 	{
-		host: '221.142.94.196',
+		host: 'localhost',
 		port: 3306,
 		user: 'user2',
 		password: 'mysql',
@@ -331,7 +331,7 @@ app.post('/addlist', async (req, res) => {
 		await pool.query('insert into LaptopDetail values (?, ?, ?, ?, ?, ?, ?)',
 			[req.body.yncnum, req.body.name, req.body.year, req.body.status, '', null, null]
 		)
-		return res.send("<script>alert('등록이 완료되었습니다.'); window.history.back()</script>");
+		res.send("<script>alert('등록이 완료되었습니다.'); window.history.back()</script>");
 	} catch (e) {
 		console.log(e)
 		// res.json({ message: '오류로 인한 신청 실패' })
@@ -346,7 +346,7 @@ app.post('/updatelist', async (req, res) => {
 		await pool.query('update LaptopDetail set rent_student_id = ?, rent_name = ?, student_phone_num = ?, status = ? where ync_num = ?',
 			[req.body.studentnum, req.body.studentname, req.body.phone, req.body.status, req.body.yncnum]
 		)
-		return res.send("<script>alert('업데이트가 완료되었습니다.'); window.location.reload</script>");
+		res.send("<script>alert('업데이트가 완료되었습니다.'); window.location.replace('/list')</script>");
 	} catch (e) {
 		console.log(e)
 		res.send("<script>alert('업데이트에 실패하였습니다.'); </script>")
