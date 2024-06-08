@@ -7,7 +7,7 @@
 - Server
   <p>
     <img src="https://img.shields.io/badge/Raspberry Pi-A22846?style=flat-square&logo=Rasberry Pi&logoColor=white"/>
-    <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+    <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=&logoColor=black"/>
   </p>
 - Front
  
