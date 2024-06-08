@@ -6,7 +6,7 @@
 ### 🛠 개발환경
 - Server
   <p>
-    <img src="https://img.shields.io/badge/raspberrypi-#A22846?style=flat-square&logo=raspberrypi&logoColor=white"/>
+    <img src="https://img.shields.io/badge/RaspberryPi-#A22846?style=flat-square&logo=RaspberryPi&logoColor=white"/>
   </p>
 - Front
  
