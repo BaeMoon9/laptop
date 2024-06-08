@@ -5,7 +5,8 @@
 
 ### 🛠 개발환경
 - Server
-  - Rasberry Pi 4B : VsCode, Node.js, MariaDB
+  <p>
+    <img src="https://img.shields.io/badge/raspberrypi-#A22846?style=flat-square&logo=raspberrypi&logoColor=white"/>
+  </p>
 - Front
-  - MaCOS Sonoma
-  - VsCode, React.js
+ 
