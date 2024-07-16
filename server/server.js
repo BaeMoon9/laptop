@@ -37,7 +37,7 @@ const mariadb = require('mariadb');
 
 const pool = mariadb.createPool(
 	{
-		host: 'localhost',
+		host: '221.142.94.196',
 		port: 3306,
 		user: 'user2',
 		password: 'mysql',
@@ -232,7 +232,7 @@ app.post('/guestdevicerent', async (req, res) => {
 		await pool.query('insert into RentApply values(?, ?, ?, ?, ?)',
 			[req.body.laptopnum, req.body.laptopname, req.body.studentname, req.body.studentid, req.body.studentphone]
 		)
-		res.send("<script>alert('신청이 완료되었습니다.'); window.location.replace('/register')</script>")
+		res.send("<script>alert('신청이 완료되었습니다.'); window.location.replace('/')</script>")
 	} catch (e) {
 		console.log(e)
 		res.json(e)
