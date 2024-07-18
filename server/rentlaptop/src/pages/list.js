@@ -194,13 +194,14 @@ function ListTable() {
 					</Table>
 				</div>
 				<Pagination
-					className='pagination'
+					itemClass="page-item"
+          			linkClass="page-link"
 					activePage={page}
-					itemsCountPerPage={limit}
+					itemsCountPerPage={limit} //limit
 					totalItemsCount={laptopData.length}
 					pageRangeDisplayed={10}
-					prevPageText={"<"}
-					nextPageText={">"}
+					prevPageText={"< prev"}
+					nextPageText={"next >"}
 					onChange={handleNextPage}
 				/>
 			</div>

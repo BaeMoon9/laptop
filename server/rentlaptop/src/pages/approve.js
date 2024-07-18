@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Navbarpage from "./navpage.js";
+import Pagination from "react-js-pagination";
 
 
 function Approve() {
@@ -11,8 +12,20 @@ function Approve() {
 	const navigate = useNavigate();
 
 	const [rentedData, setRentedData] = useState([]) // 현재 대여중인 노트북 정보(관리자만 보기)
+  const [slicedData, setSlicedData] = useState([]) 
 	const [user, setUser] = useState([]) //현재 로그인 사용자 정보
 	const [apply, setApply] = useState([]) //노트북 대여 신청 목록담기
+	console.log(user)
+
+  const [page, setPage] = useState(1) //페이지
+	const limit = 10 //1페이지당 데이터 10개
+	const lastData = page * limit
+	const firstData = lastData - limit
+  
+  const handleNextPage = (page) => { //페이지 이동 onchange
+		setPage(page)
+		// console.log('page누름', page)
+	}
 
 
 	useEffect(() => {
@@ -28,6 +41,10 @@ function Approve() {
 				console.log("failed2")
 			})
 	}, [setApply, setRentedData]) //실시간 데이터 반영 : 재랜더링
+
+  useEffect(() => {
+		setSlicedData(rentedData.slice(firstData, lastData))
+	}, [rentedData, page])
 
 	// console.log('admin로그인할때 보이는 승인대기목록', apply)
 	// console.log('로그인정보', user)
@@ -136,8 +153,8 @@ function Approve() {
 							</tr>
 						</thead>
 						{
-							rentedData.map((a, inx) => (
-								rentedData[inx].rent_student_id !== null
+							slicedData.map((a, inx) => (
+								[inx].rent_student_id !== null
 									? <tbody key={inx} className='tbody1'>
 										<tr className='tr1'>
 											<td className='td1'>{inx + 1}</td>
@@ -156,6 +173,17 @@ function Approve() {
 						}
 					</Table>
 				</div>
+        <Pagination
+					itemClass="page-item"
+          linkClass="page-link"
+					activePage={page}
+					itemsCountPerPage={limit} //limit
+					totalItemsCount={rentedData.length}
+					pageRangeDisplayed={10}
+					prevPageText={"< prev"}
+					nextPageText={"next >"}
+					onChange={handleNextPage}
+				/>
 			</div>
 		</>
 
