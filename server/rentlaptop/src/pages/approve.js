@@ -29,8 +29,8 @@ function Approve() {
 
 
 	useEffect(() => {
-		axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/laptopdatabases'),
-		axios.get('http://localhost:8081/rentapply')])
+		axios.all([axios.get('http://220.67.0.204:8081/userpage'), axios.get('http://220.67.0.204:8081/laptopdatabases'),
+		axios.get('http://220.67.0.204:8081/rentapply')])
 			.then(
 				axios.spread((res1, res2, res3) => {
 					setUser(res1.data)
@@ -54,8 +54,8 @@ function Approve() {
 		// console.log('승인버튼 누른 신청유저', user)
 
 		try {
-			await axios.all([axios.post('http://localhost:8081/applybtn', user, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }),
-			axios.get('http://localhost:8081/laptoprentedbyuser')])
+			await axios.all([axios.post('http://220.67.0.204:8081/applybtn', user, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }),
+			axios.get('http://220.67.0.204:8081/laptoprentedbyuser')])
 				.then(
 					axios.spread((res5, res6) => {
 						setApply(res5.data)
@@ -70,7 +70,7 @@ function Approve() {
 		// console.log('반납처리된 유저', returnUser)
 
 		try {
-			await axios.post('http://localhost:8081/returnbtn', returnUser, {
+			await axios.post('http://220.67.0.204:8081/returnbtn', returnUser, {
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 			}).then((res) => {
 				setRentedData(res.data) //post로 제거요청을하면 select문으로 데이터 다시 받아와서 데이터 갱신및 useffect 재렌더링 가능
@@ -101,47 +101,54 @@ function Approve() {
 					<div className="registersubtitle">
 						신청 승인 대기 목록
 					</div>
-					<Table striped bordered hover>
-						<thead>
-							<tr>
-								<th class="col-md-1">순번</th>
-								<th class="col-md-2">상품명</th>
-								<th class="col-md-2">물품번호</th>
-								<th class="col-md-2">이름</th>
-								<th class="col-md-2">학번</th>
-								<th class="col-md-2">연락처</th>
-								<th class="col-md-2">승인</th>
-							</tr>
-						</thead>
-						{
-							apply.map((a, inx) => (
-								apply[inx].student_name !== null
-									? <tbody key={inx} className='tbody1'>
-										<tr className='tr1'>
-											<td className='td1'>{inx + 1}</td>
-											<td className='td1'>{a.laptop_name}</td>
-											<td className='td1'>{a.laptop_num}</td>
-											<td className='td1'>{a.student_name}</td>
-											<td className='td1'>{a.student_num_id}</td>
-											<td className='td1'>{a.phone_num}</td>
-											<td className='td1'>
-												<button className="btnCss1" onClick={() => applyBtn([a])}>
-													승인하기
-												</button></td>
-										</tr>
-									</tbody>
-									: null
-							))
-						}
-					</Table>
+					{
+            user.id === 'admin'
+              ?<Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th class="col-md-1">순번</th>
+                  <th class="col-md-2">상품명</th>
+                  <th class="col-md-2">물품번호</th>
+                  <th class="col-md-2">이름</th>
+                  <th class="col-md-2">학번</th>
+                  <th class="col-md-2">연락처</th>
+                  <th class="col-md-2">승인</th>
+                </tr>
+              </thead>
+              {
+                apply.map((a, inx) => (
+                  apply[inx].student_name !== null
+                    ? <tbody key={inx} className='tbody1'>
+                      <tr className='tr1'>
+                        <td className='td1'>{inx + 1}</td>
+                        <td className='td1'>{a.laptop_name}</td>
+                        <td className='td1'>{a.laptop_num}</td>
+                        <td className='td1'>{a.student_name}</td>
+                        <td className='td1'>{a.student_num_id}</td>
+                        <td className='td1'>{a.phone_num}</td>
+                        <td className='td1'>
+                          <button className="btnCss1" onClick={() => applyBtn([a])}>
+                            승인하기
+                          </button></td>
+                      </tr>
+                    </tbody>
+                    : null
+                ))
+              }
+            </Table>
+            : null
+          }
 				</div>
+
 				<hr className="divider" />
 				<div className="approvebottomcontainer">
 					<div className="registersubtitle">
 						대여 목록 <button className="rerenderBtn" onClick={() => reRenderBtn()}>갱신하기</button>
 					</div>
 
-					<Table striped bordered hover>
+					{
+            user.id === 'admin'
+            ? <Table striped bordered hover>
 						<thead>
 							<tr>
 								<th class="col-md-1">순번</th>
@@ -172,6 +179,8 @@ function Approve() {
 							))
 						}
 					</Table>
+          : null
+          }
 				</div>
         <Pagination
 					itemClass="page-item"
