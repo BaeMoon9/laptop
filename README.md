@@ -5,7 +5,11 @@
 
 ### 🛠 개발환경
 - Server
-  - Rasberry Pi 4B : VsCode, Node.js, MariaDB
+  - ~~Rasberry Pi 4B : VsCode, Node.js, MariaDB~~
+  - Ubuntu Linux: VsCode, Node.js, MariaDB
 - Front
   - MaCOS Sonoma
   - VsCode, React.js
+ 
+> 첫 개인 프로젝트입니다.
+> 반응형 웹과 redux가 없는 개인적으로 조금 아쉬운 프로젝트였습니다.
