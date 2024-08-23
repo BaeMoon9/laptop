@@ -15,7 +15,7 @@ function LaptopList() {
 	//  console.log('modelyear', modelYear)
 
 	useEffect(() => {
-		axios.all([axios.get('http://localhost:8081/laptopdatabases'), axios.get('http://localhost:8081/userpage')])
+		axios.all([axios.get('http://220.67.0.204:8081/laptopdatabases'), axios.get('http://220.67.0.204:8081/userpage')])
 			.then(
 				axios.spread((res1, res2) => {
 					setLaptopData(res1.data)

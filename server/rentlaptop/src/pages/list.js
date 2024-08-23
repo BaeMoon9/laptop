@@ -10,8 +10,10 @@ function ListTable() {
 
 	const [laptopData, setLaptopData] = useState([])
 	const [slicedData, setSlicedData] = useState([]) //laptopData 10개씩
+	const [user, setUser] = useState([]) //현재 로그인 사용자 정보
 	const [excelExport, setExcelExport] = useState([])
 	const [deleteState, setDeleteState] = useState(false); //노트북목록 삭제 체크박스 state
+	console.log(user)
 
 	const [page, setPage] = useState(1) //페이지
 	const limit = 10 //1페이지당 데이터 10개
@@ -50,7 +52,7 @@ function ListTable() {
 	const handleDeleteLaptop = async () => {
 		// console.log(deleteChecked)
 		try {
-			await axios.post('http://localhost:8081/deletelaptoplists', deleteNum, //체크한 번호들 삭제 요청하기
+			await axios.post('http://220.67.0.204:8081/deletelaptoplists', deleteNum, //체크한 번호들 삭제 요청하기
 				{ headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
 				.then(() => {
 					setDeleteState(false)
@@ -70,10 +72,14 @@ function ListTable() {
 	}
 
 	useEffect(() => {
-		axios.get('http://localhost:8081/laptopdatabases').then((result) => {
-			setLaptopData(result.data)
-			// console.log(laptopData)
-		}).catch(() => {
+		axios.all([axios.get('http://220.67.0.204:8081/userpage'), axios.get('http://220.67.0.204:8081/laptopdatabases')])
+		.then(
+			axios.spread((res1, res2) => {
+				setUser(res1.data)
+				setLaptopData(res2.data)
+				// console.log(laptopData)
+			})
+		).catch(() => {
 			console.log('failed')
 		})
 	}, [])
@@ -122,165 +128,171 @@ function ListTable() {
 
 	return (
 		<div>
-			<Navbarpage />
-			<div className="listtable">
-				<div className="listtop">
-					<div className="registertitle">
-						노트북 목록
-					</div>
-					<button className="excelBtn" onClick={excelExportHandler}>내보내기</button>
-					{
-						deleteState === false
-							? <button className="delBtn" onClick={handleDeleteState}>삭제하기</button>
-							: <div>
-								<button className="delBtn" onClick={() => handleDeleteLaptop()}>선택제거</button>
-								<button className="delBtn2" onClick={handleDeleteState}>취소하기</button>
-							</div>
-					}
-				</div>
-				<div className="tables">
-					<Table striped bordered hover>
-						<thead>
-							<tr>
-								{
-									deleteState === true
-										? <th class="col-md-1">삭제</th>
-										: null
-								}
-								<th class="col-md-1">순번</th>
-								<th class="col-md-1">상품명</th>
-								<th class="col-md-1">물품번호</th>
-								<th class="col-md-1">학번</th>
-								<th class="col-md-1">이름</th>
-								<th class="col-md-1">연락처</th>
-								<th class="col-md-1">상태</th>
-								<th class="col-md-1">비고</th>
-							</tr>
-						</thead>
+			{
+				user.id === 'admin'
+				? <div>
+				<Navbarpage />
+				<div className="listtable">
+					<div className="listtop">
+						<div className="registertitle">
+							노트북 목록
+						</div>
+						<button className="excelBtn" onClick={excelExportHandler}>내보내기</button>
 						{
-							slicedData.map((a, inx) => (
-								<tbody key={inx} className='tbody1'>
-									<tr className='tr1'>
-										{
-											deleteState === true
-												? <td className="checkboxcontain">
-													<input type="checkbox" value={inx} onChange={(e) => { onSelect(e.target.checked, e.target.value, a.ync_num) }}
-													//체크표시 치크해제 로직
-													/>
-												</td>
-												: null
-										}
-										<td className='td1'>{inx + 1}</td>
-										<td className='td1'>{a.name}</td>
-										<td className='td1'>{a.ync_num}</td>
-										<td className='td1'>{a.rent_student_id}</td>
-										<td className='td1'>{a.rent_name}</td>
-										<td className='td1'>{a.student_phone_num}</td>
-										<td className='td1'>
+							deleteState === false
+								? <button className="delBtn" onClick={handleDeleteState}>삭제하기</button>
+								: <div>
+									<button className="delBtn" onClick={() => handleDeleteLaptop()}>선택제거</button>
+									<button className="delBtn2" onClick={handleDeleteState}>취소하기</button>
+								</div>
+						}
+					</div>
+					<div className="tables">
+						<Table striped bordered hover>
+							<thead>
+								<tr>
+									{
+										deleteState === true
+											? <th class="col-md-1">삭제</th>
+											: null
+									}
+									<th class="col-md-1">순번</th>
+									<th class="col-md-1">상품명</th>
+									<th class="col-md-1">물품번호</th>
+									<th class="col-md-1">학번</th>
+									<th class="col-md-1">이름</th>
+									<th class="col-md-1">연락처</th>
+									<th class="col-md-1">상태</th>
+									<th class="col-md-1">비고</th>
+								</tr>
+							</thead>
+							{
+								slicedData.map((a, inx) => (
+									<tbody key={inx} className='tbody1'>
+										<tr className='tr1'>
 											{
-												a.status === '대여가능'
-													? <Badge bg="success" className="badgeCss">
-														대여가능
-													</Badge>
-													: <Badge bg="danger" className='badgeCss'>
-														대여불가
-													</Badge>
+												deleteState === true
+													? <td className="checkboxcontain">
+														<input type="checkbox" value={inx} onChange={(e) => { onSelect(e.target.checked, e.target.value, a.ync_num) }}
+														//체크표시 치크해제 로직
+														/>
+													</td>
+													: null
 											}
-										</td>
-										<td className='td1'>{a.status}</td>
-									</tr>
-								</tbody>
-							))}
-					</Table>
+											<td className='td1'>{inx + 1}</td>
+											<td className='td1'>{a.name}</td>
+											<td className='td1'>{a.ync_num}</td>
+											<td className='td1'>{a.rent_student_id}</td>
+											<td className='td1'>{a.rent_name}</td>
+											<td className='td1'>{a.student_phone_num}</td>
+											<td className='td1'>
+												{
+													a.status === '대여가능'
+														? <Badge bg="success" className="badgeCss">
+															대여가능
+														</Badge>
+														: <Badge bg="danger" className='badgeCss'>
+															대여불가
+														</Badge>
+												}
+											</td>
+											<td className='td1'>{a.status}</td>
+										</tr>
+									</tbody>
+								))}
+						</Table>
+					</div>
+					<Pagination
+						itemClass="page-item"
+						  linkClass="page-link"
+						activePage={page}
+						itemsCountPerPage={limit} //limit
+						totalItemsCount={laptopData.length}
+						pageRangeDisplayed={10}
+						prevPageText={"< prev"}
+						nextPageText={"next >"}
+						onChange={handleNextPage}
+					/>
 				</div>
-				<Pagination
-					itemClass="page-item"
-          			linkClass="page-link"
-					activePage={page}
-					itemsCountPerPage={limit} //limit
-					totalItemsCount={laptopData.length}
-					pageRangeDisplayed={10}
-					prevPageText={"< prev"}
-					nextPageText={"next >"}
-					onChange={handleNextPage}
-				/>
+				<div className="listtable">
+				<form action="http://220.67.0.204:8081/addlist" method="POST">
+					<div className='addlisttop'>
+						<div className="registertitle">
+							노트북 등록하기
+						</div>
+						<button className="excelBtn" type='submit'>등록하기</button>
+					</div>
+					<div className='addlist'>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								노트북명
+							</div>
+							<input name="name" className="addinput" placeholder="ex) LG Ultra PC()" type="text" />
+						</div>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								물품번호
+							</div>
+							<input name="yncnum" className="addinput" placeholder="ex) 20180918-0001" type="text" />
+						</div>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								연식
+							</div>
+							<input name="year" className="addinput" placeholder="ex) 2018" type="text" />
+						</div>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								대여 여부
+							</div>
+							<input name="status" className="addinput" placeholder="ex) 대여가능, 대여불가(사유)" type="text" />
+						</div>
+					</div>
+				</form>
+				<form action="http://220.67.0.204:8081/updatelist" method="POST">
+					<div className='addlisttop'>
+						<div className="registertitle">
+							노트북 정보 갱신
+						</div>
+						<button className="excelBtn" type='submit'>업데이트</button>
+					</div>
+					<div className='addlist'>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								업데이트 대상 물품번호
+							</div>
+							<input name="yncnum" className="addinput" placeholder="ex) 20180918-0001" type="text" />
+						</div>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								학번
+							</div>
+							<input name="studentnum" className="addinput" placeholder="ex) 1805013" type="text" />
+						</div>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								이름
+							</div>
+							<input name="studentname" className="addinput" placeholder="ex) 홍길동" type="text" />
+						</div>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								연락처
+							</div>
+							<input name="phone" className="addinput" placeholder="ex) 010-1234-1234" type="text" />
+						</div>
+						<div className='addlistcontent'>
+							<div className="addlistsubtitle">
+								대여 상태
+							</div>
+							<input name="status" className="addinput" placeholder="ex) 대여가능, 대여불가(사유)" type="text" />
+						</div>
+					</div>
+				</form>
+				</div>
 			</div>
-			<div className="listtable">
-			<form action="http://localhost:8081/addlist" method="POST">
-				<div className='addlisttop'>
-					<div className="registertitle">
-						노트북 등록하기
-					</div>
-					<button className="excelBtn" type='submit'>등록하기</button>
-				</div>
-				<div className='addlist'>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							노트북명
-						</div>
-						<input name="name" className="addinput" placeholder="ex) LG Ultra PC()" type="text" />
-					</div>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							물품번호
-						</div>
-						<input name="yncnum" className="addinput" placeholder="ex) 20180918-0001" type="text" />
-					</div>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							연식
-						</div>
-						<input name="year" className="addinput" placeholder="ex) 2018" type="text" />
-					</div>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							대여 여부
-						</div>
-						<input name="status" className="addinput" placeholder="ex) 대여가능, 대여불가(사유)" type="text" />
-					</div>
-				</div>
-			</form>
-			<form action="http://localhost:8081/updatelist" method="POST">
-				<div className='addlisttop'>
-					<div className="registertitle">
-						노트북 정보 갱신
-					</div>
-					<button className="excelBtn" type='submit'>업데이트</button>
-				</div>
-				<div className='addlist'>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							업데이트 대상 물품번호
-						</div>
-						<input name="yncnum" className="addinput" placeholder="ex) 20180918-0001" type="text" />
-					</div>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							학번
-						</div>
-						<input name="studentnum" className="addinput" placeholder="ex) 1805013" type="text" />
-					</div>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							이름
-						</div>
-						<input name="studentname" className="addinput" placeholder="ex) 홍길동" type="text" />
-					</div>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							연락처
-						</div>
-						<input name="phone" className="addinput" placeholder="ex) 010-1234-1234" type="text" />
-					</div>
-					<div className='addlistcontent'>
-						<div className="addlistsubtitle">
-							대여 상태
-						</div>
-						<input name="status" className="addinput" placeholder="ex) 대여가능, 대여불가(사유)" type="text" />
-					</div>
-				</div>
-			</form>
-			</div>
+				: <div>잘못된접근입니다.</div>
+			}
 		</div>
 	)
 }

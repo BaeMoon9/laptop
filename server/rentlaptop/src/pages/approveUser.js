@@ -16,7 +16,7 @@ function ApproveUser() {
 
 
 	useEffect(() => {
-		axios.all([axios.get('http://localhost:8081/userpage'), axios.get('http://localhost:8081/userwantedapply'),])
+		axios.all([axios.get('http://220.67.0.204:8081/userpage'), axios.get('http://220.67.0.204:8081/userwantedapply'),])
 			.then(
 				axios.spread((res1, res4) => {
 					setUser(res1.data)

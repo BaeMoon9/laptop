@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.aa48557b.css",
-    "main.js": "/static/js/main.8d8c2be2.js",
+    "main.css": "/static/css/main.8a2b3279.css",
+    "main.js": "/static/js/main.e6adf8ff.js",
     "static/js/10.efdd08e4.chunk.js": "/static/js/10.efdd08e4.chunk.js",
     "static/media/howtorent2.png": "/static/media/howtorent2.0a54ce3ad834d323899e.png",
     "static/media/pic1.jpg": "/static/media/pic1.c55abd37bfab3b469c5e.jpg",
@@ -13,12 +13,12 @@
     "static/media/howtoclient2.png": "/static/media/howtoclient2.cc70e72bf13e7e90d328.png",
     "service-worker.js": "/service-worker.js",
     "index.html": "/index.html",
-    "main.aa48557b.css.map": "/static/css/main.aa48557b.css.map",
-    "main.8d8c2be2.js.map": "/static/js/main.8d8c2be2.js.map",
+    "main.8a2b3279.css.map": "/static/css/main.8a2b3279.css.map",
+    "main.e6adf8ff.js.map": "/static/js/main.e6adf8ff.js.map",
     "10.efdd08e4.chunk.js.map": "/static/js/10.efdd08e4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aa48557b.css",
-    "static/js/main.8d8c2be2.js"
+    "static/css/main.8a2b3279.css",
+    "static/js/main.e6adf8ff.js"
   ]
 }

@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate, Outlet } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios'
-import Navbarpage from "./navpage.js";
+import Navbarpage from "./navpage";
+
 
 
 function Home() {
@@ -24,7 +25,7 @@ function Home() {
 	
 
 	useEffect(() => {
-		axios.get('http://localhost:8081/laptopspecs').then((result) => {
+		axios.get('http://220.67.0.204:8081/laptopspecs').then((result) => {
 			setLaptopData(result.data)
 			//console.log(laptopData)
 		}).catch(() => {

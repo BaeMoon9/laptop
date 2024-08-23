@@ -15,7 +15,7 @@ function LoginPage() {
 				<div className="loginBox">
 					<h3 className="loginTitle">Login</h3>
 					<div className="loginTab2">
-						<form action="http://localhost:8081/login1" method="POST">
+						<form action="http://220.67.0.204:8081/login1" method="POST">
 							<input name="username" className="IdInput" placeholder="ID를 입력하세요." />
 							<input name="password" className="PwInput" type="password" placeholder="PW를 입력하세요." />
 							<button className="loginBtn" type="submit">로그인</button>
@@ -29,7 +29,7 @@ function LoginPage() {
 								navigate('/register')
 							}}>회원가입</a></p>
 						</ul>
-						<form action="http://localhost:8081/login1" method="POST">
+						<form action="http://220.67.0.204:8081/login1" method="POST">
 							<input type="hidden" name="username" className="IdInput" value={"guest"}/>
 							<input type="hidden" name="password" className="PwInput" value={"1234"}/>
 							<button className="loginBtn" type="submit">비회원 대여하기</button>

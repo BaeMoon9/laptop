@@ -16,6 +16,7 @@ import FindID from "./findid.js";
 import GuestRent from "./guestrent.js";
 import GuestRent2 from "./guestrent2.js";
 import HowtoRent from "./howtorent.js";
+// import Navbarpage from "./navpage.js";
 
 
 
@@ -23,6 +24,7 @@ function MainPage() {
 
 	return (
 		<div>
+			{/* <Navbarpage /> */}
 			<div className="Components">
 				<Routes>
 					<Route path="/" element={<Home />} />

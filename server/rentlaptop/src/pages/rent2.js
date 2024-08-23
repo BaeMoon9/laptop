@@ -27,7 +27,7 @@ function Rent2() {
 	const applyBtn = async (userdb, devicedb) => {
 		let db1 = [...userdb, ...devicedb]
 
-		axios.post('http://localhost:8081/userdevicerent', db1, {
+		axios.post('http://220.67.0.204:8081/userdevicerent', db1, {
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			//header에 Content-Type 디폴트값이 'application/json'인데 이게 안되고 왜 위에게 되는지 잘 모르겠다
 			//좀더 찾아보는걸로 하자 일단은 약 14시간만에 해결되긴했다.
@@ -49,7 +49,7 @@ function Rent2() {
 
 	useEffect(() => {
 		setLaptopData(location.state.name[0])
-		axios.get('http://localhost:8081/userpage').then((res) => {
+		axios.get('http://220.67.0.204:8081/userpage').then((res) => {
 			 setUserData(res.data)
 		}).catch(() => {
 			console.log('failed')
