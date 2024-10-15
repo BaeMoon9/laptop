@@ -72,7 +72,7 @@ function Register() {
 		} else if (idRegEx.test(checkNewId) === false) { //정규식 조건 미충족
 			setValidId(1)
 		} else if (idRegEx.test(checkNewId) === true) {
-			await axios.get('http://localhost:8081/checkid', { params: { checkNewId } }).then((result) => {
+			await axios.get('http://192.168.75.229:8081/checkid', { params: { checkNewId } }).then((result) => {
 				// console.log('result.data : ', result.data)
 
 				if (result.data === checkNewId) {
@@ -157,7 +157,7 @@ function Register() {
 				</div>
 				<hr className="divider" />
 				<div className="registercontent">
-					<form action="http://localhost:8081/newregister" method="POST">
+					<form action="http://192.168.75.229:8081/newregister" method="POST">
 						<div className="registersubtitle">
 							아이디
 						</div>

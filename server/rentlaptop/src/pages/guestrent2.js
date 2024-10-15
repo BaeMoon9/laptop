@@ -19,7 +19,7 @@ function GuestRent2() {
 
 	useEffect(() => {
 		setLaptopData(location.state.name[0])
-		axios.get('http://220.67.0.204:8081/userpage').then((result) => {
+		axios.get('http://222.233.27.145:8081/userpage').then((result) => {
 			setUserData(result.data)
 		}).catch(() => {
 			console.log('failed')
@@ -59,7 +59,7 @@ function GuestRent2() {
 						<input type="radio" value="disagree" onChange={handleRadioChange} checked={radiobtn === "disagree"} className="disagreeradiobtn" />비동의
 					</div>
 					<hr className="divider" />
-					<form action="http://220.67.0.204:8081/guestdevicerent" method="POST">
+					<form action="http://192.168.75.229:8081/guestdevicerent" method="POST">
 						<div className="userrentinfo">
 							<div className="guestrentinfo">
 								<div className="guestinfo">학번</div>
