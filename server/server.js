@@ -39,12 +39,12 @@ const pool = mariadb.createPool(
 	{
 		host: 'localhost',
 		port: 3306,
-		user: 'user2',
-		password: 'mysql',
+		user: 'user1',
+		password: '5495',
 		database: 'rentlaptopservice',
 		allowPublicKeyRetrieval: 'true',
 		waitForConnections: false,
-		connectionLimit: 5
+		connectionLimit: 4
 	}
 );
 
@@ -52,7 +52,7 @@ pool.getConnection(function (err, connection) {
 	if (err)
 		throw err;
 	else {
-		connection.query("query;", function (err, resuㅁlts) {
+		connection.query("query;", function (err, results) {
 			if (err)
 				throw err;
 			else
