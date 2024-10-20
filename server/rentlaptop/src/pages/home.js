@@ -25,7 +25,7 @@ function Home() {
 	
 
 	useEffect(() => {
-		axios.get('http://220.67.0.204:8081/laptopspecs').then((result) => {
+		axios.get('http://192.168.75.229:8081/laptopspecs').then((result) => {
 			setLaptopData(result.data)
 			//console.log(laptopData)
 		}).catch(() => {

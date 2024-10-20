@@ -20,7 +20,7 @@ function Rent() {
 
 
 	useEffect(() => {
-		axios.get('http://220.67.0.204:8081/userpage').then((result) => {
+		axios.get('http://192.168.75.229:8081/userpage').then((result) => {
 			setUserData(result.data)
 		}).catch(() => {
 			console.log('failed')

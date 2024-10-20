@@ -10,7 +10,7 @@ function MyPage() {
 	const [userData, setUserData] = useState([])
 	const [userRented, setUserRented] = useState([])
 	const logoutBtn = () => {
-		axios.get('http://220.67.0.204:8081/logout')
+		axios.get('http://192.168.75.229:8081/logout')
 			.catch(() => {
 				console.log("failed")
 			})
@@ -19,7 +19,7 @@ function MyPage() {
 	}
 
 	useEffect(() => {
-		axios.all([axios.get('http://220.67.0.204:8081/userpage'), axios.get('http://220.67.0.204:8081/userrented'),])
+		axios.all([axios.get('http://192.168.75.229:8081/userpage'), axios.get('http://192.168.75.229:8081/userrented'),])
 			.then(
 				axios.spread((res1, res2) => {
 					setUserData(res1.data)

@@ -29,9 +29,9 @@ function Approve() {
   useEffect(() => {
     axios
       .all([
-        axios.get("http://220.67.0.204:8081/userpage"),
-        axios.get("http://220.67.0.204:8081/laptopdatabases"),
-        axios.get("http://220.67.0.204:8081/rentapply"),
+        axios.get("http://192.168.75.229:8081/userpage"),
+        axios.get("http://192.168.75.229:8081/laptopdatabases"),
+        axios.get("http://192.168.75.229:8081/rentapply"),
       ])
       .then(
         axios.spread((res1, res2, res3) => {
@@ -59,10 +59,10 @@ function Approve() {
     try {
       await axios
         .all([
-          axios.post("http://220.67.0.204:8081/applybtn", user, {
+          axios.post("http://192.168.75.229:8081/applybtn", user, {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
           }),
-          axios.get("http://220.67.0.204:8081/laptoprentedbyuser"),
+          axios.get("http://192.168.75.229:8081/laptoprentedbyuser"),
         ])
         .then(
           axios.spread((res5, res6) => {
@@ -80,7 +80,7 @@ function Approve() {
 
     try {
       await axios
-        .post("http://220.67.0.204:8081/returnbtn", returnUser, {
+        .post("http://192.168.75.229:8081/returnbtn", returnUser, {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
         })
         .then((res) => {
@@ -94,7 +94,7 @@ function Approve() {
   const reRenderBtn = async () => {
     try {
       await axios
-        .get("http://220.67.0.204:8081/laptoprentedbyuser")
+        .get("http://192.168.75.229:8081/laptoprentedbyuser")
         .then((res6) => {
           setRentedData(res6.data);
         });

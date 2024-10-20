@@ -52,7 +52,7 @@ function ListTable() {
 	const handleDeleteLaptop = async () => {
 		// console.log(deleteChecked)
 		try {
-			await axios.post('http://220.67.0.204:8081/deletelaptoplists', deleteNum, //체크한 번호들 삭제 요청하기
+			await axios.post('http://192.168.75.229:8081/deletelaptoplists', deleteNum, //체크한 번호들 삭제 요청하기
 				{ headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
 				.then(() => {
 					setDeleteState(false)
@@ -72,7 +72,7 @@ function ListTable() {
 	}
 
 	useEffect(() => {
-		axios.all([axios.get('http://220.67.0.204:8081/userpage'), axios.get('http://220.67.0.204:8081/laptopdatabases')])
+		axios.all([axios.get('http://192.168.75.229:8081/userpage'), axios.get('http://192.168.75.229:8081/laptopdatabases')])
 		.then(
 			axios.spread((res1, res2) => {
 				setUser(res1.data)
@@ -215,7 +215,7 @@ function ListTable() {
 					/>
 				</div>
 				<div className="listtable">
-				<form action="http://220.67.0.204:8081/addlist" method="POST">
+				<form action="http://192.168.75.229:8081/addlist" method="POST">
 					<div className='addlisttop'>
 						<div className="registertitle">
 							노트북 등록하기
@@ -249,7 +249,7 @@ function ListTable() {
 						</div>
 					</div>
 				</form>
-				<form action="http://220.67.0.204:8081/updatelist" method="POST">
+				<form action="http://192.168.75.229:8081/updatelist" method="POST">
 					<div className='addlisttop'>
 						<div className="registertitle">
 							노트북 정보 갱신
