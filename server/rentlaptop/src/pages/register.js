@@ -85,7 +85,7 @@ function Register() {
 				}
 			}).catch(() => {
 				console.log('failed')
-				alert('관리자에게 문의해주세요(db error)')
+				alert('관리 자에게 문의해주세요(db error)')
 			})
 
 		} else {
